@@ -7,12 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="{{ asset('template/img/logo/logobaru.png') }}" rel="icon">
+  <link href="{{ asset('RuangAdmin/img/logo/logobaru.png') }}" rel="icon">
   <title>Dashboard</title>
-  <link href="{{ asset('template/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('template/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('template/css/ruang-admin.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('RuangAdmin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('RuangAdmin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('RuangAdmin/css/ruang-admin.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('RuangAdmin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -21,7 +21,7 @@
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon">
-          <img src="{{ asset('template/img/logo/logobaru.png') }}">
+          <img src="{{ asset('RuangAdmin/img/logo/logobaru.png') }}">
         </div>
         <div class="sidebar-brand-text mx-3">PELITA HATI</div>
       </a>
@@ -83,7 +83,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <img class="img-profile rounded-circle" src="{{ asset('template/img/boy.png') }}" style="max-width: 60px">
+                <img class="img-profile rounded-circle" src="{{ asset('RuangAdmin/img/boy.png') }}" style="max-width: 60px">
                 <span class="ml-2 d-none d-lg-inline text-white small">Admin</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -137,16 +137,16 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <script src="{{ asset('template/vendor/jquery/jquery.min.js')}}"></script>
-  <script src="{{ asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{ asset('template/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-  <script src="{{ asset('template/js/ruang-admin.min.js')}}"></script>
-  <script src="{{ asset('template/vendor/chart.js/Chart.min.js')}}"></script>
-  <script src="{{ asset('template/js/demo/chart-area-demo.js')}}"></script>  
+  <script src="{{ asset('RuangAdmin/vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{ asset('RuangAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{ asset('RuangAdmin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+  <script src="{{ asset('RuangAdmin/js/ruang-admin.min.js')}}"></script>
+  <script src="{{ asset('RuangAdmin/vendor/chart.js/Chart.min.js')}}"></script>
+  <script src="{{ asset('RuangAdmin/js/demo/chart-area-demo.js')}}"></script>  
 
-  <script src="{{ asset('template/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-  <script src="{{ asset('template/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+  <script src="{{ asset('RuangAdmin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('RuangAdmin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+  <script src="{{ asset('RuangAdmin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
   <script>
     $(document).ready(function () {
