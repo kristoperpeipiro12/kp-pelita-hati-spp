@@ -60,7 +60,7 @@
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{ route('siswa.index') }}">Data Siswa</a>
-            <a class="collapse-item" href="#">Data User</a>
+            <a class="collapse-item" href="{{ route('user.index') }}">Data User</a>
           </div>
         </div>
       </li>
@@ -123,7 +123,7 @@
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
-              <b><a href="https://indrijunanda.gitlab.io/" target="_blank">Awas BOM</a></b>
+              <b><a href="#">Awas BOM</a></b>
             </span>
           </div>
         </div>

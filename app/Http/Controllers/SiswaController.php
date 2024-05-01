@@ -23,7 +23,7 @@ class SiswaController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
         // Validasi data yang dikirimkan oleh form tambah siswa
         $validatedData = $request->validate([
             'nis' => 'required',
@@ -33,20 +33,21 @@ class SiswaController extends Controller
             'jenis_kelamin' => 'required',
             'nohp' => 'required',
             'kelas' => 'required',
-            'foto'=> 'required|mimes:jpg,png,jpeg,jfif|max:2048',
+            'foto' => 'required|image|mimes:jpg,png,jpeg,jfif|max:2048', // Menambahkan rule 'image'
         ]);
         
         // Menyimpan foto siswa
         $foto = $request->file('foto');
-        $filename = date('d-m-y') . '.' . $foto->getClientOriginalExtension();
+        $filename = date('d-m-y') .'_'. $validatedData['nama'].'.' . $foto->getClientOriginalExtension(); 
         $path = $foto->storeAs('foto-siswa', $filename, 'public');
-
-        // Membuat record siswa baru dengan data yang divalidasi
-        Siswa::create(array_merge($validatedData, ['foto' => $path]));
-
+    
+        
+        Siswa::create(array_merge($validatedData, ['foto' => $filename])); 
+    
         // Mengarahkan pengguna kembali ke halaman index dengan pesan sukses
         return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil disimpan.');
     }
+    
 
     public function edit($nis)
     {
@@ -67,19 +68,20 @@ class SiswaController extends Controller
             'jenis_kelamin' => 'required',
             'nohp' => 'required',
             'kelas' => 'required',
-            'foto'=> 'nullable|mimes:jpg,png,jpeg,jfif|max:2048',
+            'foto'=> 'nullable|image|mimes:jpg,png,jpeg,jfif|max:2048',
         ]);
+        
 
-        // Mengambil data siswa yang akan diupdate dari database
+    
         $siswa = Siswa::findOrFail($nis);
 
         // Menghapus foto lama jika ada foto baru yang diunggah
         if ($request->hasFile('foto')) {
             Storage::disk('public')->delete($siswa->foto);
             $foto = $request->file('foto');
-            $filename = date('d-m-y') . '.' . $foto->getClientOriginalExtension();
+            $filename = date('d-m-y') .'_'. $validatedData['nama'].'.' . $foto->getClientOriginalExtension();
             $path = $foto->storeAs('foto-siswa', $filename, 'public');
-            $validatedData['foto'] = $path;
+            $validatedData['foto'] = $filename;
         }
 
         // Mengupdate record siswa dengan data yang divalidasi
@@ -106,4 +108,3 @@ class SiswaController extends Controller
         return redirect()->route('siswa.index');
     }
 }
-

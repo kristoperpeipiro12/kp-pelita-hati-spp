@@ -3,10 +3,10 @@
     <!-- DataTable with Hover -->
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Data user</h1>
+            <h1 class="h3 mb-0 text-gray-800">Data Siswa</h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">master data</a></li>
-                <li class="breadcrumb-item active" aria-current="page">data user</li>
+                <li class="breadcrumb-item active" aria-current="page">data siswa</li>
             </ol>
         </div>
 
@@ -21,23 +21,32 @@
                   <thead class="thead-light">
                     <tr>
                       <th>No</th>
-                      <th>Username</th>
-                      <th>Password</th>
-                      <th>Role</th>
+                      <th>Nis</th>
+                      <th>Nama</th>
+                      <th>Alamat</th>
+                      <th>Tanggal Lahir</th>
+                      <th>Jenis Kelamin</th>
+                      <th>No HP</th>
+                      <th>Kelas</th>
+                      <th>Foto</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {{-- @foreach($user as $item)
+                    @foreach($siswa as $item)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
-                      <td>{{ $user->username }}</td>
-                      <td>{{ $user->password }}</td>
-                      <td>{{ $user->role }}</td>
-                     
+                      <td>{{ $item->nis }}</td>
+                      <td>{{ $item->nama }}</td>
+                      <td>{{ $item->alamat }}</td>
+                      <td>{{ \Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y') }}</td>
+                      <td>{{ $item->jenis_kelamin }}</td>
+                      <td>{{ $item->nohp }}</td>
+                      <td>{{ $item->kelas }}</td>
+                      <td><img src="{{ asset('storage/'.$item->foto) }}" alt="" width="100"></td>
                       <td>
-                        <a href="{{ route('user.edit', $item->nis) }}" class="btn btn-primary btn-sm"><i class="fas fa-pen-alt"></i></a>
-                        <form action="{{ route('user.delete', $item->nis) }}" method="POST" style="display: inline-block;">
+                        <a href="{{ route('siswa.edit', $item->nis) }}" class="btn btn-primary btn-sm"><i class="fas fa-pen-alt"></i></a>
+                        <form action="{{ route('siswa.delete', $item->nis) }}" method="POST" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">
@@ -46,7 +55,7 @@
                         </form>
                     </td>
                     </tr>
-                    @endforeach --}}
+                    @endforeach
                   </tbody>
                 
                 </table>

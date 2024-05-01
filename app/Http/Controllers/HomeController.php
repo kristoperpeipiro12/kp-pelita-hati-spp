@@ -9,7 +9,7 @@ class HomeController extends Controller
     public function index(){
         return view("dashboard.dashboard");
     }
-    public function tagihan(){
-        return view("tagihan.index");
+    public function fungsi(){
+        return view("masterdata.user.index");
     }
 }

@@ -33,5 +33,12 @@ Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
 Route::get('/siswa/create', [SiswaController::class, 'create'])->name('siswa.create');
 Route::post('/siswa/store', [SiswaController::class, 'store'])->name('siswa.store');
 Route::get('/siswa/{nis}', [SiswaController::class, 'edit'])->name('siswa.edit');
-Route::post('/siswa/{nis}', [SiswaController::class, 'update'])->name('siswa.update');
+Route::put('/siswa/{nis}', [SiswaController::class, 'update'])->name('siswa.update');
 Route::delete('/siswa/{nis}', [SiswaController::class, 'delete'])->name('siswa.delete');
+
+Route::get('/user', [HomeController::class, 'fungsi'])->name('user.index');
+Route::get('/user/create', [HomeController::class, 'create'])->name('user.create');
+Route::post('/user/store', [HomeController::class, 'store'])->name('user.store');
+Route::get('/user/{id}', [HomeController::class, 'edit'])->name('user.edit');
+Route::post('/user/{id}', [HomeController::class, 'update'])->name('user.update');
+Route::delete('/user/{id}', [HomeController::class, 'delete'])->name('user.delete');
