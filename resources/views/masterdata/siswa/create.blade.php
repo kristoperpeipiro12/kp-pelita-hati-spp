@@ -13,56 +13,69 @@
                         <h6 class="m-0 font-weight-bold text-dark">Tambah Data Siswa</h6>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('siswa.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('siswa.store') }}" method="POST" enctype="multipart/form-data"
+                            class="d-flex flex-column">
                             @csrf
-                            <div class="form-group">
-                                <label for="nis">NIS</label>
-                                <input type="text" class="form-control" name="nis" placeholder="NIS">
-                             
+                            <div class="hts-con-form-group">
+                                <div class="form-group w-100">
+                                    <label for="nis">NIS</label>
+                                    <input type="text" class="form-control" name="nis" placeholder="NIS">
+
+                                </div>
+                                <div class="form-group w-100">
+                                    <label for="nama">Nama</label>
+                                    <input type="text" class="form-control" name="nama" placeholder="Nama">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" class="form-control" name="nama" placeholder="Nama">
+                            <div class="hts-con-form-group">
+                                <div class="form-group w-100">
+                                    <label for="alamat">Alamat</label>
+                                    <input type="text" class="form-control" name="alamat" placeholder="Alamat">
+                                </div>
+                                <div class="form-group w-100">
+                                    <label for="tanggal_lahir">Tanggal Lahir</label>
+                                    <input type="date" class="form-control" name="tanggal_lahir"
+                                        placeholder="Tanggal Lahir">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="alamat">Alamat</label>
-                                <input type="text" class="form-control" name="alamat" placeholder="Alamat">
-                            </div>
-                            <div class="form-group">
-                                <label for="tanggal_lahir">Tanggal Lahir</label>
-                                <input type="date" class="form-control" name="tanggal_lahir" placeholder="Tanggal Lahir">
-                            </div>
-                            <div class="form-group">
-                                <label for="jenis_kelamin">Jenis Kelamin</label>
-                                <select class="form-control" name="jenis_kelamin" required>
-                                    <option value="" disabled selected>-- Pilih Jenis Kelamin --</option>
-                                    <option value="Laki-laki">Laki-laki</option>
-                                    <option value="Perempuan">Perempuan</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="nohp">No HandPhone</label>
-                                <input type="number" class="form-control" name="nohp" placeholder="No HandPhone">
+                            <div class="hts-con-form-group">
+                                <div class="form-group w-100">
+                                    <label for="jenis_kelamin">Jenis Kelamin</label>
+                                    <select class="form-control" name="jenis_kelamin" required>
+                                        <option value="" disabled selected>-- Pilih Jenis Kelamin --</option>
+                                        <option value="Laki-laki">Laki-laki</option>
+                                        <option value="Perempuan">Perempuan</option>
+                                    </select>
+                                </div>
+                                <div class="form-group w-100">
+                                    <label for="nohp">No HandPhone</label>
+                                    <input type="number" class="form-control" name="nohp" placeholder="No HandPhone">
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="kelas">Kelas</label>
-                                <select class="form-control" name="kelas">
-                                    <option value="" disabled selected>-- Pilih Kelas --</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                </select>
-                            </div>  
-                            <div class="form-group">
-                                <label for="foto">Foto</label>
-                                <input type="file" class="form-control" name="foto">
-                            </div>      
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                            <a href="{{ route('siswa.index') }}" class="btn btn-secondary">Batal</a>
+                            <div class="hts-con-form-group">
+                                <div class="form-group w-100">
+                                    <label for="kelas">Kelas</label>
+                                    <select class="form-control" name="kelas">
+                                        <option value="" disabled selected>-- Pilih Kelas --</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>
+                                </div>
+                                <div class="form-group w-100">
+                                    <label for="foto">Foto</label>
+                                    <input type="file" class="form-control" name="foto">
+                                </div>
+                            </div>
+                            <div class="d-flex w-25" style="gap: 20px">
+                                <button type="submit" class="btn btn-primary w-100">Simpan</button>
+                                <a href="{{ route('siswa.index') }}" class="btn btn-secondary w-100">Batal</a>
+                            </div>
+                            
                         </form>
                     </div>
                 </div>

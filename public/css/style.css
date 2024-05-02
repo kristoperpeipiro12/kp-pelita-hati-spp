@@ -1,0 +1,170 @@
+/* CSS Custom */
+
+/* Halaman Tambah Siswa */
+.hts-con-form-group{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+
+
+/* Halaman index Informasi */
+
+.info-content{
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 20%;
+    /* background-color: aqua; */
+    min-height: 100vh;
+    margin-bottom: 10px;
+}
+
+.info-content .info-con-catat{
+    display: flex;
+    height: 100%;
+}
+
+.info-content .info-con-record{
+    display: flex;
+    height: 50%;
+    padding: 0 10px;
+    /* background-color: rebeccapurple; */
+}
+
+.info-content .info-con-record .record-judul{
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.info-content .info-con-record .record-info{
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.info-content .info-con-record .record-tgl{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 100%;
+    /* background-color: aqua; */
+}
+
+.info-content .info-con-record .con-record-button{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    align-items: end;
+    padding-bottom: 10px;
+    /* background-color: red; */
+}
+
+.info-con-record .con-record-button button{
+    width: 120px;
+    height: 45px;
+}
+
+.info-con-input{
+    padding: 0px 10px;
+}
+
+.info-con-input .btn{
+    width: 120px;
+    height: 45px;
+}
+
+.info-con-input .btn-success{
+    margin-right: 18px;
+}
+
+.info-con-input .info-textarea{
+    width: 100%;
+    height: 200px;
+}
+
+
+/* Halaman Pemasukan */
+.hpem-con-form-group{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+/* Halaman Pengeluaran */
+.hpeng-con-form-group{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.hpeng-con-form-group .peng-textarea{
+    width: 100%;
+    height: 100px;
+}
+
+
+
+/* media query */
+
+/* Halaman Tambah Siswa */
+@media screen and (max-width:620px) {
+    .hts-con-form-group{
+        gap: 0;
+        flex-direction: column;
+    }
+}
+
+/* Halaman Informasi */
+
+@media screen and (max-width:610px) {
+    .info-content{
+        flex-direction: column;
+    }
+    .info-content .info-con-record{
+        margin-top: 30px;
+    }
+
+    .info-con-input .info-textarea{
+        height: 100px;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .info-content{
+        gap: 10%;
+    }
+    .info-content .info-con-record{
+        height: 65%;
+    }
+}
+
+@media screen and (max-height:690px) {
+    .info-con-input .info-textarea{
+        width: 100%;
+        height: 100px;
+    }
+
+    .info-terkini{
+        font-size: 28px;
+    }
+
+    .info-content .info-con-record .record-judul{
+        font-size: 22px;
+    }
+
+    .info-content .info-con-record .record-info{
+        font-size: 14px;
+    }
+
+    .info-con-record .con-record-button button{
+        width: 80px;
+        height: 40px;
+    }
+}

@@ -5,8 +5,8 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Data Siswa</h1>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">master data</a></li>
-                <li class="breadcrumb-item active" aria-current="page">data siswa</li>
+                <li class="breadcrumb-item"><a href="#">Master Data</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Data Siswa</li>
             </ol>
         </div>
 
@@ -20,16 +20,16 @@
                 <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                   <thead class="thead-light">
                     <tr>
-                      <th>No</th>
+                      <th class="mini-th">No</th>
                       <th>Nis</th>
                       <th>Nama</th>
                       <th>Alamat</th>
                       <th>Tanggal Lahir</th>
                       <th>Jenis Kelamin</th>
                       <th>No HP</th>
-                      <th>Kelas</th>
-                      <th>Foto</th>
-                      <th>Aksi</th>
+                      <th class="mini-th">Kelas</th>
+                      <th class="text-center mini-th">Foto</th>
+                      <th class="text-center mini-th">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -43,12 +43,13 @@
                       <td>{{ $item->jenis_kelamin }}</td>
                       <td>{{ $item->nohp }}</td>
                       <td>{{ $item->kelas }}</td>
-                      <td><img src="{{ asset('storage/foto-siswa/'.$item->foto) }}" alt="" width="65"></td>                       <td>
-                        <a href="{{ route('siswa.edit', $item->nis) }}" class="btn btn-primary btn-sm"><i class="fas fa-pen-alt"></i></a>
+                      <td><img src="{{ asset('storage/foto-siswa/'.$item->foto) }}" alt="" width="65"></td>
+                      <td class="d-flex justify-content-between" >
+                        <a href="{{ route('siswa.edit', $item->nis) }}" class="btn btn-primary btn-sm mr-2"><i class="fas fa-pen-alt"></i></a>
                         <form action="{{ route('siswa.delete', $item->nis) }}" method="POST" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">
+                            <button type="submit" class="btn btn-danger btn-sm ml-2">
                               <i class="fas fa-trash-alt"></i> 
                           </button>
                         </form>

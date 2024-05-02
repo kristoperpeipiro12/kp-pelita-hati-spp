@@ -7,8 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="{{ asset('RuangAdmin/img/logo/logobaru.png') }}" rel="icon">
-  <title>Dashboard</title>
+  <link href="{{ asset('RuangAdmin/img/logo/logoSekolah.png') }}" rel="icon">
+  <title>Pelita Hati</title>
+  <link rel="stylesheet" href="{{ asset('assets/bootstrap-icons/font/bootstrap-icons.css') }}">
+  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('RuangAdmin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('RuangAdmin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('RuangAdmin/css/ruang-admin.css') }}" rel="stylesheet">
@@ -21,40 +23,45 @@
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon">
-          <img src="{{ asset('RuangAdmin/img/logo/logobaru.png') }}">
+          <img src="{{ asset('RuangAdmin/img/logo/logoSekolah.png') }}">
         </div>
         <div class="sidebar-brand-text mx-3">PELITA HATI</div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
         <a class="nav-link" href="{{ route('admin.dashboard') }}">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="bi bi-speedometer2"></i>
           <span>Dashboard</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-tablet-alt"></i>
+          <i class="bi bi-whatsapp"></i>
           <span>WhatsApp</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="{{ route('tagihan.index') }}">
-          <i class="fas fa-fw fa-money-bill-alt"></i>
+          <i class="bi bi-bank"></i>
           <span>Tagihan</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-money-bill-alt"></i>
+        <a class="nav-link" href="{{ route('pemasukan.index') }}">
+          <i class="bi bi-cash-stack"></i>
           <span>Pemasukan</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-apple-alt"></i>
+        <a class="nav-link" href="{{ route('pengeluaran.index') }}">
+          <i class="bi bi-wallet2"></i>
+          <span>Pengeluaran</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ route('informasi.index') }}">
+          <i class="bi bi-info-circle"></i>
           <span>Informasi</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
-          <i class="far fa-fw fas fa-database"></i></fas>
+          <i class="bi bi-database"></i>
           <span>Master Data</span>
         </a>
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
@@ -66,7 +73,7 @@
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="#">
-          <i class="fas fa-sign-out-alt fa-sm fa-fw "></i>
+          <i class="bi bi-box-arrow-left"></i>
           <span>Log Out</span></a>
       </li>
     </ul>
@@ -75,9 +82,12 @@
       <div id="content">
         <!-- TopBar -->
         <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
-          <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
+          <div class="d-flex p-0 align-items-center">
+            <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+              <i class="fa fa-bars"></i>
+            </button>
+            <span class="text-white">School Fee Management System</span>
+          </div>
           <ul class="navbar-nav ml-auto">
             <div class="topbar-divider d-none d-sm-block"></div>
             <li class="nav-item dropdown no-arrow">
@@ -123,7 +133,7 @@
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
-              <b><a href="#">Awas BOM</a></b>
+              <b><a href="#">AWAS GIGIT</a></b>
             </span>
           </div>
         </div>
@@ -148,6 +158,7 @@
   <script src="{{ asset('RuangAdmin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
   <script src="{{ asset('RuangAdmin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
+  <script src="{{ asset('js/script.js') }}"></script>
   <script>
     $(document).ready(function () {
       $('#dataTable').DataTable(); // ID From dataTable 

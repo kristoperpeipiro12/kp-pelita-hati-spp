@@ -19,8 +19,7 @@
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Pemasukan</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
                             <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                <span>Since last month</span>
+                                <span>Tercatat sejak 14 Feb 2021</span>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -39,8 +38,7 @@
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Pengeluaran</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 650.000</div>
                             <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-success mr-2"><i class="fas fa-money-check"></i> 12%</span>
-                                <span>Since last years</span>
+                                <span>Tercatat sejak 14 Feb 2021</span>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -59,8 +57,7 @@
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Siswa Aktif</div>
                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
                             <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                                <span>2012/2019</span>
+                                <span>Tercatat sejak 14 Feb 2021</span>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -79,8 +76,7 @@
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Requests</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                             <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                                <span>Since yesterday</span>
+                                <span>Tercatat sejak 14 Feb 2021</span>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -92,7 +88,7 @@
         </div>
 
         <!-- Area Chart -->
-        <div class="col-xl-8 col-lg-7">
+        <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report</h6>
@@ -119,7 +115,7 @@
             </div>
         </div>
         <!-- Pie Chart -->
-        <div class="col-xl-4 col-lg-5">
+        {{-- <div class="col-xl-4 col-lg-5">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Products Sold</h6>
@@ -190,7 +186,7 @@
                             class="fas fa-chevron-right"></i></a>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- Invoice Example -->
         
         <!-- Message From Customer-->

@@ -597,7 +597,7 @@ a:focus {
 }
 
 .bg-navbar {
-  background-color: #ef676c
+  background-color: #7286D3
 }
 
 .sidebar {
@@ -623,16 +623,18 @@ a:focus {
   width: 100%;
   text-align: left;
   padding: 1rem;
-  width: 14rem
+  width: 14rem;
+  /* background-color: red !important; */
+  margin-bottom: 5px;
 }
 
 .sidebar .nav-item .nav-link i {
-  font-size: .85rem;
+  font-size: 16px !important;
   margin-right: .25rem
 }
 
 .sidebar .nav-item .nav-link span {
-  font-size: .85rem;
+  font-size: 16px;
   display: inline
 }
 
@@ -1092,7 +1094,7 @@ a:focus {
 
 .sidebar-light .sidebar-brand {
   color: #fafafa;
-  background-color: #4c60da
+  background-color: #546ccc
 }
 
 .sidebar-light hr.sidebar-divider {
@@ -1852,8 +1854,18 @@ body.sidebar-toggled footer.sticky-footer {
 
 .card .table td,
 .card .table th {
+  min-width: 110px;
   padding-right: 1.5rem;
   padding-left: 1.5rem
+}
+
+/* .card .table th{
+  text-align: center;
+} */
+
+.card .table td,
+.card .table .mini-th{
+  min-width: 50px;
 }
 
 .customer-message {
