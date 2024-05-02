@@ -11,7 +11,7 @@
   <title>Dashboard</title>
   <link href="{{ asset('RuangAdmin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('RuangAdmin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('RuangAdmin/css/ruang-admin.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('RuangAdmin/css/ruang-admin.css') }}" rel="stylesheet">
   <link href="{{ asset('RuangAdmin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 </head>
 
