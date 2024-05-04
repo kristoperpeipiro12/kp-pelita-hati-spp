@@ -34,15 +34,15 @@
                     <span>Dashboard</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('whatsapp.index') }}">
+                <a class="nav-link" href="{{ route('tagihan.index') }}">
                     <i class="bi bi-whatsapp"></i>
-                    <span>WhatsApp</span></a>
+                    <span>Kirim Tagihan</span></a>
             </li>
-            <li class="nav-item active">
+            <!-- <li class="nav-item active">
                 <a class="nav-link" href="{{ route('tagihan.index') }}">
                     <i class="bi bi-bank"></i>
                     <span>Tagihan</span></a>
-            </li>
+            </li> -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('pemasukan.index') }}">
                     <i class="bi bi-cash-stack"></i>
@@ -165,7 +165,7 @@
                         <span>copyright &copy; <script>
                             document.write(new Date().getFullYear());
                             </script>
-                            <!-- - developed by <b><a href="#">AWAS GIGIT</a></b> -->
+                            - <b><a href="https://wa.me/6285845177710">Hubungi Developer</a></b>
                         </span>
                     </div>
                 </div>

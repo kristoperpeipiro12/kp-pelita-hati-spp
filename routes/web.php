@@ -7,7 +7,7 @@ use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TagihanController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\WhatsappController;
+// use App\Http\Controllers\WhatsappController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -75,9 +75,9 @@ Route::get('/pengeluaran/{id}', [PengeluaranController::class, 'edit'])->name('p
 Route::put('/pengeluaran/{id}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
 Route::delete('/pengeluaran/{id}', [PengeluaranController::class, 'delete'])->name('pengeluaran.delete');
 
-Route::get('whatsapp', [WhatsappController::class, 'index'])->name('whatsapp.index');
-Route::get('whatsapp/create', [WhatsappController::class, 'create'])->name('whatsapp.create');
-Route::post('whatsapp/store', [WhatsappController::class, 'store'])->name('whatsapp.store');
-Route::get('whatsapp/{id}', [WhatsappController::class, 'edit'])->name('whatsapp.edit');
-Route::put('whatsapp/{id}', [WhatsappController::class, 'update'])->name('whatsapp.update');
-Route::delete('whatsapp/{id}', [WhatsappController::class, 'delete'])->name('whatsapp.delete');
+// Route::get('whatsapp', [WhatsappController::class, 'index'])->name('whatsapp.index');
+// Route::get('whatsapp/create', [WhatsappController::class, 'create'])->name('whatsapp.create');
+// Route::post('whatsapp/store', [WhatsappController::class, 'store'])->name('whatsapp.store');
+// Route::get('whatsapp/{id}', [WhatsappController::class, 'edit'])->name('whatsapp.edit');
+// Route::put('whatsapp/{id}', [WhatsappController::class, 'update'])->name('whatsapp.update');
+// Route::delete('whatsapp/{id}', [WhatsappController::class, 'delete'])->name('whatsapp.delete');

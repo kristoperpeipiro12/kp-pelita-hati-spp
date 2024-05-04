@@ -26,7 +26,7 @@
                             <div class="form-group w-100">
                                 <label for="tanggal_pengeluaran">Tanggal Pengeluaran</label>
                                 <input type="date" class="form-control" name="tanggal_pengeluaran"
-                                    placeholder="Tanggal Lahir" id="tanggal_pengeluaran">
+                                    placeholder="Tanggal Pengeluaran" id="tanggal_pengeluaran">
                             </div>
                         </div>
                         <div class="hpeng-con-form-group">

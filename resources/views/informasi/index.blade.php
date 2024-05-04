@@ -30,7 +30,7 @@
                 </div>
                 <div class="info-con-input py-3">
                     <input type="submit" name="submit" id="kirim" class="btn btn-success">
-                    <input type="reset" name="reset" id="hapus" class="btn btn-danger">
+                    <input type="reset" name="reset" id="hapus" class="btn btn-dark">
                 </div>
             </form>
         </div>
