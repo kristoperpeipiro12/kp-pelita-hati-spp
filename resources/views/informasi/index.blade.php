@@ -5,7 +5,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Informasi</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="./">Admin</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
             <li class="breadcrumb-item active" aria-current="page">Informasi</li>
         </ol>
     </div>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group info-con-input w-100">
                     <label for="info">Informasi</label>
-                    <textarea name="info" id="info" class="info-textarea"></textarea>
+                    <textarea name="info" id="info" class="form-control info-textarea"></textarea>
                 </div>
                 <div class="form-group info-con-input w-100">
                     <label for="tanggal">Tanggal</label>
@@ -36,9 +36,9 @@
         </div>
         <div class="card w-100 info-con-record">
             <h3 class="text-center mt-3 info-terkini">Informasi Terkini</h3>
-            @foreach ($informasi as $i)
+            @forelse ($informasi as $i)
             <hr class="mx-4" style="margin-bottom: 5%" size="2" color="#8EA7E9">
-
+        
             <span class="record-judul">{{ $i->judul }}</span>
             <span class="text-justify record-info">
                 {{ $i->info }}
@@ -48,16 +48,19 @@
                         class="font-weight-bold">{{ \Carbon\Carbon::parse($i->tanggal)->format('d-m-Y') }}</span></p>
             </div>
             <div class="con-record-button">
-                <button class="btn btn-warning">Edit</button>
-                <button class="btn btn-danger">Hapus</button>
+                <a href="#" class="btn btn-warning">Edit</a>
+                <form action="{{ route('informasi.delete', $i->id) }}" method="POST" style="display: inline-block;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm ml-2">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </form>
             </div>
-            @endforeach
+            @empty
+            <p class="text-center">Tidak ada informasi yang tersedia.</p>
+            @endforelse
         </div>
-
-
-
     </div>
-
-
 </div>
 @endsection

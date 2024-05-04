@@ -48,16 +48,20 @@ Route::post('/user/{id}', [UserController::class, 'update'])->name('user.update'
 Route::delete('/user/{id}', [UserController::class, 'delete'])->name('user.delete');
 
 
-Route::get('/informasi', [InformasiController::class,'index'])->name('informasi.index');
-Route::get('/informasi/create', [InformasiController::class,'create'])->name('informasi.create');
-Route::post('/informasi/store', [InformasiController::class, 'store'])->name('informasi.store');
+Route::get('Informasi', [InformasiController::class, 'index'])->name('informasi.index');
+Route::get('Informasi/create', [InformasiController::class, 'create'])->name('informasi.create');
+Route::post('Informasi/store', [InformasiController::class, 'store'])->name('informasi.store');
+Route::get('Informasi/{id}', [InformasiController::class, 'edit'])->name('informasi.edit');
+Route::post('Informasi/{id}', [InformasiController::class, 'update'])->name('informasi.update');
+Route::delete('Informasi/{id}', [InformasiController::class, 'delete'])->name('informasi.delete');
+
 
 Route::get('/tagihan', [TagihanController::class, 'index'])->name('tagihan.index');
 Route::get('/tagihan/create', [TagihanController::class, 'create'])->name('tagihan.create');
 Route::post('/tagihan/store', [TagihanController::class, 'store'])->name('tagihan.store');
-Route::get('/tagihan/{id}', [TagihanController::class, 'edit'])->name('tagihan.edit');
-Route::put('/tagihan/{id}', [TagihanController::class, 'update'])->name('tagihan.update');
-Route::delete('/tagihan/{id}', [TagihanController::class, 'delete'])->name('tagihan.delete');
+Route::get('/tagihan/edit/{id}', [TagihanController::class, 'edit'])->name('tagihan.edit');
+Route::put('/tagihan/update/{id}', [TagihanController::class, 'update'])->name('tagihan.update');
+Route::delete('/tagihan/delete/{id}', [TagihanController::class, 'delete'])->name('tagihan.delete');
 
 
 Route::get('/pemasukan', [PemasukanController::class, 'index'])->name('pemasukan.index');

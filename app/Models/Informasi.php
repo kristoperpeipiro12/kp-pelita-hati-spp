@@ -19,7 +19,7 @@ class Informasi extends Model
     protected $fillable = [
         'id',
         'judul',
-        'informasi',
+        'info',
         'tanggal',
     ];
 }

@@ -30,8 +30,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($tagihan as $t)
-                        <>
+                        {{-- @foreach($tagihan as $t)
+                        <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$t -> namatagihan}}</td>
                             <td>{{$t -> jumlah}}</td>
@@ -50,7 +50,7 @@
                                 </form>
                             </td>
                             </tr>
-                            @endforeach
+                            @endforeach --}}
                     </tbody>
                 </table>
             </div>
