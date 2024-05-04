@@ -6,7 +6,8 @@ use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TagihanController;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WhatsappController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -39,12 +40,12 @@ Route::get('/siswa/{nis}', [SiswaController::class, 'edit'])->name('siswa.edit')
 Route::put('/siswa/{nis}', [SiswaController::class, 'update'])->name('siswa.update');
 Route::delete('/siswa/{nis}', [SiswaController::class, 'delete'])->name('siswa.delete');
 
-Route::get('/user', [HomeController::class, 'fungsi'])->name('user.index');
-Route::get('/user/create', [HomeController::class, 'create'])->name('user.create');
-Route::post('/user/store', [HomeController::class, 'store'])->name('user.store');
-Route::get('/user/{id}', [HomeController::class, 'edit'])->name('user.edit');
-Route::post('/user/{id}', [HomeController::class, 'update'])->name('user.update');
-Route::delete('/user/{id}', [HomeController::class, 'delete'])->name('user.delete');
+Route::get('/user', [UserController::class, 'index'])->name('user.index');
+Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+Route::get('/user/{id}', [UserController::class, 'edit'])->name('user.edit');
+Route::post('/user/{id}', [UserController::class, 'update'])->name('user.update');
+Route::delete('/user/{id}', [UserController::class, 'delete'])->name('user.delete');
 
 
 Route::get('/informasi', [InformasiController::class,'index'])->name('informasi.index');
@@ -73,3 +74,10 @@ Route::post('/pengeluaran/store', [PengeluaranController::class, 'store'])->name
 Route::get('/pengeluaran/{id}', [PengeluaranController::class, 'edit'])->name('pengeluaran.edit');
 Route::put('/pengeluaran/{id}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
 Route::delete('/pengeluaran/{id}', [PengeluaranController::class, 'delete'])->name('pengeluaran.delete');
+
+Route::get('whatsapp', [WhatsappController::class, 'index'])->name('whatsapp.index');
+Route::get('whatsapp/create', [WhatsappController::class, 'create'])->name('whatsapp.create');
+Route::post('whatsapp/store', [WhatsappController::class, 'store'])->name('whatsapp.store');
+Route::get('whatsapp/{id}', [WhatsappController::class, 'edit'])->name('whatsapp.edit');
+Route::put('whatsapp/{id}', [WhatsappController::class, 'update'])->name('whatsapp.update');
+Route::delete('whatsapp/{id}', [WhatsappController::class, 'delete'])->name('whatsapp.delete');

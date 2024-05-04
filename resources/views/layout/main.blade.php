@@ -34,7 +34,7 @@
                     <span>Dashboard</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('whatsapp.index') }}">
                     <i class="bi bi-whatsapp"></i>
                     <span>WhatsApp</span></a>
             </li>
