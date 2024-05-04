@@ -15,4 +15,6 @@ class TagihanController extends Controller
     Public function create(){
         return view("tagihan.create");
     }
+
+    
 }

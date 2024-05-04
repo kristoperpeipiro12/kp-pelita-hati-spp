@@ -21,10 +21,11 @@
                 <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                         <tr>
-                            <th>No</th>
+                            <th class="mini-th">No</th>
                             <th>Nama Tagihan</th>
                             <th>Jumlah</th>
                             <th>Cakupan</th>
+                            <th>Jatuh Tempo</th>
                             <!-- jangkauan = perkelas/perangkatan -->
                             <th class="text-center mini-th">Aksi</th>
                         </tr>
@@ -33,9 +34,9 @@
                         {{-- @foreach($tagihan as $t)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$t -> namatagihan}}</td>
-                            <td>{{$t -> jumlah}}</td>
-                            <td>{{$t -> cakupan}}</td>
+                        <td>{{$t -> namatagihan}}</td>
+                        <td>{{$t -> jumlah}}</td>
+                        <td>{{$t -> cakupan}}</td>
 
                             <td class="d-flex justify-content-between">
                                 <a href="{{ route('siswa.edit', $item->nis) }}" class="btn btn-primary btn-sm mr-2"><i
@@ -50,7 +51,7 @@
                                 </form>
                             </td>
                             </tr>
-                            @endforeach --}}
+                            @endforeach
                     </tbody>
                 </table>
             </div>
