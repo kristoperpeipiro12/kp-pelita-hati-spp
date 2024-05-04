@@ -6,8 +6,8 @@ use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TagihanController;
-use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,8 +73,3 @@ Route::post('/pengeluaran/store', [PengeluaranController::class, 'store'])->name
 Route::get('/pengeluaran/{id}', [PengeluaranController::class, 'edit'])->name('pengeluaran.edit');
 Route::put('/pengeluaran/{id}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
 Route::delete('/pengeluaran/{id}', [PengeluaranController::class, 'delete'])->name('pengeluaran.delete');
-
-
-
-
-
