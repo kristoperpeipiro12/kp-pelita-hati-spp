@@ -31,21 +31,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach($siswa as $item)
+                        @foreach($pemasukan as $p)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->nis }}</td>
-                        <td>{{ $item->nama }}</td>
-                        <td>{{ $item->alamat }}</td>
-                        <td>{{ \Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y') }}</td>
-                        <td>{{ $item->jenis_kelamin }}</td>
-                        <td>{{ $item->nohp }}</td>
-                        <td>{{ $item->kelas }}</td>
-                        <td><img src="{{ asset('storage/foto-siswa/'.$item->foto) }}" alt="" width="65"></td>
+                        <td>{{ $p->nis }}</td>
+                        <td>{{ $p->siswa->nama }}</td>
+                        <td>{{ $p->pemasukan}}</td>
+                        <td>{{ $p->tanggal}}</td>
+                        <td>{{ $p->jenistransaksi}}</td>
+
                         <td class="d-flex justify-content-between">
-                            <a href="{{ route('siswa.edit', $item->nis) }}" class="btn btn-primary btn-sm mr-2"><i
+                            <a href="{{ route('pemasukan.edit', $p->id) }}" class="btn btn-primary btn-sm mr-2"><i
                                     class="fas fa-pen-alt"></i></a>
-                            <form action="{{ route('siswa.delete', $item->nis) }}" method="POST"
+                            <form action="{{ route('pemasukan.delete', $p->id) }}" method="POST"
                                 style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
@@ -55,11 +53,12 @@
                             </form>
                         </td>
                         </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
+        
     </div>
 </div>
 @endsection

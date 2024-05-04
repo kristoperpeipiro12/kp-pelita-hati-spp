@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('pemasukan', function (Blueprint $table) {
             $table->id();
+            $table->string('nis');
+            $table->foreign('nis')->references('nis')->on('siswa')->onDelete('cascade');
+            $table->double('pemasukan');
+            $table->date('tanggal');
+            $table->enum('jenistransaksi', ['kontan', 'transfer'])->default('kontan');
             $table->timestamps();
         });
     }

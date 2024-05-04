@@ -24,21 +24,21 @@
                             </div>
                             <div class="form-group w-100">
                                 <label for="nominal_pemasukan">Nominal Pemasukan</label>
-                                <input type="text" class="form-control" name="nominal_pemasukan"
+                                <input type="text" class="form-control" name="pemasukan"
                                     placeholder="Rp. xxx . xxx" id="nominal_pemasukan">
                             </div>
                         </div>
                         <div class="hpem-con-form-group">
                             <div class="form-group w-100">
                                 <label for="tanggal_pemasukan">Tanggal Pemasukan</label>
-                                <input type="date" class="form-control" name="tanggal_pemasukan"
+                                <input type="date" class="form-control" name="tanggal"
                                     placeholder="Tanggal Pemasukan" id="tanggal_pemasukan">
                             </div>
                         </div>
                         <div class="hpem-con-form-group">
                             <div class="form-group w-100">
                                 <label for="jenis_pemasukan">Jenis Pemasukan</label>
-                                <select class="form-control" name="jenis_pemasukan" required>
+                                <select class="form-control" name="jenistransaksi" required>
                                     <option value="" disabled selected>-- Pilih Jenis Pemasukan --</option>
                                     <option value="kontan">Kontan</option>
                                     <option value="transfer">Transfer</option>
@@ -48,7 +48,7 @@
 
                         <div class="d-flex w-25" style="gap: 20px">
                             <button type="submit" class="btn btn-primary w-100">Simpan</button>
-                            <a href="{{ route('siswa.index') }}" class="btn btn-secondary w-100">Batal</a>
+                            <a href="{{ route('pemasukan.index') }}" class="btn btn-secondary w-100">Batal</a>
                         </div>
 
                     </form>

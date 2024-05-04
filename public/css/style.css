@@ -37,6 +37,7 @@
 .info-content .info-con-record .record-judul{
     font-size: 25px;
     margin-bottom: 10px;
+    /* background-color: rebeccapurple; */
 }
 
 .info-content .info-con-record .record-info{
@@ -84,6 +85,16 @@
     width: 100%;
     height: 200px;
 }
+
+#edit-judul {
+    margin-bottom: 10px;
+}
+
+#btn-edit-info, #btn-baru-info, #btn-simpan-info{
+    width: 120px;
+    height: 45px;
+}
+
 
 
 /* Halaman Pemasukan */
