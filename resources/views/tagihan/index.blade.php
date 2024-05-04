@@ -31,27 +31,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach($tagihan as $t)
+                        {{--@foreach($tagihan as $t)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                         <td>{{$t -> namatagihan}}</td>
                         <td>{{$t -> jumlah}}</td>
                         <td>{{$t -> cakupan}}</td>
 
-                            <td class="d-flex justify-content-between">
-                                <a href="{{ route('siswa.edit', $item->nis) }}" class="btn btn-primary btn-sm mr-2"><i
-                                        class="fas fa-pen-alt"></i></a>
-                                <form action="{{ route('siswa.delete', $item->nis) }}" method="POST"
-                                    style="display: inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm ml-2">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </form>
-                            </td>
-                            </tr>
-                            @endforeach
+                        <td class="d-flex justify-content-between">
+                            <a href="{{ route('siswa.edit', $item->nis) }}" class="btn btn-primary btn-sm mr-2"><i
+                                    class="fas fa-pen-alt"></i></a>
+                            <form action="{{ route('siswa.delete', $item->nis) }}" method="POST"
+                                style="display: inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm ml-2">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                        </tr>
+                        @endforeach--}}
                     </tbody>
                 </table>
             </div>
