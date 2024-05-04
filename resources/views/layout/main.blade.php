@@ -98,38 +98,11 @@
                                     style="max-width: 60px">
                                 <span class="ml-2 d-none d-lg-inline text-white small">Admin</span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <!-- jangan lupa hapus data-toggle & data-target pada tag a profile jika
-                                ingin menghapus modal dibawah ini -->
-                                <!-- modal (start) -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                ...
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- modal (end) -->
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
@@ -139,12 +112,34 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
-                                    data-target="#logoutModal">
+                                <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
                             </div>
+                            
+                            <!-- Modal Logout -->
+                            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to logout?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <a class="btn btn-primary" href="logout">Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </li>
                     </ul>
                 </nav>
@@ -162,8 +157,9 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>copyright &copy; <script>
-                            document.write(new Date().getFullYear());
+                        <span>copyright &copy;
+                            <script>
+                                document.write(new Date().getFullYear());
                             </script>
                             - <b><a href="https://wa.me/6285845177710">Hubungi Developer</a></b>
                         </span>
@@ -179,24 +175,24 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <script src="{{ asset('RuangAdmin/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{ asset('RuangAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{ asset('RuangAdmin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-    <script src="{{ asset('RuangAdmin/js/ruang-admin.min.js')}}"></script>
-    <script src="{{ asset('RuangAdmin/vendor/chart.js/Chart.min.js')}}"></script>
-    <script src="{{ asset('RuangAdmin/js/demo/chart-area-demo.js')}}"></script>
-    
+    <script src="{{ asset('RuangAdmin/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('RuangAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('RuangAdmin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('RuangAdmin/js/ruang-admin.min.js') }}"></script>
+    <script src="{{ asset('RuangAdmin/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('RuangAdmin/js/demo/chart-area-demo.js') }}"></script>
+
     <script src="{{ asset('RuangAdmin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('RuangAdmin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('RuangAdmin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    
+
     <script src="{{ asset('js/script.js') }}"></script>
-    
+
     <script>
-    $(document).ready(function() {
-        $('#dataTable').DataTable(); // ID From dataTable 
-        $('#dataTableHover').DataTable(); // ID From dataTable with Hover
-    });
+        $(document).ready(function() {
+            $('#dataTable').DataTable(); // ID From dataTable 
+            $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+        });
     </script>
 
 </body>
