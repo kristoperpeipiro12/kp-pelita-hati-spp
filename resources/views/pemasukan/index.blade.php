@@ -36,7 +36,7 @@
                       <td>{{ $loop->iteration }}</td>
                         <td>{{ $p->nis }}</td>
                         <td>{{ $p->siswa->nama }}</td>
-                        <td>{{ $p->pemasukan}}</td>
+                        <td>Rp. {{ number_format($p->pemasukan, 0, ',', '.') }}</td>
                         <td>{{ $p->tanggal}}</td>
                         <td>{{ $p->jenistransaksi}}</td>
 

@@ -23,7 +23,7 @@ class PemasukanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nis' => 'required|string',
+            'nis' => 'required|exists:siswa,nis',
             'pemasukan' => 'required|numeric',
             'tanggal' => 'required|date',
             'jenistransaksi' => 'required|in:kontan,transfer',

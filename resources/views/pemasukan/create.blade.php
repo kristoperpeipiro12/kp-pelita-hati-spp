@@ -20,13 +20,23 @@
                                 <label for="nis">NIS</label>
                                 <input type="text" class="form-control" name="nis" placeholder="Nomor Induk Siswa"
                                     id="nis">
-
+                                <span class="text-danger" id="nis-error"></span>
+                                @error('nis')
+                                <span class="text-danger">NIS TIDAK TERDAFTAR !</span>
+                                @enderror
                             </div>
+                            <!-- Pesan error untuk NIS -->
+
                             <div class="form-group w-100">
                                 <label for="nominal_pemasukan">Nominal Pemasukan</label>
-                                <input type="text" class="form-control" name="pemasukan"
-                                    placeholder="Rp. xxx . xxx" id="nominal_pemasukan">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Rp.</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="pemasukan" id="nominal_pemasukan">
+                                </div>
                             </div>
+                            
                         </div>
                         <div class="hpem-con-form-group">
                             <div class="form-group w-100">
@@ -57,4 +67,39 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        // Format input menjadi angka
+        $('#nominal_pemasukan').on('input', function() {
+            var nominal = $(this).val().replace(/\D/g, '');
+            $(this).val(nominal.toLocaleString());
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#form-pemasukan').submit(function(e) {
+            // Mendapatkan nilai NIS dari input
+            var nis = $('#nis').val();
+
+            // Validasi NIS
+            if (nis.trim() == '') {
+                // Mencegah formulir untuk disubmit
+                e.preventDefault();
+
+                // Menampilkan pesan error
+                alert('NIS tidak boleh kosong. Silakan isi NIS.');
+
+                // Fokuskan kursor ke input NIS
+                $('#nis').focus();
+
+                // Mengembalikan false untuk mencegah formulir dari disubmit
+                return false;
+            }
+        });
+    });
+</script>
+
+
 @endsection
