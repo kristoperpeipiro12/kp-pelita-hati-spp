@@ -12,14 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('siswa', function (Blueprint $table) {
-            $table->string('nis')->primary();
+            $table->unsignedInteger('nis')->primary()->digits(8);
             $table->string('nama');
             $table->string('alamat');
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->string('nohp');
             $table->string('kelas');
-            // $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

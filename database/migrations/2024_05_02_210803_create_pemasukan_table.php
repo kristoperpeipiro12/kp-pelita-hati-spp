@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pemasukan', function (Blueprint $table) {
             $table->id();
-            $table->string('nis');
+            $table->unsignedInteger('nis')->unsigned()->digits(8);
             $table->foreign('nis')->references('nis')->on('siswa')->onDelete('cascade');
             $table->double('pemasukan');
             $table->date('tanggal');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      */
@@ -29,4 +29,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('pemasukan');
     }
+    
 };

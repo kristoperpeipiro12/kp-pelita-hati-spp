@@ -73,7 +73,7 @@
                 </div>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('logout') }}">
                     <i class="bi bi-box-arrow-left"></i>
                     <span>Log Out</span></a>
             </li>

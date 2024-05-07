@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\SiswaController;
@@ -29,6 +30,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('layout.main');
 // });
 
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 route::get('/dashboard', [HomeController::class,'index'])->name('admin.dashboard');
 
 
@@ -78,7 +84,7 @@ Route::post('/pengeluaran/store', [PengeluaranController::class, 'store'])->name
 Route::get('/pengeluaran/{id}', [PengeluaranController::class, 'edit'])->name('pengeluaran.edit');
 Route::put('/pengeluaran/{id}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
 Route::delete('/pengeluaran/{id}', [PengeluaranController::class, 'delete'])->name('pengeluaran.delete');
-
+});
 // Route::get('whatsapp', [WhatsappController::class, 'index'])->name('whatsapp.index');
 // Route::get('whatsapp/create', [WhatsappController::class, 'create'])->name('whatsapp.create');
 // Route::post('whatsapp/store', [WhatsappController::class, 'store'])->name('whatsapp.store');

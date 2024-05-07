@@ -20,8 +20,8 @@
                             <div class="hts-con-form-group">
                                 <div class="form-group w-100">
                                     <label for="nis">NIS</label>
-                                    <input type="text" class="form-control" name="nis" value="{{ $siswa->nis }}">
-
+                                    <input type="text" class="form-control" name="nis" id="nis" value="{{ $siswa->nis }}">
+                                    <small id="nisError" class="text-danger"></small>
                                 </div>
                                 <div class="form-group w-100">
                                     <label for="nama">Nama</label>
@@ -49,7 +49,8 @@
                                 </div>
                                 <div class="form-group w-100">
                                     <label for="nohp">No HandPhone</label>
-                                    <input type="number" class="form-control" name="nohp" value="{{ $siswa->nohp }}">
+                                    <input type="number" class="form-control" name="nohp" id="nohp" value="{{ $siswa->nohp }}">
+                                    <small id="nohpError" class="text-danger"></small>
                                 </div>
                             </div>
 
@@ -80,4 +81,33 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var nisInput = document.getElementById('nis');
+            var nisError = document.getElementById('nisError');
+            var nohpInput = document.getElementById('nohp');
+            var nohpError = document.getElementById('nohpError');
+
+            // Fungsi untuk memastikan input hanya berupa angka
+            function validateInputNumber(input, errorElement, maxLength) {
+                input.addEventListener('input', function() {
+                    var value = this.value.replace(/\D/g, '');
+                    this.value = value; 
+
+                    if (value.length > maxLength) {
+                        this.value = value.slice(0, maxLength);
+                        errorElement.textContent = "Tidak boleh lebih dari " + maxLength + " angka";
+                    } else {
+                        errorElement.textContent = ""; 
+                    }
+                });
+            }
+
+            validateInputNumber(nisInput, nisError, 8);
+
+            validateInputNumber(nohpInput, nohpError, 15);
+        });
+    </script>
+
 @endsection

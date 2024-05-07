@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
         $userdata = [
             [
                 'username' => 'admin',
-                'password' => bcrypt('admin'),
+                'password' => bcrypt('1234'),
                 'role' => 'admin',
             ],
             [

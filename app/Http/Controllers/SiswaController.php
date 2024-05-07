@@ -33,7 +33,7 @@ class SiswaController extends Controller
             'jenis_kelamin' => 'required',
             'nohp' => 'required',
             'kelas' => 'required',
-            'foto' => 'required|image|mimes:jpg,png,jpeg,jfif|max:2048', // Menambahkan rule 'image'
+            'foto' => 'required|image|mimes:jpg,png,jpeg,jfif|max:2048',
         ]);
         
         // Menyimpan foto siswa
@@ -44,16 +44,16 @@ class SiswaController extends Controller
         
         Siswa::create(array_merge($validatedData, ['foto' => $filename])); 
     
-        // Mengarahkan pengguna kembali ke halaman index dengan pesan sukses
+        
         return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil disimpan.');
     }
     
 
     public function edit($nis)
     {
-        // Mengambil data siswa yang akan diedit dari database
+
         $siswa = Siswa::where('nis', $nis)->firstOrFail();
-        // Menampilkan form edit siswa beserta data siswa yang akan diedit
+
         return view('masterdata.siswa.edit', compact('siswa'));
     }
 
@@ -75,7 +75,7 @@ class SiswaController extends Controller
     
         $siswa = Siswa::findOrFail($nis);
 
-        // Menghapus foto lama jika ada foto baru yang diunggah
+
         if ($request->hasFile('foto')) {
             Storage::disk('public')->delete($siswa->foto);
             $foto = $request->file('foto');
@@ -84,27 +84,22 @@ class SiswaController extends Controller
             $validatedData['foto'] = $filename;
         }
 
-        // Mengupdate record siswa dengan data yang divalidasi
+        
         $siswa->update($validatedData);
 
-        // Mengarahkan pengguna kembali ke halaman index dengan pesan sukses
         return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil diperbarui.');
     }
 
     public function delete($nis)
     {
-        // Menghapus data siswa dari database
         $siswa = Siswa::where('nis', $nis)->firstOrFail();
         
-        // Menghapus foto siswa jika ada
         if ($siswa->foto) {
             Storage::disk('public')->delete($siswa->foto);
         }
 
-        // Menghapus record siswa dari database
         $siswa->delete();
         
-        // Mengarahkan pengguna kembali ke halaman index
         return redirect()->route('siswa.index');
     }
 }
