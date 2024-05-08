@@ -13,51 +13,43 @@
                     <h6 class="m-0 font-weight-bold text-dark">Tambah Data User</h6>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data"
-                        class="d-flex flex-column">
+                    <form action="{{ route('user.store') }}" method="POST" class="d-flex flex-column">
                         @csrf
                         <div class="hts-con-form-group">
                             <div class="form-group w-100">
-                                <label for="nama_user">Nama Lengkap</label>
-                                <input type="text" class="form-control" name="nama_user" placeholder="Nama Pengguna"
-                                    id="nama_user">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Nama Pengguna" id="nama_user" value="{{ old('username') }}">
+                                @error('username')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="hts-con-form-group">
                             <div class="form-group w-100">
-                                <label for="password_user">Password</label>
-                                <input type="password" class="form-control" name="password_user" placeholder="****"
-                                    id="password_user">
-                            </div>
-                            <div class="form-group w-100">
-                                <label for="conf_pass_user">Konfirmasi Password</label>
-                                <input type="password" class="form-control" name="conf_pass_user" placeholder="****"
-                                    id="conf_pass_user">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="****" id="password_user">
+                                @error('password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="hts-con-form-group">
                             <div class="form-group w-100">
-                                <label for="jenis_kelamin">Jenis Kelamin</label>
-                                <select class="form-control" name="jenis_kelamin" required>
-                                    <option value="" disabled selected>-- Pilih Jenis Kelamin --</option>
-                                    <option value="Laki-laki">Laki-laki</option>
-                                    <option value="Perempuan">Perempuan</option>
+                                <label for="role">Role</label>
+                                <select class="form-control @error('role') is-invalid @enderror" name="role" required>
+                                    <option value="" disabled selected>-- Pilih Role --</option>
+                                    <option value="yayasan" {{ old('role') == 'yayasan' ? 'selected' : '' }}>Yayasan</option>
+                                    <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
                                 </select>
-                            </div>
-                            <div class="form-group w-100">
-                                <label for="role_user">Role</label>
-                                <select class=" form-control" name="role_user" required>
-                                    <option value="" disabled selected>-- Pilih Jenis Kelamin --</option>
-                                    <option value="yayasan">Yayasan</option>
-                                    <option value="admin">Admin</option>
-                                </select>
+                                @error('role')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="d-flex w-25" style="gap: 20px">
                             <button type="submit" class="btn btn-primary w-100">Simpan</button>
                             <a href="{{ route('user.index') }}" class="btn btn-secondary w-100">Batal</a>
                         </div>
-
                     </form>
                 </div>
             </div>

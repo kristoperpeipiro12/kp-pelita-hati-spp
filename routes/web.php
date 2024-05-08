@@ -50,7 +50,7 @@ Route::get('/user', [UserController::class, 'index'])->name('user.index');
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
 Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
 Route::get('/user/{id}', [UserController::class, 'edit'])->name('user.edit');
-Route::post('/user/{id}', [UserController::class, 'update'])->name('user.update');
+Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
 Route::delete('/user/{id}', [UserController::class, 'delete'])->name('user.delete');
 
 
@@ -58,7 +58,7 @@ Route::get('Informasi', [InformasiController::class, 'index'])->name('informasi.
 Route::get('Informasi/create', [InformasiController::class, 'create'])->name('informasi.create');
 Route::post('Informasi/store', [InformasiController::class, 'store'])->name('informasi.store');
 Route::get('Informasi/{id}', [InformasiController::class, 'edit'])->name('informasi.edit');
-Route::post('Informasi/{id}', [InformasiController::class, 'update'])->name('informasi.update');
+Route::put('Informasi/{id}', [InformasiController::class, 'update'])->name('informasi.update');
 Route::delete('Informasi/{id}', [InformasiController::class, 'delete'])->name('informasi.delete');
 
 

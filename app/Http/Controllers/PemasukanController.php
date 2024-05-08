@@ -57,11 +57,14 @@ class PemasukanController extends Controller
 
         return redirect()->route('pemasukan.index')->with('success', 'Pemasukan berhasil diperbarui.');
     }
-
-    public function destroy(Pemasukan $pemasukan)
+    public function delete($id)
     {
-        $pemasukan->delete();
+        $pemasukan = Pemasukan::where('id', $id)->firstOrFail();
+        
 
-        return redirect()->route('pemasukan.index')->with('success', 'Pemasukan berhasil dihapus.');
+        $pemasukan->delete();
+        
+        return redirect()->route('pemasukan.index');
     }
+    
 }

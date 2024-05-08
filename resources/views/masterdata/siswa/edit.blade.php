@@ -66,8 +66,14 @@
                                 </div>
                                 <div class="form-group w-100">
                                     <label for="foto">Foto</label>
-                                    <input type="file" class="form-control" name="foto">
+                                    <input type="file" class="form-control" name="foto" id="foto">
+                                    <!-- Tampilkan nama file jika sudah ada -->
+                                    @if(isset($siswa->foto))
+                                        <small><strong>{{ $siswa->foto }}</strong></small>
+                                    @endif
                                 </div>
+                                
+                                
                             </div>
                             <div class="d-flex w-25" style="gap: 20px">
 

@@ -38,53 +38,47 @@
             <h3 class="text-center mt-3 info-terkini">Informasi Terkini</h3>
             @forelse ($informasi as $i)
             <hr class="mx-4" style="margin-bottom: 5%" size="2" color="#8EA7E9">
-        <form action="" method="post" class="">
-            <span class="record-judul d-inline-block w-100" id="isi-judul">{{ $i->judul }}</span>
-            <input type="text" class="d-none w-100 form-control" id="edit-judul" placeholder="Edit Judul">
-            <span class="text-justify record-info d-inline-block w-100" id="isi-info">
-                {{ $i->info }}
-            </span>
-            <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-            <input type="text" class="d-none w-100 form-control" id="edit-info" placeholder="Edit Info">
-        </form>
-            <div class="record-tgl">
-                <p class="text-right" style="font-size: 13px">Tercatat tanggal : <span
-                        class="font-weight-bold">{{ \Carbon\Carbon::parse($i->tanggal)->format('d-m-Y') }}</span></p>
-            </div>
-            <div class="con-record-button">
-                <button class="btn btn-warning" id="btn-edit-info">Edit</button>
-                <button class="btn btn-primary d-none" id="btn-baru-info">Simpan</button>
-                <form action="{{ route('informasi.delete', $i->id) }}" method="POST" style="display: inline-block;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm ml-2" id="btn-simpan-info">
-                        Hapus
-                    </button>
-                </form>
+            <form action="{{ route('informasi.update', $i->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <span class="record-judul d-inline-block w-100" id="isi-judul">{{ $i->judul }}</span>
+                <input type="text" class="d-none w-100 form-control" name="judul" id="edit-judul" placeholder="Edit Judul" value="{{ $i->judul }}">
+                <span class="text-justify record-info d-inline-block w-100" id="isi-info">{{ $i->info }}</span>
+                <textarea class="d-none w-100 form-control" name="info" id="edit-info" placeholder="Edit Info">{{ $i->info }}</textarea>
+                <div class="record-tgl">
+                    <p class="text-right" style="font-size: 13px">Tercatat tanggal : <span
+                            class="font-weight-bold">{{ \Carbon\Carbon::parse($i->tanggal)->format('d-m-Y') }}</span></p>
+                </div>
+                <div class="con-record-button">
+                    <button class="btn btn-warning" id="btn-edit-info">Edit</button>
+                    <button type="submit" class="btn btn-primary d-none" id="btn-baru-info">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ $i->id }}">Hapus</button>
+                </div>
+            </form>
+
+            <!-- Modal -->
+            <div class="modal fade" id="deleteModal{{ $i->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ $i->id }}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel{{ $i->id }}">Konfirmasi Hapus Informasi</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah Anda yakin ingin menghapus informasi ini?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                            <form action="{{ route('informasi.delete', $i->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
             @empty
             <p class="text-center">Tidak ada informasi yang tersedia.</p>

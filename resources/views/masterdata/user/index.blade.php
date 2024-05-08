@@ -29,27 +29,51 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach($user as $item)
+                        @foreach($user as $item)
                     <tr>
-                      <td>{{ $loop->iteration }}</td>
-                        <td>{{ $user->username }}</td>
-                        <td>{{ $user->password }}</td>
-                        <td>{{ $user->role }}</td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->username }}</td>
+                        <td>{{ str_repeat('*', strlen($item->password)) }}</td>
+                        <td>{{ $item->role }}</td>
 
                         <td>
-                            <a href="{{ route('user.edit', $item->nis) }}" class="btn btn-primary btn-sm"><i
+                            <a href="{{ route('user.edit', $item->id) }}" class="btn btn-primary btn-sm"><i
                                     class="fas fa-pen-alt"></i></a>
-                            <form action="{{ route('user.delete', $item->nis) }}" method="POST"
-                                style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </form>
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                data-target="#deleteModal{{ $item->id }}">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
                         </td>
-                        </tr>
-                        @endforeach --}}
+                    </tr>
+
+                    <!-- Modal Delete -->
+                    <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="deleteModalLabel{{ $item->id }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel{{ $item->id }}">Konfirmasi Hapus
+                                        Data</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Apakah Anda yakin ingin menghapus data ini?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                    <form action="{{ route('user.delete', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Modal Delete -->
+                    @endforeach
                     </tbody>
 
                 </table>

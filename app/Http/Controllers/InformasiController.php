@@ -13,12 +13,11 @@ class InformasiController extends Controller
         $informasi = Informasi::all();
 
         return view('informasi.index', compact('informasi'));
-        // return view("informasi.index");
     }
 
     public function create()
     {
-        return view('informasi.index');
+        return view('informasi.create');
     }
 
     public function store(Request $request)
@@ -33,6 +32,28 @@ class InformasiController extends Controller
         Informasi::create($validatedData);
 
         return redirect()->route('informasi.index')->with('success', 'Informasi berhasil ditambahkan.');
+    }
+
+    public function edit($id)
+    {
+        $informasi = Informasi::findOrFail($id);
+
+        return view('informasi.edit', compact('informasi'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validasi data yang dikirimkan oleh form edit informasi
+        $validatedData = $request->validate([
+            'judul'=>'required',
+            'info' => 'required',
+            'tanggal' => 'required|date',
+        ]);
+
+        $informasi = Informasi::findOrFail($id);
+        $informasi->update($validatedData);
+
+        return redirect()->route('informasi.index')->with('success', 'Informasi berhasil diperbarui.');
     }
 
     public function delete($id)
