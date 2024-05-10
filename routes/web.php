@@ -37,8 +37,6 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 route::get('/dashboard', [HomeController::class,'index'])->name('admin.dashboard');
 
-
-
 Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
 Route::get('/siswa/create', [SiswaController::class, 'create'])->name('siswa.create');
 Route::post('/siswa/store', [SiswaController::class, 'store'])->name('siswa.store');
@@ -61,7 +59,6 @@ Route::get('Informasi/{id}', [InformasiController::class, 'edit'])->name('inform
 Route::put('Informasi/{id}', [InformasiController::class, 'update'])->name('informasi.update');
 Route::delete('Informasi/{id}', [InformasiController::class, 'delete'])->name('informasi.delete');
 
-
 Route::get('/tagihan', [TagihanController::class, 'index'])->name('tagihan.index');
 Route::get('/tagihan/create', [TagihanController::class, 'create'])->name('tagihan.create');
 Route::post('/tagihan/store', [TagihanController::class, 'store'])->name('tagihan.store');
@@ -69,14 +66,12 @@ Route::get('/tagihan/edit/{id}', [TagihanController::class, 'edit'])->name('tagi
 Route::put('/tagihan/update/{id}', [TagihanController::class, 'update'])->name('tagihan.update');
 Route::delete('/tagihan/delete/{id}', [TagihanController::class, 'delete'])->name('tagihan.delete');
 
-
 Route::get('/pemasukan', [PemasukanController::class, 'index'])->name('pemasukan.index');
 Route::get('/pemasukan/create', [PemasukanController::class, 'create'])->name('pemasukan.create');
 Route::post('/pemasukan/store', [PemasukanController::class, 'store'])->name('pemasukan.store');
 Route::get('/pemasukan/{id}', [PemasukanController::class, 'edit'])->name('pemasukan.edit');
 Route::put('/pemasukan/{id}', [PemasukanController::class, 'update'])->name('pemasukan.update');
 Route::delete('/pemasukan/{id}', [PemasukanController::class, 'delete'])->name('pemasukan.delete');
-
 
 Route::get('/pengeluaran', [PengeluaranController::class, 'index'])->name('pengeluaran.index');
 Route::get('/pengeluaran/create', [PengeluaranController::class, 'create'])->name('pengeluaran.create');
@@ -91,3 +86,13 @@ Route::delete('/pengeluaran/{id}', [PengeluaranController::class, 'delete'])->na
 // Route::get('whatsapp/{id}', [WhatsappController::class, 'edit'])->name('whatsapp.edit');
 // Route::put('whatsapp/{id}', [WhatsappController::class, 'update'])->name('whatsapp.update');
 // Route::delete('whatsapp/{id}', [WhatsappController::class, 'delete'])->name('whatsapp.delete');
+
+Route::group(['prefix' => 'siswa', 'middleware' => 'auth'], function () {
+    Route::get('/dashboard',[HomeController::class, 'siswa'])->name('dashboard.siswa');
+
+});
+
+Route::group(['prefix' => 'yayasan', 'middleware' => 'auth'], function () {
+    Route::get('/dashboard',[HomeController::class, 'yayasan'])->name('yayasan.dashboard');
+
+});
