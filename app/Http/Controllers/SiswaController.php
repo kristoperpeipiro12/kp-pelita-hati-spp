@@ -12,8 +12,8 @@ class SiswaController extends Controller
     {
         // Mendapatkan semua data siswa dari database
         $siswa = Siswa::all();
-        // Menampilkan data siswa ke view
-        return view('masterdata.siswa.index', compact('siswa'));
+        $totalSiswa = Siswa::getTotalSiswa();
+        return view('masterdata.siswa.index', compact('siswa','totalSiswa'));
     }
 
     public function create()

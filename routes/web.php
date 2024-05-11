@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 route::get('/dashboard', [HomeController::class,'index'])->name('admin.dashboard');
@@ -76,16 +76,11 @@ Route::delete('/pemasukan/{id}', [PemasukanController::class, 'delete'])->name('
 Route::get('/pengeluaran', [PengeluaranController::class, 'index'])->name('pengeluaran.index');
 Route::get('/pengeluaran/create', [PengeluaranController::class, 'create'])->name('pengeluaran.create');
 Route::post('/pengeluaran/store', [PengeluaranController::class, 'store'])->name('pengeluaran.store');
-Route::get('/pengeluaran/{id}', [PengeluaranController::class, 'edit'])->name('pengeluaran.edit');
-Route::put('/pengeluaran/{id}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
-Route::delete('/pengeluaran/{id}', [PengeluaranController::class, 'delete'])->name('pengeluaran.delete');
+Route::get('/pengeluaran/edt', [PengeluaranController::class, 'edit'])->name('pengeluaran.edit');
+Route::post('/pengeluaran/update', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
+Route::delete('/pengeluaran/delete', [PengeluaranController::class, 'delete'])->name('pengeluaran.delete');
 });
-// Route::get('whatsapp', [WhatsappController::class, 'index'])->name('whatsapp.index');
-// Route::get('whatsapp/create', [WhatsappController::class, 'create'])->name('whatsapp.create');
-// Route::post('whatsapp/store', [WhatsappController::class, 'store'])->name('whatsapp.store');
-// Route::get('whatsapp/{id}', [WhatsappController::class, 'edit'])->name('whatsapp.edit');
-// Route::put('whatsapp/{id}', [WhatsappController::class, 'update'])->name('whatsapp.update');
-// Route::delete('whatsapp/{id}', [WhatsappController::class, 'delete'])->name('whatsapp.delete');
+
 
 Route::group(['prefix' => 'siswa', 'middleware' => 'auth'], function () {
     Route::get('/dashboard',[HomeController::class, 'siswa'])->name('dashboard.siswa');

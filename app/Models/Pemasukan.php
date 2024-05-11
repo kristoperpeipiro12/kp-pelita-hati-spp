@@ -22,4 +22,9 @@ class Pemasukan extends Model
     {
         return $this->belongsTo(Siswa::class, 'nis', 'nis');
     }
+
+    public static function getTotalPemasukan()
+    {
+        return self::sum('pemasukan');
+    }
 }

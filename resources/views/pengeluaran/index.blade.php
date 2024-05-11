@@ -5,8 +5,8 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Pengeluaran</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Admin</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Pengeluaran</li>
+            <li class="breadcrumb-p"><a href="#">Admin</a></li>
+            <li class="breadcrumb-p active" aria-current="page">Pengeluaran</li>
         </ol>
     </div>
 
@@ -30,31 +30,51 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach($siswa as $item)
-                    <tr>
-                      <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->nis }}</td>
-                        <td>{{ $item->nama }}</td>
-                        <td>{{ $item->alamat }}</td>
-                        <td>{{ \Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y') }}</td>
-                        <td>{{ $item->jenis_kelamin }}</td>
-                        <td>{{ $item->nohp }}</td>
-                        <td>{{ $item->kelas }}</td>
-                        <td><img src="{{ asset('storage/foto-siswa/'.$item->foto) }}" alt="" width="65"></td>
-                        <td class="d-flex justify-content-between">
-                            <a href="{{ route('siswa.edit', $item->nis) }}" class="btn btn-primary btn-sm mr-2"><i
-                                    class="fas fa-pen-alt"></i></a>
-                            <form action="{{ route('siswa.delete', $item->nis) }}" method="POST"
-                                style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm ml-2">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </form>
-                        </td>
+                        @foreach($pengeluaran as $p)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ Auth::user()->username }}</td>
+                            <td>{{ $p->pengeluaran }}</td>
+                            <td>{{ \Carbon\Carbon::parse($p->tanggal)->format('d-m-Y') }}</td>
+                            <td>{{ $p->keterangan }}</td>
+                            <td class="d-flex justify-content-between">
+                                <a href="{{ route('pengeluaran.edit', $p->id_pengeluaran) }}" class="btn btn-primary btn-sm mr-2"><i
+                                        class="fas fa-pen-alt"></i></a>
+                                        <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal"
+                                        data-target="#deleteModal{{ $p->id_pengeluaran }}">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                            </td>
                         </tr>
-                        @endforeach --}}
+                          <!-- Modal Delete -->
+                          <div class="modal fade" id="deleteModal{{ $p->id_pengeluaran }}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Apakah Anda yakin ingin menghapus data ini?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Batal</button>
+                                        <form action="{{ route('pengeluaran.delete', $p->id_pengeluaran) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Modal Delete -->
+                        @endforeach
                     </tbody>
                 </table>
             </div>

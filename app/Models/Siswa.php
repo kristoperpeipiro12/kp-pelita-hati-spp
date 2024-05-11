@@ -21,10 +21,8 @@ class Siswa extends Model
         'foto',
     ];
 
-    // Jika kolom 'foto' adalah tipe file yang diunggah, Anda mungkin ingin mengonfigurasi
-    // aksesornya (accessor) untuk mengembalikan URL lengkap ke file gambar.
-    // public function getFotoAttribute($value)
-    // {
-    //     return asset('storage/' . $value);
-    // }
+    public static function getTotalSiswa()
+    {
+        return self::count();
+    }
 }

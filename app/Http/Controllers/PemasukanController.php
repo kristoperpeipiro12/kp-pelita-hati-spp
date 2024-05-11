@@ -10,9 +10,10 @@ class PemasukanController extends Controller
 {
     public function index()
     {   
-        $siswa= Siswa::all();
+        $siswa = Siswa::all();
         $pemasukan = Pemasukan::all();
-        return view('pemasukan.index', compact('pemasukan'));
+        $totalPemasukan = Pemasukan::getTotalPemasukan();
+        return view('pemasukan.index', compact('pemasukan', 'totalPemasukan'));
     }
 
     public function create()
@@ -34,17 +35,13 @@ class PemasukanController extends Controller
         return redirect()->route('pemasukan.index')->with('success', 'Pemasukan berhasil ditambahkan.');
     }
 
-    public function show(Pemasukan $pemasukan)
+    public function edit($id)
     {
-        return view('pemasukan.show', compact('pemasukan'));
+        $pemasukan = Pemasukan::findOrFail($id);
+        return view('pemasukan.edit', compact('pemasukan'));
     }
 
-    public function edit(Pemasukan $pemasukan)
-    {
-        // Logika untuk menampilkan form pengeditan pemasukan
-    }
-
-    public function update(Request $request, Pemasukan $pemasukan)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'nis' => 'required|string',
@@ -53,18 +50,17 @@ class PemasukanController extends Controller
             'jenistransaksi' => 'required|in:kontan,transfer',
         ]);
 
+        $pemasukan = Pemasukan::findOrFail($id);
         $pemasukan->update($request->all());
 
         return redirect()->route('pemasukan.index')->with('success', 'Pemasukan berhasil diperbarui.');
     }
+
     public function delete($id)
     {
-        $pemasukan = Pemasukan::where('id', $id)->firstOrFail();
-        
-
+        $pemasukan = Pemasukan::findOrFail($id);
         $pemasukan->delete();
         
-        return redirect()->route('pemasukan.index');
+        return redirect()->route('pemasukan.index')->with('success', 'Pemasukan berhasil dihapus.');
     }
-    
 }

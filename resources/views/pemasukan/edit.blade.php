@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h3 class="h3 mb-0 text-gray-500">Edit siswa</h3>
+            <h3 class="h3 mb-0 text-gray-500">Tambah Pemasukan</h3>
         </div>
 
         <div class="row">
@@ -10,74 +10,101 @@
                 <!-- Form Basic -->
                 <div class="card mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-dark">Tambah Data Siswa</h6>
+                        <h6 class="m-0 font-weight-bold text-dark">Tambah Data Pemasukan</h6>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('siswa.update',$siswa->nis) }}" method="POST" enctype="multipart/form-data"
+                        <form action="{{ route('pemasukan.update', $pemasukan->id) }}" method="POST"
                             class="d-flex flex-column">
                             @csrf
                             @method('PUT')
-                            <div class="hts-con-form-group">
+                            <div class="hpem-con-form-group">
                                 <div class="form-group w-100">
                                     <label for="nis">NIS</label>
-                                    <input type="text" class="form-control" name="nis" value="{{ $siswa->nis }}">
+                                    <input type="text" class="form-control" name="nis"
+                                        placeholder="Nomor Induk Siswa" id="nis" value="{{ $pemasukan->nis }}">
+                                    <span class="text-danger" id="nis-error"></span>
+                                    @error('nis')
+                                        <span class="text-danger">NIS TIDAK TERDAFTAR !</span>
+                                    @enderror
+                                </div>
+                                <!-- Pesan error untuk NIS -->
 
-                                </div>
                                 <div class="form-group w-100">
-                                    <label for="nama">Nama</label>
-                                    <input type="text" class="form-control" name="nama" value="{{ $siswa->nama }}">
+                                    <label for="nominal_pemasukan">Nominal Pemasukan</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Rp.</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="pemasukan" id="nominal_pemasukan"
+                                            value="{{ $pemasukan->pemasukan }}">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="hpem-con-form-group">
+                                <div class="form-group w-100">
+                                    <label for="tanggal_pemasukan">Tanggal Pemasukan</label>
+                                    <input type="date" class="form-control" name="tanggal" id="tanggal_pemasukan"
+                                        value="{{ $pemasukan->tanggal }}">
                                 </div>
                             </div>
-                            <div class="hts-con-form-group">
+                            <div class="hpem-con-form-group">
                                 <div class="form-group w-100">
-                                    <label for="alamat">Alamat</label>
-                                    <input type="text" class="form-control" name="alamat" value="{{ $siswa->alamat }}">
-                                </div>
-                                <div class="form-group w-100">
-                                    <label for="tanggal_lahir">Tanggal Lahir</label>
-                                    <input type="date" class="form-control" name="tanggal_lahir" value="{{ $siswa->tanggal_lahir }}">
-                                </div>
-                            </div>
-                            <div class="hts-con-form-group">
-                                <div class="form-group w-100">
-                                    <label for="jenis_kelamin">Jenis Kelamin</label>
-                                    <select class="form-control" name="jenis_kelamin" required>
-                                        <option value="" disabled>-- Pilih Jenis Kelamin --</option>
-                                        <option value="Laki-laki" {{ $siswa->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                                        <option value="Perempuan" {{ $siswa->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                    <label for="jenis_pemasukan">Jenis Pemasukan</label>
+                                    <select class="form-control" name="jenistransaksi" required>
+                                        <option value="" disabled>-- Pilih Jenis Pemasukan --</option>
+                                        <option value="kontan"
+                                            {{ $pemasukan->jenistransaksi === 'kontan' ? 'selected' : '' }}>Kontan</option>
+                                        <option value="transfer"
+                                            {{ $pemasukan->jenistransaksi === 'transfer' ? 'selected' : '' }}>Transfer
+                                        </option>
                                     </select>
                                 </div>
-                                <div class="form-group w-100">
-                                    <label for="nohp">No HandPhone</label>
-                                    <input type="number" class="form-control" name="nohp" value="{{ $siswa->nohp }}">
-                                </div>
                             </div>
 
-                            <div class="hts-con-form-group">
-                                <div class="form-group w-100">
-                                    <label for="kelas">Kelas</label>
-                                    <select class="form-control" name="kelas">
-                                        <option value="" disabled>-- Pilih Kelas --</option>
-                                        @for ($i = 1; $i <= 6; $i++)
-                                            <option value="{{ $i }}" {{ $siswa->kelas == $i ? 'selected' : '' }}>{{ $i }}</option>
-                                        @endfor
-                                    </select>
-                                </div>
-                                <div class="form-group w-100">
-                                    <label for="foto">Foto</label>
-                                    <input type="file" class="form-control" name="foto">
-                                </div>
-                            </div>
+
                             <div class="d-flex w-25" style="gap: 20px">
-
                                 <button type="submit" class="btn btn-primary w-100">Simpan</button>
-                                <a href="{{ route('siswa.index') }}" class="btn btn-secondary w-100">Batal</a>
+                                <a href="{{ route('pemasukan.index') }}" class="btn btn-secondary w-100">Batal</a>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            // Format input menjadi angka
+            $('#nominal_pemasukan').on('input', function() {
+                var nominal = $(this).val().replace(/\D/g, '');
+                $(this).val(nominal.toLocaleString());
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#form-pemasukan').submit(function(e) {
+                // Mendapatkan nilai NIS dari input
+                var nis = $('#nis').val();
+
+                // Validasi NIS
+                if (nis.trim() == '') {
+                    // Mencegah formulir untuk disubmit
+                    e.preventDefault();
+
+                    // Menampilkan pesan error
+                    alert('NIS tidak boleh kosong. Silakan isi NIS.');
+
+                    // Fokuskan kursor ke input NIS
+                    $('#nis').focus();
+
+                    // Mengembalikan false untuk mencegah formulir dari disubmit
+                    return false;
+                }
+            });
+        });
+    </script>
 @endsection

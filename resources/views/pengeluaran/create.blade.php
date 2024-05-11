@@ -17,28 +17,28 @@
                         @csrf
                         <div class="hpeng-con-form-group">
                             <div class="form-group w-100">
-                                <label for="nominal_pengeluaran">Nominal Pengeluaran</label>
-                                <input type="text" class="form-control" name="nominal_pengeluaran"
+                                <label for="pengeluaran">Nominal Pengeluaran</label>
+                                <input type="text" class="form-control" name="pengeluaran"
                                     placeholder="Rp. xxx . xxx" id="nominal_pengeluaran">
                             </div>
                         </div>
                         <div class="hpeng-con-form-group">
                             <div class="form-group w-100">
-                                <label for="tanggal_pengeluaran">Tanggal Pengeluaran</label>
-                                <input type="date" class="form-control" name="tanggal_pengeluaran"
-                                    placeholder="Tanggal Pengeluaran" id="tanggal_pengeluaran">
+                                <label for="tanggal">Tanggal Pengeluaran</label>
+                                <input type="date" class="form-control" name="tanggal"
+                                    placeholder="Tanggal Pengeluaran" id="tanggal">
                             </div>
                         </div>
                         <div class="hpeng-con-form-group">
                             <div class="form-group w-100">
-                                <label for="ket_pengeluaran">Keterangan Pengeluaran</label>
-                                <textarea name="ket_pengeluaran" id="ket_pengeluaran" class="peng-textarea"></textarea>
+                                <label for="keterangan">Keterangan Pengeluaran</label>
+                                <textarea name="keterangan" id="ket_pengeluaran" class="peng-textarea"></textarea>
                             </div>
                         </div>
 
                         <div class="d-flex w-25" style="gap: 20px">
                             <button type="submit" class="btn btn-primary w-100">Simpan</button>
-                            <a href="{{ route('siswa.index') }}" class="btn btn-secondary w-100">Batal</a>
+                            <a href="{{ route('pengeluaran.index') }}" class="btn btn-secondary w-100">Batal</a>
                         </div>
 
                     </form>
