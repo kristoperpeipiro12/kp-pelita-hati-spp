@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 route::get('/dashboard', [HomeController::class,'index'])->name('admin.dashboard');

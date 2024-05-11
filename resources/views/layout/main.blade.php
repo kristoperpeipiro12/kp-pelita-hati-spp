@@ -69,7 +69,7 @@
                 </div>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('logout') }}">
+                <a class="nav-link" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
                     <i class="bi bi-box-arrow-left"></i>
                     <span>Log Out</span></a>
             </li>
