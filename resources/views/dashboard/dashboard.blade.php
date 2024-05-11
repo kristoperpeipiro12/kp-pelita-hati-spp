@@ -18,7 +18,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Total Pemasukan</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                 {{ 'Rp ' . number_format(App\Models\Pemasukan::getTotalPemasukan(), 2, ',', '.') }}
+                                Rp. {{ number_format(App\Models\Pemasukan::getTotalPemasukan() - App\Models\Pengeluaran::getTotalPengeluaran(), 2, ',', '.') }}
                             </div>
                             <div class="mt-2 mb-0 text-muted text-xs">
                                 <span>Tercatat sejak {{ date('d M Y') }}</span>
