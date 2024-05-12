@@ -28,7 +28,7 @@ class LoginController extends Controller
         ];
     
         if (Auth::attempt($data)) {
-            // Mengarahkan sesuai dengan role
+            
             if (Auth::user()->role === 'admin') {
                 return redirect()->route('admin.dashboard');
             } elseif (Auth::user()->role === 'siswa') {
@@ -36,7 +36,7 @@ class LoginController extends Controller
             } elseif (Auth::user()->role === 'yayasan') {
                 return redirect()->route('yayasan.dashboard');
             } else {
-                // Jika rolenya tidak dikenali, logout dan kirim pesan error
+                // Jika rolenya tidak dikenali, 
                 Auth::logout();
                 return redirect()->route('login')->withErrors('Role tidak valid. Silakan hubungi administrator.')->withInput();
             }
