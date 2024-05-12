@@ -168,6 +168,12 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/pemasukan.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
+
     <script src="{{ asset('RuangAdmin/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('RuangAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('RuangAdmin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
@@ -179,7 +185,9 @@
     <script src="{{ asset('RuangAdmin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('RuangAdmin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-    <script src="{{ asset('js/script.js') }}"></script>
+
+
+
 
     <script>
         $(document).ready(function() {

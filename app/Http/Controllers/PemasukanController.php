@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Pemasukan;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PemasukanController extends Controller
 {
     public function index()
     {   
         $siswa = Siswa::all();
+        // $siswa = "coba";
         $pemasukan = Pemasukan::all();
         $totalPemasukan = Pemasukan::getTotalPemasukan();
-        return view('pemasukan.index', compact('pemasukan', 'totalPemasukan'));
+        return view('pemasukan.index', compact('pemasukan','siswa', 'totalPemasukan'));
     }
 
     public function create()
@@ -24,15 +26,29 @@ class PemasukanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nis' => 'required|exists:siswa,nis',
+            'nis' => ['required', Rule::exists('siswa', 'nis')],
             'pemasukan' => 'required|numeric',
             'tanggal' => 'required|date',
             'jenistransaksi' => 'required|in:kontan,transfer',
         ]);
 
-        Pemasukan::create($request->all());
+        // Sesuaikan dengan field yang ada di model Pemasukan
+        Pemasukan::create([
+            'nis' => $request->nis,
+            'pemasukan' => $request->pemasukan,
+            'tanggal' => $request->tanggal,
+            'jenistransaksi' => $request->jenistransaksi,
+        ]);
 
         return redirect()->route('pemasukan.index')->with('success', 'Pemasukan berhasil ditambahkan.');
+    }
+
+    public function getSiswaNis(Request $request)
+    {
+        $nis = $request->input('nis');
+        // Ubah cara ambil siswaNis agar cocok dengan input yang diberikan
+        $siswaNis = Siswa::where('nis', 'LIKE', "%$nis%")->pluck('nis')->toArray();
+        return response()->json($siswaNis);
     }
 
     public function edit($id)

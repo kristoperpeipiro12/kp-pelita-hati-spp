@@ -22,7 +22,7 @@
                                  {{-- Rp. {{ number_format(App\Models\Pemasukan::getTotalPemasukan() - App\Models\Pengeluaran::getTotalPengeluaran(), 2, ',', '.') }} --}}
                             </div>
                             <div class="mt-2 mb-0 text-muted text-xs">
-                                <span>Tercatat sejak {{ date('d M Y') }}</span>
+                                <span>Tercatat sejak {{ now()->format('d M Y') }}</span>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -43,7 +43,7 @@
                                 {{ 'Rp ' . number_format(App\Models\Pengeluaran::getTotalPengeluaran(), 2, ',', '.') }}
                             </div>
                             <div class="mt-2 mb-0 text-muted text-xs">
-                                <span>Tercatat sejak {{ date('d M Y') }}</span>
+                                <span>Tercatat sejak {{ now()->format('d M Y') }}</span>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -64,7 +64,7 @@
                                 {{ App\Models\Siswa::getTotalSiswa() }}
                             </div>
                             <div class="mt-2 mb-0 text-muted text-xs">
-                                <span>Tercatat sejak {{ date('d M Y') }}</span>
+                                <span>Tercatat sejak {{ now()->format('d M Y') }}</span>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -86,7 +86,7 @@
                                 Rp. {{ number_format(App\Models\Pemasukan::whereDate('tanggal', today())->sum('pemasukan'), 0, ',', '.') }}
                             </div>
                             <div class="mt-2 mb-0 text-muted text-xs">
-                                <span>Tercatat sejak {{ date('d M Y') }}</span>
+                                <span>Tercatat sejak {{ now()->format('d M Y') }}</span>
                             </div>
                         </div>
                         <div class="col-auto">

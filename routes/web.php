@@ -72,6 +72,7 @@ Route::post('/pemasukan/store', [PemasukanController::class, 'store'])->name('pe
 Route::get('/pemasukan/{id}', [PemasukanController::class, 'edit'])->name('pemasukan.edit');
 Route::put('/pemasukan/{id}', [PemasukanController::class, 'update'])->name('pemasukan.update');
 Route::delete('/pemasukan/{id}', [PemasukanController::class, 'delete'])->name('pemasukan.delete');
+Route::get('/getSiswaNis', [PemasukanController::class, 'getSiswaNis']);
 
 Route::get('/pengeluaran', [PengeluaranController::class, 'index'])->name('pengeluaran.index');
 Route::get('/pengeluaran/create', [PengeluaranController::class, 'create'])->name('pengeluaran.create');
