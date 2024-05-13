@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -11,7 +13,6 @@ class LoginController extends Controller
     {
         return view('auth.login');
     }
-
     public function login_proses(Request $request)
     {
         $request->validate([
@@ -21,22 +22,24 @@ class LoginController extends Controller
             'username.required' => 'Username Wajib Diisi',
             'password.required' => 'Password Wajib Diisi',
         ]);
-    
-        $data = [
-            'username' => $request->username,
-            'password' => $request->password,
-        ];
-    
-        if (Auth::attempt($data)) {
-            
-            if (Auth::user()->role === 'admin') {
+
+        $username = $request->username;
+        $password = $request->password;
+
+        // Fetch user by username
+        $user = User::where('username', $username)->first();
+
+        if ($user && $user->password === $password) {
+            Auth::login($user);
+
+            if ($user->role === 'admin') {
                 return redirect()->route('admin.dashboard');
-            } elseif (Auth::user()->role === 'siswa') {
+            } elseif ($user->role === 'siswa') {
                 return redirect()->route('dashboard.siswa');
-            } elseif (Auth::user()->role === 'yayasan') {
+            } elseif ($user->role === 'yayasan') {
                 return redirect()->route('yayasan.dashboard');
             } else {
-                // Jika rolenya tidak dikenali, 
+                // If the role is not recognized
                 Auth::logout();
                 return redirect()->route('login')->withErrors('Role tidak valid. Silakan hubungi administrator.')->withInput();
             }
@@ -44,6 +47,7 @@ class LoginController extends Controller
             return redirect()->route('login')->withErrors('Username atau Password Salah!')->withInput();
         }
     }
+
     
 
     public function logout()
