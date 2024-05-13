@@ -21,7 +21,7 @@
                             <div class="form-group w-100">
                                 <label for="pengeluaran">Nominal Pengeluaran</label>
                                 <input type="text" class="form-control" name="pengeluaran"
-                                     id="nominal_pengeluaran" value="{{ $pengeluaran->pengeluaran }}">
+                                     id="numberInput" value="{{ $pengeluaran->pengeluaran }}" autocomplete="off">
                             </div>
                         </div>
                         <div class="hpeng-con-form-group">
@@ -34,7 +34,7 @@
                         <div class="hpeng-con-form-group">
                             <div class="form-group w-100">
                                 <label for="keterangan">Keterangan Pengeluaran</label>
-                                <textarea name="keterangan" id="ket_pengeluaran" class="peng-textarea" value="{{ $pengeluaran->keterangan }}"></textarea>
+                                <textarea name="keterangan" id="ket_pengeluaran" class="peng-textarea" value="{{ $pengeluaran->keterangan }}" autocomplete="off"></textarea>
                             </div>
                         </div>
 

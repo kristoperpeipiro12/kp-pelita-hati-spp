@@ -26,12 +26,18 @@ class PengeluaranController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'pengeluaran' => 'required|integer',
+            'pengeluaran' => 'required',
             'tanggal' => 'required|date',
             'keterangan' => 'nullable|string'
         ]);
+        $pengeluaran = str_replace('.', '', $request->pengeluaran);
 
-        Pengeluaran::create($request->all());
+
+        Pengeluaran::create([
+            'pengeluaran' => $pengeluaran, // Gunakan nilai tanpa titik
+            'tanggal' => $request->tanggal,
+            'keterangan' => $request->keterangan,
+        ]);
 
         return redirect()->route('pengeluaran.index')
             ->with('success', 'Pengeluaran berhasil ditambahkan.');
@@ -48,14 +54,18 @@ class PengeluaranController extends Controller
     public function update(Request $request, $id_pengeluaran)
     {
         $request->validate([
-            'pengeluaran' => 'required|integer',
+            'pengeluaran' => 'required',
             'tanggal' => 'required|date',
             'keterangan' => 'nullable|string'
         ]);
-
+        $pengeluarans = str_replace('.', '', $request->pemasukan);
+    
         $pengeluaran = Pengeluaran::findOrFail($id_pengeluaran);
-        $pengeluaran->update($request->all());
-
+        $pengeluaran->update([
+            'pengeluaran' => $pengeluarans, // Gunakan nilai tanpa titik
+            'tanggal' => $request->tanggal,
+            'keterangan' => $request->keterangan,
+        ]);
         return redirect()->route('pengeluaran.index')
             ->with('success', 'Pengeluaran berhasil diperbarui.');
     }

@@ -34,7 +34,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ Auth::user()->username }}</td>
-                            <td>{{ $p->pengeluaran }}</td>
+                            <td>Rp. {{ number_format($p->pengeluaran, 0, ',', '.') }}</td>
                             <td>{{ \Carbon\Carbon::parse($p->tanggal)->format('d-m-Y') }}</td>
                             <td>{{ $p->keterangan }}</td>
                             <td class="d-flex justify-content-between">

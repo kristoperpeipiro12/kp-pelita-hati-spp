@@ -19,7 +19,7 @@
                             <div class="form-group w-100">
                                 <label for="pengeluaran">Nominal Pengeluaran</label>
                                 <input type="text" class="form-control" name="pengeluaran"
-                                    placeholder="Rp. xxx . xxx" id="nominal_pengeluaran">
+                                    placeholder="Rp. xxx . xxx" id="numberInput" autocomplete="off" autocomplete="off">
                             </div>
                         </div>
                         <div class="hpeng-con-form-group">
@@ -32,7 +32,7 @@
                         <div class="hpeng-con-form-group">
                             <div class="form-group w-100">
                                 <label for="keterangan">Keterangan Pengeluaran</label>
-                                <textarea name="keterangan" id="ket_pengeluaran" class="peng-textarea"></textarea>
+                                <textarea name="keterangan" id="ket_pengeluaran" class="peng-textarea" autocomplete="off"></textarea>
                             </div>
                         </div>
 
