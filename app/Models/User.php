@@ -40,6 +40,6 @@
          */
         protected $casts = [
             
-            // 'password' => 'hashed',
+            'password' => 'hashed',
         ];
     }

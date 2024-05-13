@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -12,17 +13,17 @@ class UserSeeder extends Seeder
         $userdata = [
             [
                 'username' => 'admin',
-                'password' => 'admin',
+                'password' => Hash::make('admin'),
                 'role' => 'admin',
             ],
             [
                 'username' => 'yayasan',
-                'password' => 'yayasan',
+                'password' => Hash::make('yayasan'),
                 'role' => 'yayasan',
             ],
             [
                 'username' => 'siswa',
-                'password' => 'siswa',
+                'password' => Hash::make('siswa'),
                 'role' => 'siswa',
             ],
         ];

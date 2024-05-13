@@ -55,43 +55,53 @@ class LoginController extends Controller
 
     public function login_proses(Request $request)
     {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ], [
-            'username.required' => 'Username Wajib Diisi',
-            'password.required' => 'Password Wajib Diisi',
+        $credentials = $request->validate([
+            'username' => ['required'],
+            'password' => ['required'],
         ]);
-
-        $username = $request->username;
-        $password = $request->password;
-
-        
-        $user = User::where('username', $username)->first();
-
-        
-        $siswa = Siswa::where('username', $username)
-                      ->where('password', $password)
-                      ->first();
-
-        if ($user && $user->password === $password) {
-            Auth::login($user);
-
-            if ($user->role === 'admin') {
-                return redirect()->route('admin.dashboard');
-            } elseif ($siswa) {
-                return redirect()->route('dashboard.siswa');
-            } elseif ($user->role === 'yayasan') {
-                return redirect()->route('yayasan.dashboard');
-            } else {
-                
-                Auth::logout();
-                return redirect()->route('login')->withErrors('Role tidak valid. Silakan hubungi administrator.')->withInput();
-            }
-        } else {
-            return redirect()->route('login')->withErrors('Username atau Password Salah!')->withInput();
+ 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            return redirect()->route('admin.dashboard');
         }
+
     }
+    // {
+    //     $request->validate([
+    //         'username' => 'required',
+    //         'password' => 'required',
+    //     ], [
+    //         'username.required' => 'Username Wajib Diisi',
+    //         'password.required' => 'Password Wajib Diisi',
+    //     ]);
+    
+    //     $username = $request->username;
+    //     $password = $request->password;
+    
+    //     $user = User::where('username', $username)->first();
+    
+    //     if ($user && Hash::check($password, $user->password)) {
+    //         Auth::login($user);
+    
+    //         if ($user->role === 'admin') {
+    //             return redirect()->route('admin.dashboard');
+    //         } else {
+    //             $siswa = Siswa::where('username', $username)->first();
+    //             if ($siswa) {
+    //                 return redirect()->route('dashboard.siswa');
+    //             } elseif ($user->role === 'yayasan') {
+    //                 return redirect()->route('yayasan.dashboard');
+    //             } else {
+    //                 Auth::logout();
+    //                 return redirect()->route('login')->withErrors('Role tidak valid. Silakan hubungi administrator.')->withInput();
+    //             }
+    //         }
+    //     } else {
+    //         return redirect()->route('login')->withErrors('Username atau Password Salah!')->withInput();
+    //     }
+    // }
+    
     
 
     public function logout()
