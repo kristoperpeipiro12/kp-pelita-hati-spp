@@ -20,7 +20,7 @@
                                 <div class="input-group">
                                     <span class="input-group-text">NIS</span>
                                     <input type="text" class="form-control" placeholder="Nomor Induk Siswa"
-                                        name="keyword" id="nisInput" autocomplete="off">
+                                        name="nis" id="nisInput" autocomplete="off">
                                 </div>
                             </div>
                             <div class="recommend">

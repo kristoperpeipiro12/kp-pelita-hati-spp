@@ -63,5 +63,8 @@ $(function () {
   $(".element-rec").click(function () {
     var value = $(this).text().replace(/\s/g, ""); // Menghapus semua spasi dari teks elemen yang diklik
     $("#nisInput").val(value);
+    $(this).removeClass("d-flex").addClass("d-none");
+    $("#not-found").removeClass("d-flex").addClass("d-none");
+  
   });
 });

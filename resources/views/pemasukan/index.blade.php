@@ -37,7 +37,7 @@
                         <td>{{ $p->nis }}</td>
                         <td>{{ $p->siswa->nama }}</td>
                         <td>Rp. {{ number_format($p->pemasukan, 0, ',', '.') }}</td>
-                        <td>{{ $p->tanggal}}</td>
+                        <td>{{ \Carbon\Carbon::parse($p->tanggal)->format('d-m-Y') }}</td>
                         <td>{{ $p->jenistransaksi}}</td>
 
                         <td class="d-flex justify-content-between">
