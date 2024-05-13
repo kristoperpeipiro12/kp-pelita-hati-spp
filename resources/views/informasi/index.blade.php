@@ -18,11 +18,11 @@
                 @csrf
                 <div class="form-group info-con-input w-100">
                     <label for="judul">Judul</label>
-                    <input type="text" class="form-control" name="judul" placeholder="Judul Informasi" id="judul">
+                    <input type="text" class="form-control" name="judul" placeholder="Judul Informasi" id="judul" autocomplete="off">
                 </div>
                 <div class="form-group info-con-input w-100">
                     <label for="info">Informasi</label>
-                    <textarea name="info" id="info" class="form-control info-textarea"></textarea>
+                    <textarea name="info" id="info" class="form-control info-textarea" autocomplete="off"></textarea>
                 </div>
                 <div class="form-group info-con-input w-100">
                     <label for="tanggal">Tanggal</label>

@@ -20,20 +20,20 @@
                                 <div class="form-group w-100">
                                     <label for="nis">NIS</label>
                                     <input type="text" class="form-control" name="nis"
-                                        placeholder="Nomor Induk Siswa" id="nis">
+                                        placeholder="Nomor Induk Siswa" id="nis" autocomplete="off">
                                     <small id="nisError" class="text-danger"></small>
                                 </div>
 
                                 <div class="form-group w-100">
                                     <label for="nama">Nama</label>
                                     <input type="text" class="form-control" name="nama" placeholder="Nama Siswa/i"
-                                        id="nama">
+                                        id="nama" autocomplete="off">
                                 </div>
                             </div>
                             <div class="hts-con-form-group">
                                 <div class="form-group w-100">
                                     <label for="alamat">Alamat</label>
-                                    <input type="text" class="form-control" name="alamat" id="alamat"
+                                    <input type="text" class="form-control" name="alamat" id="alamat" autocomplete="off"
                                         placeholder="Jl. Veteran, Komp. Nusa Indah, No. A-xx">
                                 </div>
                                 <div class="form-group w-100">
@@ -68,8 +68,8 @@
                             <div class="hts-con-form-group">
                                 <div class="form-group w-100">
                                     <label for="nohp">No. HP Ortu/Wali</label>
-                                    <input type="tel" class="form-control" name="nohp" placeholder="+62 ..."
-                                        id="nohp">
+                                    <input type="tel" class="form-control" name="nohp" placeholder=""
+                                        id="nohp" autocomplete="off">
                                     <small id="nohpError" class="text-danger"></small>
                                 </div>
 
@@ -118,38 +118,4 @@
         });
     </script>
 
-
-
-    {{-- <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var nohpInput = document.getElementById('nohp');
-            var nohpError = document.getElementById('nohpError');
-
-            nohpInput.addEventListener('input', function() {
-                if (this.value.length > 15) {
-                    this.value = this.value.slice(0, 15); // Batasi panjang input menjadi 15 karakter
-                    nohpError.textContent = "Nomor HP tidak boleh lebih dari 15 karakter";
-                } else {
-                    nohpError.textContent = ""; // Hapus pesan error jika panjang input sudah sesuai
-                }
-            });
-        });
-    </script>
-
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var nisInput = document.getElementById('nis');
-            var nisError = document.getElementById('nisError');
-
-            nisInput.addEventListener('input', function() {
-                if (this.value.length > 8) {
-                    this.value = this.value.slice(0, 8); // Batasi panjang input menjadi 8 karakter
-                    nisError.textContent = "NIS tidak boleh lebih dari 8 angka";
-                } else {
-                    nisError.textContent = ""; // Hapus pesan error jika panjang input sudah sesuai
-                }
-            });
-        });
-    </script> --}}
 @endsection

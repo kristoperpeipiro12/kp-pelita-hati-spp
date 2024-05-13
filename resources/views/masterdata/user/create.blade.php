@@ -18,7 +18,7 @@
                         <div class="hts-con-form-group">
                             <div class="form-group w-100">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Nama Pengguna" id="nama_user" value="{{ old('username') }}">
+                                <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Nama Pengguna" id="nama_user" value="{{ old('username') }}" autocomplete="off">
                                 @error('username')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -27,7 +27,7 @@
                         <div class="hts-con-form-group">
                             <div class="form-group w-100">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="****" id="password_user">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="****" id="password_user" autocomplete="off">
                                 @error('password')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

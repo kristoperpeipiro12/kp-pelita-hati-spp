@@ -19,7 +19,7 @@
                             <div class="hpem-con-form-group">
                                 <div class="input-group">
                                     <span class="input-group-text">NIS</span>
-                                    <input type="text" class="form-control" placeholder="Nomor Induk Siswa" name="nis" id="nis" autocomplete="off" value="{{ $pemasukan->nis }}">
+                                    <input type="text" class="form-control" placeholder="Nomor Induk Siswa" name="nis" id="nis" autocomplete="off" value="{{ $pemasukan->nis }}" autocomplete="off">
                                 </div>
                             </div>
                             <div class="recommend">
@@ -40,7 +40,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Rp.</span>
                                     </div>
-                                    <input type="text" class="form-control" name="pemasukan" id="numberInput" value="{{ $pemasukan->pemasukan }}">
+                                    <input type="text" class="form-control" name="pemasukan" id="numberInput" value="{{ $pemasukan->pemasukan }}" autocomplete="off">
                                 </div>
                             </div>
 

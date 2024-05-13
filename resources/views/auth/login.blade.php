@@ -42,7 +42,7 @@
               <div class="main-section">
                   <span class="input-span">Username :</span>
                   <input class="input" value="{{ old('username') }}" type="text" name="username"
-                      placeholder="Masukkan username" />
+                      placeholder="Masukkan username" autocomplete="off"/>
               </div>
               <div class="main-section">
                   <span class="input-span">Password :</span>
