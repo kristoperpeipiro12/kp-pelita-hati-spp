@@ -32,12 +32,12 @@ class PemasukanController extends Controller
             'jenistransaksi' => 'required|in:kontan,transfer',
         ]);
     
-        // Hilangkan titik dari nilai pemasukan
+        
         $pemasukan = str_replace('.', '', $request->pemasukan);
     
         Pemasukan::create([
             'nis' => $request->nis,
-            'pemasukan' => $pemasukan, // Gunakan nilai tanpa titik
+            'pemasukan' => $pemasukan, 
             'tanggal' => $request->tanggal,
             'jenistransaksi' => $request->jenistransaksi,
         ]);
@@ -60,13 +60,13 @@ class PemasukanController extends Controller
             'jenistransaksi' => 'required|in:kontan,transfer',
         ]);
     
-        // Hilangkan titik dari nilai pemasukan
+        
         $pemasukans = str_replace('.', '', $request->pemasukan);
     
         $pemasukan = Pemasukan::findOrFail($id);
         $pemasukan->update([
             'nis' => $request->nis,
-            'pemasukan' => $pemasukans, // Gunakan nilai tanpa titik
+            'pemasukan' => $pemasukans, 
             'tanggal' => $request->tanggal,
             'jenistransaksi' => $request->jenistransaksi,
         ]);

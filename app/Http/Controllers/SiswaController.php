@@ -10,7 +10,7 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        // Mendapatkan semua data siswa dari database
+        
         $siswa = Siswa::all();
         $totalSiswa = Siswa::getTotalSiswa();
         return view('masterdata.siswa.index', compact('siswa', 'totalSiswa'));
@@ -18,7 +18,7 @@ class SiswaController extends Controller
 
     public function create()
     {
-        // Menampilkan form tambah siswa
+
         return view('masterdata.siswa.create');
     }
 
@@ -35,9 +35,9 @@ class SiswaController extends Controller
             'foto' => 'nullable|image|mimes:jpg,png,jpeg,jfif|max:2048',
         ]);
     
-        // Jika ada foto yang diunggah
+        
         if ($request->hasFile('foto')) {
-            // Menyimpan foto siswa
+            
             $foto = $request->file('foto');
             $filename = date('d-m-y') . '_' . $validatedData['nama'] . '.' . $foto->getClientOriginalExtension();
             $path = $foto->storeAs('foto-siswa', $filename, 'public');
@@ -47,7 +47,7 @@ class SiswaController extends Controller
         // Membuat record siswa
         $siswa = Siswa::create($validatedData);
     
-        // Mengatur password siswa berdasarkan 6 digit terakhir dari NIS
+        
         $password = substr($siswa->nis, -6);
         $siswa->password = $password;
         $siswa->save();
@@ -64,7 +64,7 @@ class SiswaController extends Controller
 
     public function update(Request $request, $nis)
     {
-        // Validasi data yang dikirimkan oleh form edit siswa
+        
         $validatedData = $request->validate([
             'nama' => 'required',
             'alamat' => 'required',
@@ -77,21 +77,21 @@ class SiswaController extends Controller
     
         $siswa = Siswa::findOrFail($nis);
     
-        // Jika ada foto yang diunggah
+        
         if ($request->hasFile('foto')) {
-            // Menghapus foto lama jika ada
+            
             if ($siswa->foto) {
                 Storage::disk('public')->delete('foto-siswa/' . $siswa->foto);
             }
     
-            // Menyimpan foto baru
+            
             $foto = $request->file('foto');
             $filename = date('d-m-y') . '_' . $validatedData['nama'] . '.' . $foto->getClientOriginalExtension();
             $path = $foto->storeAs('foto-siswa', $filename, 'public');
             $validatedData['foto'] = $filename;
         }
     
-        // Mengupdate data siswa
+        
         $siswa->update($validatedData);
     
         return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil diperbarui.');
@@ -102,13 +102,13 @@ class SiswaController extends Controller
     {
         $siswa = Siswa::where('nis', $nis)->firstOrFail();
 
-        // Menghapus foto jika ada
+        
         if ($siswa->foto) {
-            // Hapus foto dari penyimpanan
+            
             Storage::disk('public')->delete('foto-siswa/' . $siswa->foto);
         }
 
-        // Hapus data siswa
+
         $siswa->delete();
 
         return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil dihapus.');

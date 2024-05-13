@@ -66,10 +66,10 @@ class LoginController extends Controller
         $username = $request->username;
         $password = $request->password;
 
-        // Fetch user by username
+        
         $user = User::where('username', $username)->first();
 
-        // Fetch student by username and password
+        
         $siswa = Siswa::where('username', $username)
                       ->where('password', $password)
                       ->first();
@@ -84,7 +84,7 @@ class LoginController extends Controller
             } elseif ($user->role === 'yayasan') {
                 return redirect()->route('yayasan.dashboard');
             } else {
-                // If the role is not recognized
+                
                 Auth::logout();
                 return redirect()->route('login')->withErrors('Role tidak valid. Silakan hubungi administrator.')->withInput();
             }

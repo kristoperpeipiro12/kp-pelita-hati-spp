@@ -24,9 +24,6 @@ class UserController extends Controller
             "role" => "required|in:admin,yaysan,siswa",
         ]);
 
-        // Hashing password sebelum menyimpan ke database
-        // $validatedData['password'] = Hash::make($request->password);
-
         
         User::create($validatedData);
 
@@ -46,9 +43,9 @@ class UserController extends Controller
     
         $user = User::findOrFail($id);
     
-        // Jika password tidak diisi, gunakan password lama
+        
         if (!$request->has('password')) {
-            unset($validatedData['password']); // Hapus password dari data yang akan di-update
+            unset($validatedData['password']); 
         }
     
         $user->update($validatedData);
@@ -61,7 +58,7 @@ class UserController extends Controller
     public function delete($id){
         $user = User::findOrFail($id); 
     
-        // Menghapus user
+
         $user->delete();
     
         return redirect()->route('user.index')

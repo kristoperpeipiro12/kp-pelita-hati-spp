@@ -22,7 +22,7 @@ class InformasiController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi data yang dikirimkan oleh form tambah informasi
+        
         $validatedData = $request->validate([
             'judul'=>'required',
             'info' => 'required',
@@ -43,7 +43,7 @@ class InformasiController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validasi data yang dikirimkan oleh form edit informasi
+        
         $validatedData = $request->validate([
             'judul'=>'required',
             'info' => 'required',
