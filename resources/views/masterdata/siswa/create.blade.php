@@ -19,63 +19,87 @@
                             <div class="hts-con-form-group">
                                 <div class="form-group w-100">
                                     <label for="nis">NIS</label>
-                                    <input type="text" class="form-control" name="nis"
-                                        placeholder="Nomor Induk Siswa" id="nis" autocomplete="off">
+                                    <input type="text" class="form-control" name="nis" placeholder="Nomor Induk Siswa" id="nis" autocomplete="off" value="{{ old('nis') }}">
                                     <small id="nisError" class="text-danger"></small>
+                                    @error('nis')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group w-100">
                                     <label for="nama">Nama</label>
                                     <input type="text" class="form-control" name="nama" placeholder="Nama Siswa/i"
-                                        id="nama" autocomplete="off">
+                                        id="nama" autocomplete="off" value="{{ old('nama') }}">
+                                        @error('nama')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="hts-con-form-group">
                                 <div class="form-group w-100">
                                     <label for="alamat">Alamat</label>
                                     <input type="text" class="form-control" name="alamat" id="alamat" autocomplete="off"
-                                        placeholder="Jl. Veteran, Komp. Nusa Indah, No. A-xx">
+                                        placeholder="Jl. Veteran" value="{{ old('alamat') }}">
+                                        @error('alamat')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="form-group w-100">
                                     <label for="tanggal_lahir">Tanggal Lahir</label>
                                     <input type="date" class="form-control" name="tanggal_lahir"
-                                        placeholder="Tanggal Lahir">
+                                        placeholder="Tanggal Lahir" value="{{ old('tanggal_lahir') }}">
+                                        @error('tanggal_lahir')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="hts-con-form-group">
                                 <div class="form-group w-100">
                                     <label for="jenis_kelamin">Jenis Kelamin</label>
                                     <select class="form-control" name="jenis_kelamin" required>
-                                        <option value="" disabled selected>-- Pilih Jenis Kelamin --</option>
-                                        <option value="Laki-laki">Laki-laki</option>
-                                        <option value="Perempuan">Perempuan</option>
+                                        <option value="" disabled {{ old('jenis_kelamin') == '' ? 'selected' : '' }}>-- Pilih Jenis Kelamin --</option>
+                                        <option value="Laki-laki" {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                        <option value="Perempuan" {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                                     </select>
+                                    @error('jenis_kelamin')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="form-group w-100">
                                     <label for="kelas">Kelas</label>
                                     <select class="form-control" name="kelas">
-                                        <option value="" disabled selected>-- Pilih Kelas --</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
+                                        <option value="" disabled {{ old('kelas') == '' ? 'selected' : '' }}>-- Pilih Kelas --</option>
+                                        <option value="1" {{ old('kelas') == '1' ? 'selected' : '' }}>1</option>
+                                        <option value="2" {{ old('kelas') == '2' ? 'selected' : '' }}>2</option>
+                                        <option value="3" {{ old('kelas') == '3' ? 'selected' : '' }}>3</option>
+                                        <option value="4" {{ old('kelas') == '4' ? 'selected' : '' }}>4</option>
+                                        <option value="5" {{ old('kelas') == '5' ? 'selected' : '' }}>5</option>
+                                        <option value="6" {{ old('kelas') == '6' ? 'selected' : '' }}>6</option>
                                     </select>
+                                    @error('kelas')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
+                            
 
                             <div class="hts-con-form-group">
                                 <div class="form-group w-100">
                                     <label for="nohp">No. HP Ortu/Wali</label>
                                     <input type="tel" class="form-control" name="nohp" placeholder=""
-                                        id="nohp" autocomplete="off">
+                                        id="nohp" autocomplete="off" value="{{ old('nohp') }}">
                                     <small id="nohpError" class="text-danger"></small>
+                                    @error('nohp')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 </div>
 
                                 <div class="form-group w-100">
                                     <label for="foto">Foto Murid</label>
-                                    <input type="file" class="form-control" name="foto" id="foto">
+                                    <input type="file" class="form-control" name="foto" id="foto" value="{{ old('foto') }}">
+                                    @error('foto')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 </div>
                             </div>
                             <div class="d-flex w-25" style="gap: 20px">
@@ -90,6 +114,7 @@
         </div>
     </div>
 
+    
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var nisInput = document.getElementById('nis');

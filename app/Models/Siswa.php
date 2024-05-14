@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Model;
+use Illuminate\Support\Facades\Hash;
 
 class Siswa extends Model
 {
@@ -35,7 +37,7 @@ class Siswa extends Model
             
             // Mengambil 6 digit terakhir dari NIS dan mengatur sebagai password
             $password = substr($siswa->nis, -6);
-            $siswa->password = $password;
+            $siswa->password = Hash::make($password);
         });
     }
 

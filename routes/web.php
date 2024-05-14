@@ -34,7 +34,7 @@ Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:web'], function () {
 route::get('/dashboard', [HomeController::class,'index'])->name('admin.dashboard');
 
 Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
@@ -82,10 +82,10 @@ Route::delete('/pengeluaran/delete', [PengeluaranController::class, 'delete'])->
 });
 
 
-Route::group(['prefix' => 'siswa', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'siswa', 'middleware' => 'auth:siswa'], function () {
     Route::get('/dashboard',[HomeController::class, 'siswa'])->name('dashboard.siswa');
 });
 
-Route::group(['prefix' => 'yayasan', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'yayasan', 'middleware' => 'auth:yayasan'], function () {
     Route::get('/dashboard',[HomeController::class, 'yayasan'])->name('yayasan.dashboard');
 });

@@ -22,20 +22,32 @@
                                     <label for="nis">NIS</label>
                                     <input type="text" class="form-control" name="nis" id="nis" value="{{ $siswa->nis }}" autocomplete="off">
                                     <small id="nisError" class="text-danger"></small>
+                                    @error('nis')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="form-group w-100">
                                     <label for="nama">Nama</label>
                                     <input type="text" class="form-control" name="nama" value="{{ $siswa->nama }}" autocomplete="off">
+                                    @error('nama')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 </div>
                             </div>
                             <div class="hts-con-form-group">
                                 <div class="form-group w-100">
                                     <label for="alamat">Alamat</label>
                                     <input type="text" class="form-control" name="alamat" value="{{ $siswa->alamat }}" autocomplete="off">
+                                    @error('alamat')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 </div>
                                 <div class="form-group w-100">
                                     <label for="tanggal_lahir">Tanggal Lahir</label>
                                     <input type="date" class="form-control" name="tanggal_lahir" value="{{ $siswa->tanggal_lahir }}">
+                                    @error('tanggal_lahir')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 </div>
                             </div>
                             <div class="hts-con-form-group">
@@ -51,6 +63,9 @@
                                     <label for="nohp">No HandPhone</label>
                                     <input type="number" class="form-control" name="nohp" id="nohp" value="{{ $siswa->nohp }}" autocomplete="off">
                                     <small id="nohpError" class="text-danger"></small>
+                                    @error('nohp')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 </div>
                             </div>
 
@@ -71,6 +86,10 @@
                                     @if(isset($siswa->foto))
                                         <small><strong>{{ $siswa->foto }}</strong></small>
                                     @endif
+
+                                    @error('foto')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 </div>
                                 
                                 

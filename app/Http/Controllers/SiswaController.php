@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class SiswaController extends Controller
 {
@@ -24,8 +25,9 @@ class SiswaController extends Controller
 
     public function store(Request $request)
     {
+        // Validasi data dengan pesan kesalahan kustom
         $validatedData = $request->validate([
-            'nis' => 'required|unique:siswa',
+            'nis' => 'required|unique:siswa,nis',
             'nama' => 'required',
             'alamat' => 'required',
             'tanggal_lahir' => 'required|date',
@@ -33,11 +35,23 @@ class SiswaController extends Controller
             'nohp' => 'required',
             'kelas' => 'required',
             'foto' => 'nullable|image|mimes:jpg,png,jpeg,jfif|max:2048',
+        ], [
+            'nis.required' => 'NIS wajib diisi.',
+            'nis.unique' => 'NIS sudah terdaftar.',
+            'nama.required' => 'Nama wajib diisi.',
+            'alamat.required' => 'Alamat wajib diisi.',
+            'tanggal_lahir.required' => 'Tanggal lahir wajib diisi.',
+            'tanggal_lahir.date' => 'Format tanggal lahir tidak valid.',
+            'jenis_kelamin.required' => 'Jenis kelamin wajib diisi.',
+            'nohp.required' => 'Nomor HP wajib diisi.',
+            'kelas.required' => 'Kelas wajib diisi.',
+            'foto.image' => 'Foto harus berupa gambar.',
+            'foto.mimes' => 'Foto harus berformat jpg, png, jpeg, atau jfif.',
+            'foto.max' => 'Ukuran foto maksimal 2MB.',
         ]);
     
-        
+        // Jika ada file foto yang diupload, simpan dan dapatkan namanya
         if ($request->hasFile('foto')) {
-            
             $foto = $request->file('foto');
             $filename = date('d-m-y') . '_' . $validatedData['nama'] . '.' . $foto->getClientOriginalExtension();
             $path = $foto->storeAs('foto-siswa', $filename, 'public');
@@ -47,13 +61,16 @@ class SiswaController extends Controller
         // Membuat record siswa
         $siswa = Siswa::create($validatedData);
     
-        
         $password = substr($siswa->nis, -6);
-        $siswa->password = $password;
+        
+        // Membuat hash dari password sebelum disimpan
+        $siswa->password = Hash::make($password);
         $siswa->save();
     
         return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil disimpan.');
     }
+    
+    
     
 
     public function edit($nis)
@@ -66,6 +83,7 @@ class SiswaController extends Controller
     {
         
         $validatedData = $request->validate([
+            'nis' => 'required|unique:siswa,nis',
             'nama' => 'required',
             'alamat' => 'required',
             'tanggal_lahir' => 'required|date',
@@ -73,6 +91,19 @@ class SiswaController extends Controller
             'nohp' => 'required',
             'kelas' => 'required',
             'foto' => 'nullable|image|mimes:jpg,png,jpeg,jfif|max:2048',
+        ],  [
+                'nis.required' => 'NIS wajib diisi.',
+                'nis.unique' => 'NIS sudah terdaftar.',
+                'nama.required' => 'Nama wajib diisi.',
+                'alamat.required' => 'Alamat wajib diisi.',
+                'tanggal_lahir.required' => 'Tanggal lahir wajib diisi.',
+                'tanggal_lahir.date' => 'Format tanggal lahir tidak valid.',
+                'jenis_kelamin.required' => 'Jenis kelamin wajib diisi.',
+                'nohp.required' => 'Nomor HP wajib diisi.',
+                'kelas.required' => 'Kelas wajib diisi.',
+                'foto.image' => 'Foto harus berupa gambar.',
+                'foto.mimes' => 'Foto harus berformat jpg, png, jpeg, atau jfif.',
+                'foto.max' => 'Ukuran foto maksimal 2MB.',        
         ]);
     
         $siswa = Siswa::findOrFail($nis);
