@@ -10,17 +10,17 @@ use Illuminate\Validation\Rule;
 class PemasukanController extends Controller
 {
     public function index()
-    {   
+    {
         $siswa = Siswa::all();
-        
+
         $pemasukan = Pemasukan::all();
         $totalPemasukan = Pemasukan::getTotalPemasukan();
-        return view('pemasukan.index', compact('pemasukan','siswa', 'totalPemasukan'));
+        return view('admin.pemasukan.index', compact('pemasukan','siswa', 'totalPemasukan'));
     }
 
     public function create()
     {
-        return view('pemasukan.create');
+        return view('admin.pemasukan.create');
     }
 
     public function store(Request $request)
@@ -31,24 +31,24 @@ class PemasukanController extends Controller
             'tanggal' => 'required|date',
             'jenistransaksi' => 'required|in:kontan,transfer',
         ]);
-    
-        
+
+
         $pemasukan = str_replace('.', '', $request->pemasukan);
-    
+
         Pemasukan::create([
             'nis' => $request->nis,
-            'pemasukan' => $pemasukan, 
+            'pemasukan' => $pemasukan,
             'tanggal' => $request->tanggal,
             'jenistransaksi' => $request->jenistransaksi,
         ]);
-    
-        return redirect()->route('pemasukan.index')->with('success', 'Pemasukan berhasil ditambahkan.');
+
+        return redirect()->route('admin.pemasukan.index')->with('success', 'Pemasukan berhasil ditambahkan.');
     }
-    
+
     public function edit($id)
     {
         $pemasukan = Pemasukan::findOrFail($id);
-        return view('pemasukan.edit', compact('pemasukan'));
+        return view('admin.pemasukan.edit', compact('pemasukan'));
     }
 
     public function update(Request $request, $id)
@@ -59,27 +59,27 @@ class PemasukanController extends Controller
             'tanggal' => 'required|date',
             'jenistransaksi' => 'required|in:kontan,transfer',
         ]);
-    
-        
+
+
         $pemasukans = str_replace('.', '', $request->pemasukan);
-    
+
         $pemasukan = Pemasukan::findOrFail($id);
         $pemasukan->update([
             'nis' => $request->nis,
-            'pemasukan' => $pemasukans, 
+            'pemasukan' => $pemasukans,
             'tanggal' => $request->tanggal,
             'jenistransaksi' => $request->jenistransaksi,
         ]);
-    
-        return redirect()->route('pemasukan.index')->with('success', 'Pemasukan berhasil diperbarui.');
+
+        return redirect()->route('admin.pemasukan.index')->with('success', 'Pemasukan berhasil diperbarui.');
     }
-    
+
 
     public function delete($id)
     {
         $pemasukan = Pemasukan::findOrFail($id);
         $pemasukan->delete();
-        
-        return redirect()->route('pemasukan.index')->with('success', 'Pemasukan berhasil dihapus.');
+
+        return redirect()->route('admin.pemasukan.index')->with('success', 'Pemasukan berhasil dihapus.');
     }
 }

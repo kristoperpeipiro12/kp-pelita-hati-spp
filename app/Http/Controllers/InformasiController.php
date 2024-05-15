@@ -12,17 +12,17 @@ class InformasiController extends Controller
     {
         $informasi = Informasi::all();
 
-        return view('informasi.index', compact('informasi'));
+        return view('admin.informasi.index', compact('informasi'));
     }
 
     public function create()
     {
-        return view('informasi.create');
+        return view('admin.informasi.create');
     }
 
     public function store(Request $request)
     {
-        
+
         $validatedData = $request->validate([
             'judul'=>'required',
             'info' => 'required',
@@ -31,19 +31,19 @@ class InformasiController extends Controller
 
         Informasi::create($validatedData);
 
-        return redirect()->route('informasi.index')->with('success', 'Informasi berhasil ditambahkan.');
+        return redirect()->route('admin.informasi.index')->with('success', 'Informasi berhasil ditambahkan.');
     }
 
     public function edit($id)
     {
         $informasi = Informasi::findOrFail($id);
 
-        return view('informasi.edit', compact('informasi'));
+        return view('admin.informasi.edit', compact('informasi'));
     }
 
     public function update(Request $request, $id)
     {
-        
+
         $validatedData = $request->validate([
             'judul'=>'required',
             'info' => 'required',
@@ -53,7 +53,7 @@ class InformasiController extends Controller
         $informasi = Informasi::findOrFail($id);
         $informasi->update($validatedData);
 
-        return redirect()->route('informasi.index')->with('success', 'Informasi berhasil diperbarui.');
+        return redirect()->route('admin.informasi.index')->with('success', 'Informasi berhasil diperbarui.');
     }
 
     public function delete($id)
@@ -62,7 +62,7 @@ class InformasiController extends Controller
 
         $informasi->delete();
 
-        return redirect()->route('informasi.index')->with('success', 'Informasi berhasil dihapus.');
+        return redirect()->route('admin.informasi.index')->with('success', 'Informasi berhasil dihapus.');
     }
 
 }

@@ -19,9 +19,8 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->string('nohp');
             $table->string('kelas');
-            $table->string('role')->default('siswa'); 
+            // $table->string('role')->default('siswa');
             $table->string('password');
-            
             $table->timestamps();
         });
     }

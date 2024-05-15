@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Siswa;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-       public function index()
+    public function index()
     {
         return view('auth.login');
     }
@@ -40,51 +37,44 @@ class LoginController extends Controller
     //     ]);
     // }
 
-   
     public function login_proses(Request $request)
     {
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required'],
         ]);
- 
-        if (Auth::guard('siswa')->attempt($credentials)) {
+
+        if (Auth::guard('siswa')->attempt(['nis' => $credentials['username'], 'password' => $credentials['password']])) {
             $request->session()->regenerate();
- 
-            return redirect()->route('dashboard.siswa');
-        }
-
-        if (Auth::guard('web')->attempt($credentials)) {
-            $user = Auth::guard('web')->user();
-            if ($user->role == 'admin') {
+            return redirect()->route('siswa');
+        } else {
+            if (Auth::guard('web')->attempt(['username' => $credentials['username'], 'password' => $credentials['password']])) {
                 $request->session()->regenerate();
-                return redirect()->route('admin.dashboard');
+                $user = Auth::user();
+                if ('admin' == $user->role) {
+                    return redirect()->route('admin');
+                } elseif ('yayasan' == $user->role) {
+                    return redirect()->route('yayasan');
+                }
             }
         }
 
-        if (Auth::guard('yayasan')->attempt($credentials)) {
-            $user = Auth::guard('yayasan')->user();
-            if ($user->role == 'yayasan') {
-                $request->session()->regenerate();
-                return redirect()->route('yayasan.dashboard');
-            }
-        }
-        // if (Auth::guard('web')->attempt($credentials)) {
-        //     $request->session()->regenerate();
-        //     return redirect()->route('admin.dashboard');
-        // }
-        // if (Auth::guard('yayasan')->attempt($credentials)) {
-        //     $request->session()->regenerate();
-        //     return redirect()->route('yayasan.dashboard');
-        // }
-
+        return redirect()->route('login')->withErrors(['login' => 'Username atau password salah.']);
     }
-  
-    
 
-    public function logout()
+    public function logout(Request $request)
     {
-        Auth::logout();
+        // Logout dari semua guard
+        foreach (['siswa', 'web'] as $guard) {
+            if (Auth::guard($guard)->check()) {
+                Auth::guard($guard)->logout();
+            }
+        }
+
+        // Hapus sesi dan regenerasi ID sesi untuk keamanan
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect()->route('login')->with('success', 'Anda berhasil keluar.');
     }
 }

@@ -10,11 +10,11 @@ class TagihanController extends Controller
     //
     public function index(){
         // $tagihan = Tagihan::all();
-        return view("tagihan.index");
+        return view("admin.tagihan.index");
     }
     Public function create(){
-        return view("tagihan.create");
+        return view("admin.tagihan.create");
     }
 
-    
+
 }

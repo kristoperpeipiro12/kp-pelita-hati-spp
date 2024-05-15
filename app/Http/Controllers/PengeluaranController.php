@@ -7,22 +7,22 @@ use App\Models\Pengeluaran;
 
 class PengeluaranController extends Controller
 {
-    
+
     public function index()
     {
         $pengeluaran = Pengeluaran::all();
         $totalPengeluaran = Pengeluaran::getTotalPengeluaran();
 
-        return view('pengeluaran.index', compact('pengeluaran','totalPengeluaran'));
+        return view('admin.pengeluaran.index', compact('pengeluaran','totalPengeluaran'));
     }
 
-    
+
     public function create()
     {
-        return view('pengeluaran.create');
+        return view('admin.pengeluaran.create');
     }
 
-    
+
     public function store(Request $request)
     {
         $request->validate([
@@ -34,23 +34,23 @@ class PengeluaranController extends Controller
 
 
         Pengeluaran::create([
-            'pengeluaran' => $pengeluaran, 
+            'pengeluaran' => $pengeluaran,
             'tanggal' => $request->tanggal,
             'keterangan' => $request->keterangan,
         ]);
 
-        return redirect()->route('pengeluaran.index')
+        return redirect()->route('admin.pengeluaran.index')
             ->with('success', 'Pengeluaran berhasil ditambahkan.');
     }
 
-    
+
     public function edit($id_pengeluaran)
     {
         $pengeluaran = Pengeluaran::findOrFail($id_pengeluaran);
-        return view('pengeluaran.edit', compact('pengeluaran'));
+        return view('admin.pengeluaran.edit', compact('pengeluaran'));
     }
 
-    
+
     public function update(Request $request, $id_pengeluaran)
     {
         $request->validate([
@@ -59,14 +59,14 @@ class PengeluaranController extends Controller
             'keterangan' => 'nullable|string'
         ]);
         $pengeluarans = str_replace('.', '', $request->pemasukan);
-    
+
         $pengeluaran = Pengeluaran::findOrFail($id_pengeluaran);
         $pengeluaran->update([
-            'pengeluaran' => $pengeluarans, 
+            'pengeluaran' => $pengeluarans,
             'tanggal' => $request->tanggal,
             'keterangan' => $request->keterangan,
         ]);
-        return redirect()->route('pengeluaran.index')
+        return redirect()->route('admin.pengeluaran.index')
             ->with('success', 'Pengeluaran berhasil diperbarui.');
     }
 
@@ -75,7 +75,7 @@ class PengeluaranController extends Controller
         $pengeluaran = Pengeluaran::findOrFail($id_pengeluaran);
         $pengeluaran->delete();
 
-        return redirect()->route('pengeluaran.index')
+        return redirect()->route('admin.pengeluaran.index')
             ->with('success', 'Pengeluaran berhasil dihapus.');
     }
 }

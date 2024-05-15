@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::table('siswa', function (Blueprint $table) {
             //
-            $table->string('username')->after('password');
-
+            // $table->string('username')->after('password');
         });
     }
 
