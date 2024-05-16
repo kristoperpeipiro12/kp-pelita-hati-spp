@@ -31,7 +31,7 @@ class InformasiController extends Controller
 
         Informasi::create($validatedData);
 
-        return redirect()->route('admin.informasi.index')->with('success', 'Informasi berhasil ditambahkan.');
+        return redirect()->route('informasi.index')->with('success', 'Informasi berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -53,7 +53,7 @@ class InformasiController extends Controller
         $informasi = Informasi::findOrFail($id);
         $informasi->update($validatedData);
 
-        return redirect()->route('admin.informasi.index')->with('success', 'Informasi berhasil diperbarui.');
+        return redirect()->route('informasi.index')->with('success', 'Informasi berhasil diperbarui.');
     }
 
     public function delete($id)
@@ -62,7 +62,7 @@ class InformasiController extends Controller
 
         $informasi->delete();
 
-        return redirect()->route('admin.informasi.index')->with('success', 'Informasi berhasil dihapus.');
+        return redirect()->route('informasi.index')->with('success', 'Informasi berhasil dihapus.');
     }
 
 }

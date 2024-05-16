@@ -42,7 +42,7 @@ class PemasukanController extends Controller
             'jenistransaksi' => $request->jenistransaksi,
         ]);
 
-        return redirect()->route('admin.pemasukan.index')->with('success', 'Pemasukan berhasil ditambahkan.');
+        return redirect()->route('pemasukan.index')->with('success', 'Pemasukan berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -71,7 +71,7 @@ class PemasukanController extends Controller
             'jenistransaksi' => $request->jenistransaksi,
         ]);
 
-        return redirect()->route('admin.pemasukan.index')->with('success', 'Pemasukan berhasil diperbarui.');
+        return redirect()->route('pemasukan.index')->with('success', 'Pemasukan berhasil diperbarui.');
     }
 
 
@@ -80,6 +80,6 @@ class PemasukanController extends Controller
         $pemasukan = Pemasukan::findOrFail($id);
         $pemasukan->delete();
 
-        return redirect()->route('admin.pemasukan.index')->with('success', 'Pemasukan berhasil dihapus.');
+        return redirect()->route('pemasukan.index')->with('success', 'Pemasukan berhasil dihapus.');
     }
 }

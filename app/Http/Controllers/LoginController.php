@@ -11,32 +11,6 @@ class LoginController extends Controller
     {
         return view('auth.login');
     }
-
-    // public function login_proses(Request $request)
-    // {
-    //     $credentials = $request->validate([
-    //         'username' => ['required'],
-    //         'password' => ['required'],
-    //     ]);
-
-    //     if (Auth::guard('siswa')->attempt($credentials)) {
-    //         $request->session()->regenerate();
-    //         return redirect()->route('dashboard.siswa');
-    //     } elseif (Auth::attempt($credentials)) {
-    //         $request->session()->regenerate();
-    //         $user = Auth::user();
-    //         if ($user->role == 'admin') {
-    //             return redirect()->route('admin.dashboard');
-    //         } elseif ($user->role == 'yayasan') {
-    //             return redirect()->route('yayasan.dashboard');
-    //         }
-    //     }
-
-    //     return back()->withErrors([
-    //         'username' => 'Kombinasi username dan password tidak valid.',
-    //     ]);
-    // }
-
     public function login_proses(Request $request)
     {
         $credentials = $request->validate([
@@ -62,16 +36,16 @@ class LoginController extends Controller
         return redirect()->route('login')->withErrors(['login' => 'Username atau password salah.']);
     }
 
+
     public function logout(Request $request)
     {
-        // Logout dari semua guard
+
         foreach (['siswa', 'web'] as $guard) {
             if (Auth::guard($guard)->check()) {
                 Auth::guard($guard)->logout();
             }
         }
 
-        // Hapus sesi dan regenerasi ID sesi untuk keamanan
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

@@ -21,15 +21,11 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('yayasan'),
                 'role'     => 'yayasan',
             ],
-            [
-                'username' => 'kristo',
-                'password' => Hash::make('kristo'),
-                'role'     => 'yayasan',
-            ],
         ];
 
         foreach ($userdata as $data) {
             User::create($data);
         }
+        
     }
 }

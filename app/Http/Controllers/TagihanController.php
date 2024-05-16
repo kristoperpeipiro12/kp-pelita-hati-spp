@@ -14,7 +14,16 @@ class TagihanController extends Controller
     }
     Public function create(){
         return view("admin.tagihan.create");
+
     }
+    // public function store(Request $request)
+    // {
+    //     $validatedData = $request->validate([
+    //         'judul'=>'required',
+    //         'info' =>'required',
+    //         'tanggal' =>'required|date',
+    //     ]);
+    // }
 
 
 }
