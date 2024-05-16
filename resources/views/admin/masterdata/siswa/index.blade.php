@@ -18,7 +18,7 @@
                             style="margin-right: 5px;"></i>Tambah</a>
                 </div>
                 <div class="table-responsive p-3">
-                    <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+                    <table class="table align-items-center table-flush table-hover" id="dataTable">
                         <thead class="thead-light">
                             <tr>
                                 <th class="mini-th">No</th>
@@ -91,4 +91,5 @@
             </div>
         </div>
     </div>
+
 @endsection

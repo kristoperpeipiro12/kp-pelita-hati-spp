@@ -25,6 +25,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::get('/siswa/{nis}', [SiswaController::class, 'edit'])->name('siswa.edit');
     Route::put('/siswa/{nis}', [SiswaController::class, 'update'])->name('siswa.update');
     Route::delete('/siswa/{nis}', [SiswaController::class, 'delete'])->name('siswa.delete');
+    Route::get('/siswa/kelas', [SiswaController::class, 'kelas'])->name('siswa.kelas');
+
 
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
