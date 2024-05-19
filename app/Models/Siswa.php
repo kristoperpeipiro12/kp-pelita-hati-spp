@@ -31,10 +31,8 @@ class Siswa extends Authenticatable
         parent::boot();
 
         static::saving(function ($siswa) {
-            // Mengatur nilai username dengan nis
-            // $siswa->username = $siswa->nis;
-
-            $siswa->password = Hash::make((string) $siswa->nis);
+            $password = substr((string) $siswa->nis, -6); 
+            $siswa->password = Hash::make($password);
         });
     }
 

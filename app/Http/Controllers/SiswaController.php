@@ -2,13 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SiswaExport;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class SiswaController extends Controller
 {
+    public function exportExcel()
+    {
+        return Excel::download(new SiswaExport, 'siswa.xlsx');
+    }
+
+    // Fungsi untuk menghasilkan file PDF
+    public function exportPDF()
+    {
+        // $siswa = Siswa::all();
+        // $pdf = PDF::loadView('admin.masterdata.siswa.export_pdf', compact('siswa'));
+        // return $pdf->download('siswa.pdf');
+    }
+
+    public function naik_kelas()
+    {
+
+        return view('admin.masterdata.siswa.naikkelas');
+
+    }
     public function index()
     {
 
@@ -25,7 +47,7 @@ class SiswaController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi data dengan pesan kesalahan kustom
+
         $validatedData = $request->validate([
             'nis' => 'required|unique:siswa,nis',
             'nama' => 'required',
@@ -105,6 +127,11 @@ class SiswaController extends Controller
 
         $siswa = Siswa::findOrFail($nis);
 
+        if ($request->input('nis') !== $siswa->nis) {
+
+            $validatedData['nis'] = $request->input('nis');
+        }
+
         if ($request->hasFile('foto')) {
 
             if ($siswa->foto) {
@@ -134,18 +161,6 @@ class SiswaController extends Controller
         $siswa->delete();
 
         return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil dihapus.');
-    }
-    public function kelas(Request $request)
-    {
-        $kelas = $request->kelas;
-
-        if ($kelas) {
-            $siswa = Siswa::where('kelas', $kelas)->get();
-        } else {
-            $siswa = Siswa::all();
-        }
-
-        return view('admin.masterdata.siswa.index', compact('siswa'))->render();
     }
 
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\Siswa\HomeController as SiswaHomeController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TagihanController;
 use App\Http\Controllers\UserController;
@@ -25,8 +26,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::get('/siswa/{nis}', [SiswaController::class, 'edit'])->name('siswa.edit');
     Route::put('/siswa/{nis}', [SiswaController::class, 'update'])->name('siswa.update');
     Route::delete('/siswa/{nis}', [SiswaController::class, 'delete'])->name('siswa.delete');
-    Route::get('/siswa/kelas', [SiswaController::class, 'kelas'])->name('siswa.kelas');
-
+    Route::get('/siswa/naikkelas', [SiswaController::class,'naik_kelas'])->name('siswa.naikkelas');
+    Route::get('/siswa/export/excel', [SiswaController::class, 'exportExcel'])->name('siswa.export.excel');
+    Route::get('/siswa/export/pdf', [SiswaController::class, 'exportPDF'])->name('siswa.export.pdf');
 
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
@@ -71,8 +73,8 @@ Route::group(['prefix' => 'yayasan', 'middleware' => ['auth:web', 'role:yayasan'
 });
 
 Route::group(['prefix' => 'siswa', 'middleware' => ['auth:siswa']], function () {
-    Route::get('', [App\Http\Controllers\Siswa\HomeController::class, 'index'])->name('siswa');
-    Route::get('/dashboard', [App\Http\Controllers\Siswa\HomeController::class, 'index'])->name('dashboard.siswa');
+    Route::get('/siswa', [SiswaHomeController::class, 'index'])->name('siswa');
+    Route::get('/dashboard', [SiswaHomeController::class, 'index'])->name('dashboard.siswa');
 
     //
 });

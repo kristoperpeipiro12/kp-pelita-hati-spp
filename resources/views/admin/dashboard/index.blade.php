@@ -65,7 +65,7 @@
                                 {{ App\Models\Siswa::getTotalSiswa() }}
                             </div>
                             <div class="mt-2 mb-0 text-muted text-xs">
-                                <span>Tercatat sejak {{ now()->format('d M Y') }}</span>
+                                <span>Tahun Angkatan {{ date('Y') - 1}}/{{ date('Y')}}</span>
                             </div>
                         </div>
                         <div class="col-auto">

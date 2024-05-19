@@ -81,7 +81,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            
+
 
                             <div class="hts-con-form-group">
                                 <div class="form-group w-100">
@@ -114,7 +114,7 @@
         </div>
     </div>
 
-    
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var nisInput = document.getElementById('nis');

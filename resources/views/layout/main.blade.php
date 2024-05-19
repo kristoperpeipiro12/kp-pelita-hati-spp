@@ -65,9 +65,15 @@
                 <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('siswa.index') }}">Data Siswa</a>
-                        <a class="collapse-item" href="{{ route('user.index') }}">Data User</a>
+                        <a class="collapse-item" href="{{ route('siswa.naikkelas') }}">Kenaikan Kelas</a>
                     </div>
                 </div>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('user.index') }}">
+                    <i class="bi bi-people"></i>
+                    <span>Daftar Pengguna</span></a>
             </li>
 
             @elseif (Auth::user()->role == 'yayasan')
