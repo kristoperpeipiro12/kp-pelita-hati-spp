@@ -14,16 +14,15 @@ class SiswaController extends Controller
 {
     public function exportExcel()
     {
-        $siswaexport = new SiswaExport();
-        return Excel::download($siswaexport, 'siswa.xlsx');
+        return Excel::download(new SiswaExport, 'siswa.xlsx');
     }
 
-    public function exportPDF()
-    {
-        $siswa = Siswa::all();
-        $pdf = PDF::loadView('admin.masterdata.siswa.index', compact('siswa'));
-        return $pdf->download('siswa.pdf');
-    }
+    // public function exportPDF()
+    // {
+    //     $siswa = Siswa::all();
+    //     $pdf = PDF::loadView('admin.masterdata.siswa.index', compact('siswa'));
+    //     return $pdf->download('siswa.pdf');
+    // }
 
     public function naik_kelas()
     {
@@ -36,36 +35,54 @@ class SiswaController extends Controller
     }
 
     public function naikSemua(Request $request)
-{
-    $kelas = $request->input('kelas');
-    if ($kelas == 6) {
-        // Luluskan semua siswa di kelas 6
-        Siswa::where('kelas', 6)->update(['status' => 'lulus']);
-    } else {
-        // Naikkan semua siswa di kelas selain kelas 6
-        Siswa::where('kelas', $kelas)->update(['kelas' => $kelas + 1]);
+    {
+        $kelas = $request->input('kelas');
+        if ($kelas == 6) {
+            Siswa::where('kelas', 6)->update(['status' => 'lulus']);
+        } else {
+            Siswa::where('kelas', $kelas)->update(['kelas' => $kelas + 1]);
+        }
+
+        return redirect()->route('admin.siswa.naikkelas')->with('success', 'Siswa berhasil dinaikkan.');
     }
 
-    return redirect()->route('admin.siswa.naikkelas')->with('success', 'Siswa berhasil dinaikkan.');
-}
+    public function naikSingel(Request $request)
+    {
+        $nis = $request->input('nis');
+        $kelas = $request->input('kelas');
 
-public function naikSingel(Request $request)
-{
-    $nis = $request->input('nis');
-    $kelas = $request->input('kelas');
+        $siswa = Siswa::where('nis', $nis)->first();
+        if ($kelas == 6) {
+            // Luluskan siswa jika kelas 6
+            $siswa->status = 'lulus';
+        } else {
+            // Naikkan kelas siswa
+            $siswa->kelas = $kelas + 1;
+        }
 
-    $siswa = Siswa::where('nis', $nis)->first();
-    if ($kelas == 6) {
-        // Luluskan siswa jika kelas 6
-        $siswa->status = 'lulus';
-    } else {
-        // Naikkan kelas siswa
-        $siswa->kelas = $kelas + 1;
+        $siswa->save();
+
+        return redirect()->route('admin.siswa.naikkelas')->with('success', 'Siswa berhasil dinaikkan.');
     }
 
-    $siswa->save();
+    public function siswaLulus()
+    {
+        $siswaLulus = Siswa::where('status', 'lulus')->get();
+        return view('admin.masterdata.siswa.siswalulus', compact('siswaLulus'));
+    }
 
-    return redirect()->route('admin.siswa.naikkelas')->with('success', 'Siswa berhasil dinaikkan.');
+    public function hapusSiswaLulus()
+{
+
+    $siswaLulus = Siswa::where('status', 'lulus')->get();
+
+
+    foreach ($siswaLulus as $siswa) {
+        $siswa->delete();
+    }
+
+
+    return redirect()->back()->with('success', 'Siswa yang lulus berhasil dihapus.');
 }
 
     public function index()
@@ -115,7 +132,7 @@ public function naikSingel(Request $request)
             $path = $foto->storeAs('foto-siswa', $filename, 'public');
             $validatedData['foto'] = $filename;
         }
-
+        $validatedData['status'] = 'aktif';
 
         $siswa = Siswa::create($validatedData);
 
@@ -160,6 +177,7 @@ public function naikSingel(Request $request)
             'foto.mimes' => 'Foto harus berformat jpg, png, jpeg, atau jfif.',
             'foto.max' => 'Ukuran foto maksimal 2MB.',
         ]);
+        $validatedData['status'] = 'aktif';
 
         $siswa = Siswa::findOrFail($nis);
 
@@ -198,5 +216,4 @@ public function naikSingel(Request $request)
 
         return redirect()->route('admin.siswa.index')->with('success', 'Data siswa berhasil dihapus.');
     }
-
 }

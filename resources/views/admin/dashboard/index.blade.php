@@ -10,7 +10,7 @@
     </div>
 
     <div class="row mb-3">
-        <!-- Earnings (Monthly) Card Example -->
+        <!-- Total Pemasukan -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card h-100">
                 <div class="card-body">
@@ -19,7 +19,6 @@
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Total Pemasukan</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 {{ 'Rp ' . number_format(App\Models\Pemasukan::getTotalPemasukan(), 2, ',', '.') }}
-                                {{-- Rp. {{ number_format(App\Models\Pemasukan::getTotalPemasukan() - App\Models\Pengeluaran::getTotalPengeluaran(), 2, ',', '.') }} --}}
                             </div>
                             <div class="mt-2 mb-0 text-muted text-xs">
                                 <span>Tercatat sejak {{ now()->format('d M Y') }}</span>
@@ -33,13 +32,13 @@
             </div>
         </div>
 
-        <!-- Earnings (Annual) Card Example -->
+        <!-- Total Pengeluaran -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card h-100">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
+                    <div class="row align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1"> Total Pengeluaran</div>
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Total Pengeluaran</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 {{ 'Rp ' . number_format(App\Models\Pengeluaran::getTotalPengeluaran(), 2, ',', '.') }}
                             </div>
@@ -54,11 +53,12 @@
                 </div>
             </div>
         </div>
-        <!-- New User Card Example -->
+
+        <!-- Siswa Aktif-->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card h-100">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
+                    <div class="row align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Siswa Aktif</div>
                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -79,7 +79,7 @@
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card h-100">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
+                    <div class="row align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Pemasukan Hari ini</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -87,7 +87,7 @@
                                 Rp. {{ number_format(App\Models\Pemasukan::whereDate('tanggal', today())->sum('pemasukan'), 0, ',', '.') }}
                             </div>
                             <div class="mt-2 mb-0 text-muted text-xs">
-                                <span>Tercatat sejak {{ now()->format('d M Y') }}</span>
+                                <span>Tercatat sejak {{ now()->formatLocalized('%d %B %Y') }}</span>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -102,26 +102,7 @@
         <!-- Area Chart -->
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

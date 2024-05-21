@@ -3,17 +3,17 @@
 <!-- DataTable with Hover -->
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Data User</h1>
+        <h1 class="h3 mb-0 text-gray-800">Data Pengguna</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Master Data</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Data User</li>
+            <li class="breadcrumb-item"><a href="#">Data</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Daftar Pengguna</li>
         </ol>
     </div>
 
     <div class="col-lg-12">
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Daftar User</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Daftar pengguna</h6>
                 <a href="{{ route('user.create') }}" class="btn btn-info mb-1"><i class="fas fa-plus"
                         style="margin-right: 5px;"></i>Tambah</a>
             </div>

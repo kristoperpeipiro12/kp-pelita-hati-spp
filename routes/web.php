@@ -26,7 +26,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::get('/siswa/naik-kelas', [SiswaController::class,'naik_kelas'])->name('admin.siswa.naikkelas');
     Route::post('/siswa/naik-Semua', [SiswaController::class, 'naikSemua'])->name('admin.siswa.naiksemua');
     Route::post('/siswa/naik-Singel', [SiswaController::class, 'naikSingel'])->name('admin.siswa.naiksatu');
-
+    Route::get('/siswa/lulus', [SiswaController::class, 'siswaLulus'])->name('admin.siswa.lulus');
+    Route::delete('/siswa/hapus-lulus', [SiswaController::class, 'hapusSiswaLulus'])->name('admin.siswa.hapus-lulus');
     Route::get('/siswa/{nis}', [SiswaController::class, 'edit'])->name('admin.siswa.edit');
     Route::put('/siswa/{nis}', [SiswaController::class, 'update'])->name('admin.siswa.update');
     Route::delete('/siswa/{nis}', [SiswaController::class, 'delete'])->name('admin.siswa.delete');

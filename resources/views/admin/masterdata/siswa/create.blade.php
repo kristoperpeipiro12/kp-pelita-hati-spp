@@ -13,7 +13,7 @@
                         <h6 class="m-0 font-weight-bold text-dark">Tambah Data Siswa</h6>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('siswa.store') }}" method="POST" enctype="multipart/form-data"
+                        <form action="{{ route('admin.siswa.store') }}" method="POST" enctype="multipart/form-data"
                             class="d-flex flex-column">
                             @csrf
                             <div class="hts-con-form-group">
@@ -104,7 +104,7 @@
                             </div>
                             <div class="d-flex w-25" style="gap: 20px">
                                 <button type="submit" class="btn btn-primary w-100">Simpan</button>
-                                <a href="{{ route('siswa.index') }}" class="btn btn-secondary w-100">Batal</a>
+                                <a href="{{ route('admin.siswa.index') }}" class="btn btn-secondary w-100">Batal</a>
                             </div>
 
                         </form>

@@ -67,6 +67,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('admin.siswa.index') }}">Data Siswa</a>
                         <a class="collapse-item" href="{{ route('admin.siswa.naikkelas') }}">Kenaikan Kelas</a>
+                        <a class="collapse-item" href="{{ route('admin.siswa.lulus') }}">Siswa Lulus</a>
                     </div>
                 </div>
             </li>

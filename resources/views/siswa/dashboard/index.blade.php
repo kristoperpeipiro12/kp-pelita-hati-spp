@@ -75,7 +75,7 @@
                         <tr>
                             <td class="text-">Status Murid</td>
                             <td class="px-2 text-center">:</td>
-                            <td>Aktif</td>
+                            <td>{{ Auth::user()->status }}</td>
                         </tr>
                     </table>
                 </div>

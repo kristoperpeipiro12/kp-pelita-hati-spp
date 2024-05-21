@@ -14,22 +14,34 @@ class SiswaSeeder extends Seeder
      */
     public function run(): void
     {
+        // Nonaktifkan pemeriksaan kunci asing
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
+
+        // Hapus semua data dalam tabel siswa
         DB::table('siswa')->truncate();
+
+        // Aktifkan kembali pemeriksaan kunci asing
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
+        // Buat instance Faker
         $faker = Faker::create('id_ID');
 
+      
         for ($i = 1; $i <= 50; $i++) {
-            $class       = ($i % 6) + 1;
+
+            $class = ($i % 6) + 1;
 
 
             for ($j = 0; $j < 2; $j++) {
+
                 $jenis_kelamin = $faker->randomElement(['Laki-laki', 'Perempuan']);
-                $nis           = mt_rand(10000000, 99999999);
 
 
-                $nama = 'Laki-laki' == $jenis_kelamin ? $faker->firstNameMale . ' ' . $faker->lastName : $faker->firstNameFemale . ' ' . $faker->lastName;
+                $nis = mt_rand(10000000, 99999999);
+
+
+                $nama = $jenis_kelamin == 'Laki-laki' ? $faker->firstNameMale . ' ' . $faker->lastName : $faker->firstNameFemale . ' ' . $faker->lastName;
+
 
                 DB::table('siswa')->insert([
                     'nis'           => $nis,
@@ -39,7 +51,8 @@ class SiswaSeeder extends Seeder
                     'jenis_kelamin' => $jenis_kelamin,
                     'nohp'          => '08' . mt_rand(10000000, 99999999),
                     'kelas'         => $class,
-                    'password' => Hash::make(substr($nis, -6)),
+                    'password'      => Hash::make(substr($nis, -6)),
+                    'status'        => 'aktif', // Set kolom status menjadi aktif
                 ]);
             }
         }

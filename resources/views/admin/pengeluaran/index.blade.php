@@ -13,7 +13,17 @@
     <div class="col-lg-12">
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Daftar Pengeluaran</h6>
+                {{-- <h6 class="m-0 font-weight-bold text-primary">Daftar Pengeluaran</h6> --}}
+                <div>
+                    <!-- Tombol untuk cetak data dalam bentuk Excel -->
+                    <a href="#" class="btn btn-success mb-1">
+                        <i class="fas fa-file-excel"></i> Export Excel
+                    </a>
+                    <!-- Tombol untuk cetak data dalam bentuk PDF -->
+                    <a href="#" class="btn btn-danger mb-1">
+                        <i class="fas fa-file-pdf"></i> Export PDF
+                    </a>
+                </div>
                 <a href="{{ route('pengeluaran.create') }}" class="btn btn-info mb-1"><i class="fas fa-plus"
                         style="margin-right: 5px;"></i>Tambah</a>
             </div>

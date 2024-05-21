@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('kelas');
             // $table->string('role')->default('siswa');
             $table->string('password');
+            $table->string('status');
             $table->timestamps();
         });
     }

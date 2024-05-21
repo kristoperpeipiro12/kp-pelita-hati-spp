@@ -39,6 +39,7 @@ class Siswa extends Authenticatable
 
     public static function getTotalSiswa()
     {
-        return self::count();
+        // return self::count();
+        return self::where('status', 'aktif')->count();
     }
 }
