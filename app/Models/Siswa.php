@@ -24,6 +24,7 @@ class Siswa extends Authenticatable
         'nohp',
         'kelas',
         'foto',
+        'status',
     ];
 
     public static function boot()
@@ -31,7 +32,7 @@ class Siswa extends Authenticatable
         parent::boot();
 
         static::saving(function ($siswa) {
-            $password = substr((string) $siswa->nis, -6); 
+            $password = substr((string) $siswa->nis, -6);
             $siswa->password = Hash::make($password);
         });
     }

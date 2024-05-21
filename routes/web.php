@@ -14,21 +14,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+// Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], function () {
     Route::get('', [HomeController::class, 'admin'])->name('admin');
     Route::get('/dashboard', [HomeController::class, 'admin'])->name('admin.dashboard');
 
-    Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
-    Route::get('/siswa/create', [SiswaController::class, 'create'])->name('siswa.create');
-    Route::post('/siswa/store', [SiswaController::class, 'store'])->name('siswa.store');
-    Route::get('/siswa/{nis}', [SiswaController::class, 'edit'])->name('siswa.edit');
-    Route::put('/siswa/{nis}', [SiswaController::class, 'update'])->name('siswa.update');
-    Route::delete('/siswa/{nis}', [SiswaController::class, 'delete'])->name('siswa.delete');
-    Route::get('/siswa/naikkelas', [SiswaController::class,'naik_kelas'])->name('siswa.naikkelas');
-    Route::get('/siswa/export/excel', [SiswaController::class, 'exportExcel'])->name('siswa.export.excel');
-    Route::get('/siswa/export/pdf', [SiswaController::class, 'exportPDF'])->name('siswa.export.pdf');
+    Route::get('/siswa', [SiswaController::class, 'index'])->name('admin.siswa.index');
+    Route::get('/siswa/create', [SiswaController::class, 'create'])->name('admin.siswa.create');
+    Route::post('/siswa/store', [SiswaController::class, 'store'])->name('admin.siswa.store');
+    Route::get('/siswa/naik-kelas', [SiswaController::class,'naik_kelas'])->name('admin.siswa.naikkelas');
+    Route::post('/siswa/naik-Semua', [SiswaController::class, 'naikSemua'])->name('admin.siswa.naiksemua');
+    Route::post('/siswa/naik-Singel', [SiswaController::class, 'naikSingel'])->name('admin.siswa.naiksatu');
+
+    Route::get('/siswa/{nis}', [SiswaController::class, 'edit'])->name('admin.siswa.edit');
+    Route::put('/siswa/{nis}', [SiswaController::class, 'update'])->name('admin.siswa.update');
+    Route::delete('/siswa/{nis}', [SiswaController::class, 'delete'])->name('admin.siswa.delete');
+
+    Route::get('/siswa/export/excel', [SiswaController::class, 'exportExcel'])->name('admin.siswa.export.excel');
+    Route::get('/siswa/export/pdf', [SiswaController::class, 'exportPDF'])->name('admin.siswa.export.pdf');
 
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');

@@ -15,6 +15,7 @@
     <link href="{{ asset('RuangAdmin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('RuangAdmin/css/ruang-admin.css') }}" rel="stylesheet">
     <link href="{{ asset('RuangAdmin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -56,7 +57,7 @@
                 <a class="nav-link" href="{{ route('informasi.index') }}">
                     <i class="bi bi-info-circle"></i>
                     <span>Informasi</span></a>
-            </li>
+                </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap" aria-expanded="true" aria-controls="collapseBootstrap">
                     <i class="bi bi-database"></i>
@@ -64,12 +65,11 @@
                 </a>
                 <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('siswa.index') }}">Data Siswa</a>
-                        <a class="collapse-item" href="{{ route('siswa.naikkelas') }}">Kenaikan Kelas</a>
+                        <a class="collapse-item" href="{{ route('admin.siswa.index') }}">Data Siswa</a>
+                        <a class="collapse-item" href="{{ route('admin.siswa.naikkelas') }}">Kenaikan Kelas</a>
                     </div>
                 </div>
             </li>
-
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('user.index') }}">
                     <i class="bi bi-people"></i>
@@ -223,7 +223,7 @@
     <script src="{{ asset('RuangAdmin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
 
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 
     <script>

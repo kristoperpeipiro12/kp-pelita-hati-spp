@@ -12,22 +12,22 @@
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Daftar Siswa/i</h6>
+                    {{-- <h6 class="m-0 font-weight-bold text-primary">Daftar Siswa/i</h6> --}}
                     <div>
                         <!-- Tombol untuk cetak data dalam bentuk Excel -->
-                        <a href="{{ route('siswa.export.excel') }}" class="btn btn-success mb-1">
+                        <a href="{{ route('admin.siswa.export.excel') }}" class="btn btn-success mb-1">
                             <i class="fas fa-file-excel"></i> Export Excel
                         </a>
                         <!-- Tombol untuk cetak data dalam bentuk PDF -->
-                        <a href="{{ route('siswa.export.pdf') }}" class="btn btn-danger mb-1">
+                        <a href="{{ route('admin.siswa.export.pdf') }}" class="btn btn-danger mb-1">
                             <i class="fas fa-file-pdf"></i> Export PDF
                         </a>
                     </div>
-                    <a href="{{ route('siswa.create') }}" class="btn btn-info mb-1"><i class="fas fa-plus"
-                            style="margin-right: 5px;"></i>Tambah</a>
-                </div>
-                <div class="table-responsive p-3">
-                    @include('admin.masterdata.siswa.table',$siswa)
+                    <a href="{{ route('admin.siswa.create') }}" class="btn btn-info mb-1"><i class="fas fa-plus"
+                        style="margin-right: 5px;"></i>Tambah</a>
+                    </div>
+                    <div class="table-responsive p-3">
+                        @include('admin.masterdata.siswa.table',$siswa)
                 </div>
             </div>
         </div>

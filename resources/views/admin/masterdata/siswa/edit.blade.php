@@ -13,7 +13,7 @@
                         <h6 class="m-0 font-weight-bold text-dark">Tambah Data Siswa</h6>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('siswa.update',$siswa->nis) }}" method="POST" enctype="multipart/form-data"
+                        <form action="{{ route('admin.siswa.update',$siswa->nis) }}" method="POST" enctype="multipart/form-data"
                             class="d-flex flex-column">
                             @csrf
                             @method('PUT')
@@ -91,15 +91,15 @@
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                                 </div>
-                                
-                                
+
+
                             </div>
                             <div class="d-flex w-25" style="gap: 20px">
 
                                 <button type="submit" class="btn btn-primary w-100">Simpan</button>
-                                <a href="{{ route('siswa.index') }}" class="btn btn-secondary w-100">Batal</a>
+                                <a href="{{ route('admin.siswa.index') }}" class="btn btn-secondary w-100">Batal</a>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>
@@ -118,13 +118,13 @@
             function validateInputNumber(input, errorElement, maxLength) {
                 input.addEventListener('input', function() {
                     var value = this.value.replace(/\D/g, '');
-                    this.value = value; 
+                    this.value = value;
 
                     if (value.length > maxLength) {
                         this.value = value.slice(0, maxLength);
                         errorElement.textContent = "Tidak boleh lebih dari " + maxLength + " angka";
                     } else {
-                        errorElement.textContent = ""; 
+                        errorElement.textContent = "";
                     }
                 });
             }

@@ -27,7 +27,7 @@
                 <td><img src="{{ asset('storage/foto-siswa/' . $item->foto) }}" alt=""
                         width="65"></td>
                 <td class="d-flex justify-content-between">
-                    <a href="{{ route('siswa.edit', $item->nis) }}"
+                    <a href="{{ route('admin.siswa.edit', $item->nis) }}"
                         class="btn btn-primary btn-sm mr-2"><i class="fas fa-pen-alt"></i></a>
                     <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal"
                         data-target="#deleteModal{{ $item->nis }}">
@@ -54,7 +54,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary"
                                 data-dismiss="modal">Batal</button>
-                            <form action="{{ route('siswa.delete', $item->nis) }}" method="POST">
+                            <form action="{{ route('admin.siswa.delete', $item->nis) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Hapus</button>
