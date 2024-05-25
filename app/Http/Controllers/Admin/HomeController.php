@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -9,8 +10,4 @@ class HomeController extends Controller
         return view("admin.dashboard.index");
     }
 
-    public function yayasan()
-    {
-        return view("yayasan.dashboard.index");
-    }
 }

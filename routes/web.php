@@ -1,14 +1,16 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\InformasiController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PemasukanController;
-use App\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\InformasiController;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\PemasukanController;
+use App\Http\Controllers\Admin\PengeluaranController;
+use App\Http\Controllers\Admin\SiswaController;
+use App\Http\Controllers\Admin\TagihanController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Siswa\HomeController as SiswaHomeController;
-use App\Http\Controllers\SiswaController;
-use App\Http\Controllers\TagihanController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Yayasan\HomeController as YayasanHomeController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
@@ -71,8 +73,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::delete('/pengeluaran/delete', [PengeluaranController::class, 'delete'])->name('pengeluaran.delete');
 });
 Route::group(['prefix' => 'yayasan', 'middleware' => ['auth:web', 'role:yayasan']], function () {
-    Route::get('', [HomeController::class, 'yayasan'])->name('yayasan');
-    Route::get('/dashboard', [HomeController::class, 'yayasan'])->name('yayasan.dashboard');
+    Route::get('', [YayasanHomeController::class, 'index'])->name('yayasan');
+    Route::get('/dashboard', [YayasanHomeController::class, 'index'])->name('yayasan.dashboard');
 
     //
 });

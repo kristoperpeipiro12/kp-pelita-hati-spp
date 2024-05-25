@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
 use App\Models\Informasi;
 use Illuminate\Http\Request;
@@ -30,8 +31,7 @@ class InformasiController extends Controller
         ]);
 
         Informasi::create($validatedData);
-
-        return redirect()->route('informasi.index')->with('success', 'Informasi berhasil ditambahkan.');
+        return redirect()->route('informasi.index')->with('toast_success', 'Informasi berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -53,7 +53,7 @@ class InformasiController extends Controller
         $informasi = Informasi::findOrFail($id);
         $informasi->update($validatedData);
 
-        return redirect()->route('informasi.index')->with('success', 'Informasi berhasil diperbarui.');
+        return redirect()->route('informasi.index')->with('toast_success', 'Informasi berhasil diperbarui.');
     }
 
     public function delete($id)
@@ -62,7 +62,7 @@ class InformasiController extends Controller
 
         $informasi->delete();
 
-        return redirect()->route('informasi.index')->with('success', 'Informasi berhasil dihapus.');
+        return redirect()->route('informasi.index');
     }
 
 }

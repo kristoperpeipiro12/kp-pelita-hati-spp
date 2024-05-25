@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -33,7 +34,7 @@ class UserController extends Controller
         User::create($validatedData);
 
         return redirect()->route('user.index')
-            ->with('success', 'User created successfully.');
+            ->with('toast_success', 'Data User Berhasil Ditambah');
     }
 
     public function edit($id)
@@ -59,7 +60,7 @@ class UserController extends Controller
         $user->update($validatedData);
 
         return redirect()->route('user.index')
-            ->with('success', 'User updated successfully.');
+            ->with('toast_success', 'Data User Berhasil di Update!');
     }
 
     public function delete($id)
@@ -69,7 +70,7 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('user.index')
-            ->with('success', 'User deleted successfully.');
+            ->with('toast_success', 'Data User Berhasil Dihapus.');
     }
 
 }

@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\Pengeluaran;
@@ -40,7 +41,7 @@ class PengeluaranController extends Controller
         ]);
 
         return redirect()->route('admin.pengeluaran.index')
-            ->with('success', 'Pengeluaran berhasil ditambahkan.');
+            ->with('toast_success', 'Pengeluaran berhasil ditambahkan.');
     }
 
 
@@ -67,7 +68,7 @@ class PengeluaranController extends Controller
             'keterangan' => $request->keterangan,
         ]);
         return redirect()->route('admin.pengeluaran.index')
-            ->with('success', 'Pengeluaran berhasil diperbarui.');
+            ->with('toast_success', 'Pengeluaran berhasil diperbarui.');
     }
 
     public function delete($id_pengeluaran)
@@ -76,6 +77,6 @@ class PengeluaranController extends Controller
         $pengeluaran->delete();
 
         return redirect()->route('admin.pengeluaran.index')
-            ->with('success', 'Pengeluaran berhasil dihapus.');
+            ->with('toast_success', 'Pengeluaran berhasil dihapus.');
     }
 }

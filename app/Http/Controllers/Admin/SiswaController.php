@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
 use App\Models\Siswa;
 use Illuminate\Http\Request;
@@ -43,7 +44,7 @@ class SiswaController extends Controller
             Siswa::where('kelas', $kelas)->update(['kelas' => $kelas + 1]);
         }
 
-        return redirect()->route('admin.siswa.naikkelas')->with('success', 'Siswa berhasil dinaikkan.');
+        return redirect()->route('admin.siswa.naikkelas')->with('toast_success', 'Siswa berhasil dinaikkan.');
     }
 
     public function naikSingel(Request $request)
@@ -62,7 +63,7 @@ class SiswaController extends Controller
 
         $siswa->save();
 
-        return redirect()->route('admin.siswa.naikkelas')->with('success', 'Siswa berhasil dinaikkan.');
+        return redirect()->route('admin.siswa.naikkelas')->with('toast_success', 'Siswa berhasil dinaikkan.');
     }
 
     public function siswaLulus()
@@ -82,7 +83,7 @@ class SiswaController extends Controller
     }
 
 
-    return redirect()->back()->with('success', 'Siswa yang lulus berhasil dihapus.');
+    return redirect()->back()->with('toast_success', 'Data Siswa lulus berhasil dihapus.');
 }
 
     public function index()
@@ -142,7 +143,7 @@ class SiswaController extends Controller
         $siswa->password = Hash::make($password);
         $siswa->save();
 
-        return redirect()->route('admin.siswa.index')->with('success', 'Data siswa berhasil disimpan.');
+        return redirect()->route('admin.siswa.index')->with('toast_success', 'Data siswa berhasil disimpan.');
     }
 
     public function edit($nis)
@@ -200,7 +201,7 @@ class SiswaController extends Controller
 
         $siswa->update($validatedData);
 
-        return redirect()->route('admin.siswa.index')->with('success', 'Data siswa berhasil diperbarui.');
+        return redirect()->route('admin.siswa.index')->with('toast_success', 'Data siswa berhasil diperbarui.');
     }
 
     public function delete($nis)
@@ -214,6 +215,6 @@ class SiswaController extends Controller
 
         $siswa->delete();
 
-        return redirect()->route('admin.siswa.index')->with('success', 'Data siswa berhasil dihapus.');
+        return redirect()->route('admin.siswa.index')->with('toast_success', 'Data siswa berhasil dihapus.');
     }
 }

@@ -5,7 +5,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Informasi</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
+            <li class="breadcrumb-item"><a href="#">Admin</a></li>
             <li class="breadcrumb-item active" aria-current="page">Informasi</li>
         </ol>
     </div>
@@ -46,8 +46,7 @@
                 <span class="text-justify record-info d-inline-block w-100" id="isi-info">{{ $i->info }}</span>
                 <textarea class="d-none w-100 form-control" name="info" id="edit-info" placeholder="Edit Info">{{ $i->info }}</textarea>
                 <div class="record-tgl">
-                    <p class="text-right" style="font-size: 13px">Tercatat tanggal : <span
-                            class="font-weight-bold">{{ \Carbon\Carbon::parse($i->tanggal)->format('d-m-Y') }}</span></p>
+                    <p class="text-right" style="font-size: 13px">Tercatat tanggal : <span class="font-weight-bold">{{ \Carbon\Carbon::parse($i->tanggal)->format('d-m-Y') }}</span></p>
                 </div>
                 <div class="con-record-button">
                     <button class="btn btn-warning" id="btn-edit-info">Edit</button>
@@ -56,7 +55,7 @@
                 </div>
             </form>
 
-            <!-- Modal -->
+            <!-- Delete Modal -->
             <div class="modal fade" id="deleteModal{{ $i->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ $i->id }}" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -86,4 +85,5 @@
         </div>
     </div>
 </div>
+
 @endsection

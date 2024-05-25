@@ -180,6 +180,7 @@
                 <!-- Container Fluid-->
                 @yield('content')
                 <!---Container Fluid-->
+                @include('sweetalert::alert')
                 {{-- end content --}}
             </div>
 
