@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('pemasukan', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('nis')->unsigned()->digits(8);
-            $table->foreign('nis')->references('nis')->on('siswa')->onDelete('cascade');
+            $table->foreign('nis')->references('nis')->on('siswas')->onDelete('cascade');
             $table->double('pemasukan');
             $table->date('tanggal');
-            $table->enum('jenistransaksi', ['kontan', 'transfer'])->default('kontan');
+            $table->enum('jenistransaksi', ['kontan', 'transfer']);
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */
@@ -29,5 +29,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('pemasukan');
     }
-    
+
 };

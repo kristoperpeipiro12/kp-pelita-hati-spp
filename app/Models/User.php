@@ -39,7 +39,7 @@
          * @var array<string, string>
          */
         protected $casts = [
-            
+
             'password' => 'hashed',
         ];
     }

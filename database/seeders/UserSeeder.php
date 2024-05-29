@@ -14,22 +14,18 @@ class UserSeeder extends Seeder
             [
                 'username' => 'admin',
                 'password' => Hash::make('admin'),
-                'role' => 'admin',
+                'role'     => 'admin',
             ],
             [
                 'username' => 'yayasan',
                 'password' => Hash::make('yayasan'),
-                'role' => 'yayasan',
-            ],
-            [
-                'username' => 'siswa',
-                'password' => Hash::make('siswa'),
-                'role' => 'siswa',
+                'role'     => 'yayasan',
             ],
         ];
 
         foreach ($userdata as $data) {
             User::create($data);
         }
+        
     }
 }

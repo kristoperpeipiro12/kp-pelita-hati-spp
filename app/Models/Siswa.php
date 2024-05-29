@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-// use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 
-class Siswa extends Model
+class Siswa extends Authenticatable
 {
-    protected $table = 'siswa';
+    use HasFactory;
+
+    protected $table = 'siswas';
     protected $primaryKey = 'nis';
     public $incrementing = false;
     protected $keyType = 'integer';
@@ -23,26 +25,28 @@ class Siswa extends Model
         'nohp',
         'kelas',
         'foto',
-        'username', 
+        'password',
+        'status',
+        'tagihan_aktif',
     ];
 
-    
     public static function boot()
     {
         parent::boot();
 
         static::saving(function ($siswa) {
-            // Mengatur nilai username dengan nis
-            $siswa->username = $siswa->nis;
-            
-            // Mengambil 6 digit terakhir dari NIS dan mengatur sebagai password
-            $password = substr($siswa->nis, -6);
+            $password = substr((string) $siswa->nis, -6);
             $siswa->password = Hash::make($password);
         });
     }
 
     public static function getTotalSiswa()
     {
-        return self::count();
+        return self::where('status', 'aktif')->count();
+    }
+
+    public function tagihan()
+    {
+        return $this->belongsTo(Tagihan::class, 'kelas', 'kelas');
     }
 }
