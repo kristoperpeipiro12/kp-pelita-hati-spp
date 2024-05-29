@@ -9,11 +9,15 @@ class KonfirmasiPembayaran extends Model
 {
     use HasFactory;
 
-    protected $table = 'konfirmasipembayaran';
+    protected $table      = 'konfirmasipembayaran';
     protected $primaryKey = 'id';
-    protected $fillable = ['nis', 'pemasukan', 'tanggal', 'jenis_transaksi', 'foto', 'konfirmasi'];
+    protected $fillable   = ['nis', 'pemasukan', 'tanggal', 'jenis_transaksi', 'foto', 'konfirmasi'];
 
-    // Relationship dengan model Siswa
+    /**
+     * Relationship dengan model Siswa.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function siswa()
     {
         return $this->belongsTo(Siswa::class, 'nis', 'nis');

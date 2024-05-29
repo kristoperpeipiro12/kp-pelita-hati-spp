@@ -8,14 +8,36 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="{{ asset('RuangAdmin/img/logo/logoSekolah.png') }}" rel="icon">
-    <title>Pelita Hati</title>
-    <link rel="stylesheet" href="{{ asset('assets/bootstrap-icons/font/bootstrap-icons.css') }}">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('RuangAdmin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+
+    {{-- <title>{{ $pageTitle }}</title> --}}
+    <title>PELITA HATI</title>
+
     <link href="{{ asset('RuangAdmin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('RuangAdmin/css/ruang-admin.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap-icons/font/bootstrap-icons.css') }}">
+    <link href="{{ asset('RuangAdmin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('RuangAdmin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+
+    <link href="{{ asset('RuangAdmin/css/ruang-admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{{ asset('RuangAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('RuangAdmin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('RuangAdmin/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('RuangAdmin/js/demo/chart-area-demo.js') }}"></script>
+
+    <!-- jQuery -->
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -44,19 +66,18 @@
                     <span>Kirim Tagihan</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
-                  aria-controls="collapseForm">
-                  <i class="bi bi-cash-stack"></i>
-                  <span><strong>Pemasukan</strong></span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true" aria-controls="collapseForm">
+                    <i class="bi bi-cash-stack"></i>
+                    <span><strong>Pemasukan</strong></span>
                 </a>
                 <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
-                  <div class="bg-white py-2 collapse-inner rounded">
+                    <div class="bg-white py-2 collapse-inner rounded">
 
-                    <a class="collapse-item" href="{{ route('pemasukan.index') }}">Data Pemasukan</a>
-                    <a class="collapse-item" href="{{ route('admin.konfirmasi') }}">Riwayat Pemasukan</a>
-                  </div>
+                        <a class="collapse-item" href="{{ route('pemasukan.index') }}">Data Pemasukan</a>
+                        <a class="collapse-item" href="{{ route('admin.konfirmasi') }}">Riwayat Pemasukan</a>
+                    </div>
                 </div>
-              </li>
+            </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('pengeluaran.index') }}">
                     <i class="bi bi-wallet2"></i>
@@ -66,7 +87,7 @@
                 <a class="nav-link" href="{{ route('informasi.index') }}">
                     <i class="bi bi-info-circle"></i>
                     <span>Informasi</span></a>
-                </li>
+            </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap" aria-expanded="true" aria-controls="collapseBootstrap">
                     <i class="bi bi-database"></i>
@@ -129,7 +150,7 @@
                 <!-- TopBar -->
                 <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
                     <div class="d-flex p-0 align-items-center">
-                        <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+                        <button id="sidebarToggleTop" class="btn btn-link text-white mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
                         <span class="text-white">School Fee Management System</span>
@@ -226,34 +247,14 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script> --}}
     <script src="{{ asset('js/pemasukan.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
 
-    <script src="{{ asset('RuangAdmin/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('RuangAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('RuangAdmin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('RuangAdmin/js/ruang-admin.min.js') }}"></script>
-    <script src="{{ asset('RuangAdmin/vendor/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('RuangAdmin/js/demo/chart-area-demo.js') }}"></script>
 
-    <script src="{{ asset('RuangAdmin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('RuangAdmin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('RuangAdmin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
-    <script>
-        $(document).ready(function() {
-            $('#dataTable').DataTable(); // ID From dataTable
-            $('#dataTableHover').DataTable(); // ID From dataTable with Hover
-        });
-
-    </script>
 
 </body>
 

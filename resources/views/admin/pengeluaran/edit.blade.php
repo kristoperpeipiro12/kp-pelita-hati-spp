@@ -7,11 +7,11 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-7">
-            <!-- Form Basic -->
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-dark">Edit Data Pengeluaran</h6>
                 </div>
+
                 <div class="card-body">
                     <form action="{{ route('pengeluaran.update', $pengeluaran->id_pengeluaran) }}" method="POST" class="d-flex flex-column">
                         @csrf
@@ -20,21 +20,19 @@
                         <div class="hpeng-con-form-group">
                             <div class="form-group w-100">
                                 <label for="pengeluaran">Nominal Pengeluaran</label>
-                                <input type="text" class="form-control" name="pengeluaran"
-                                     id="numberInput" value="{{ $pengeluaran->pengeluaran }}" autocomplete="off">
+                                <input type="text" class="form-control" name="pengeluaran" id="numberInput" value="{{ $pengeluaran->pengeluaran }}" autocomplete="off">
                             </div>
                         </div>
                         <div class="hpeng-con-form-group">
-                            <div class="form-group w-100">
+                            <div class="form-group">
                                 <label for="tanggal">Tanggal Pengeluaran</label>
-                                <input type="date" class="form-control" name="tanggal"
-                                    placeholder="Tanggal Pengeluaran" id="tanggal" value="{{ $pengeluaran->tanggal }}">
+                                <input type="date" class="form-control" name="tanggal" placeholder="Tanggal Pengeluaran" id="tanggal" value="{{ \Carbon\Carbon::parse($pengeluaran->tanggal)->format('Y-m-d') }}">
                             </div>
                         </div>
                         <div class="hpeng-con-form-group">
                             <div class="form-group w-100">
                                 <label for="keterangan">Keterangan Pengeluaran</label>
-                                <textarea name="keterangan" id="ket_pengeluaran" class="peng-textarea" value="{{ $pengeluaran->keterangan }}" autocomplete="off"></textarea>
+                                <textarea name="keterangan" class="form-control" rows="5" id="ket_pengeluaran" class="peng-textarea" autocomplete="off">{{ $pengeluaran->keterangan }}</textarea>
                             </div>
                         </div>
 

@@ -1,35 +1,22 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\SiswaExport;
-use PDF;
 
 class SiswaController extends Controller
 {
-    public function exportExcel()
-    {
-        return Excel::download(new SiswaExport, 'siswa.xlsx');
-    }
-
-    // public function exportPDF()
-    // {
-    //     $siswa = Siswa::all();
-    //     $pdf = PDF::loadView('admin.masterdata.siswa.index', compact('siswa'));
-    //     return $pdf->download('siswa.pdf');
-    // }
-
     public function naik_kelas()
     {
         $data = [];
         for ($i = 1; $i <= 6; $i++) {
-            $data[$i] = Siswa::where('kelas', $i)->get();
+            $data[$i] = Siswa::where('kelas', $i)
+                ->where('status', 'aktif')
+                ->get();
         }
 
         return view('admin.masterdata.naikkelas.index', compact('data'));
@@ -38,7 +25,7 @@ class SiswaController extends Controller
     public function naikSemua(Request $request)
     {
         $kelas = $request->input('kelas');
-        if ($kelas == 6) {
+        if (6 == $kelas) {
             Siswa::where('kelas', 6)->update(['status' => 'lulus']);
         } else {
             Siswa::where('kelas', $kelas)->update(['kelas' => $kelas + 1]);
@@ -49,11 +36,11 @@ class SiswaController extends Controller
 
     public function naikSingel(Request $request)
     {
-        $nis = $request->input('nis');
+        $nis   = $request->input('nis');
         $kelas = $request->input('kelas');
 
         $siswa = Siswa::where('nis', $nis)->first();
-        if ($kelas == 6) {
+        if (6 == $kelas) {
 
             $siswa->status = 'lulus';
         } else {
@@ -72,24 +59,20 @@ class SiswaController extends Controller
         return view('admin.masterdata.siswa.siswalulus', compact('siswaLulus'));
     }
 
-    public function hapusSiswaLulus()
-{
-
-    $siswaLulus = Siswa::where('status', 'lulus')->get();
-
-
-    foreach ($siswaLulus as $siswa) {
-        $siswa->delete();
+    public function hapusSiswaLulus($nis)
+    {
+        if ($nis) {
+            Siswa::where('status', 'lulus')->where('nis', $nis)->update(['status' => 'aktif']);
+            return redirect()->back()->with('toast_success', 'Data kelulusan siswa dihapus.');
+        } else {
+            Siswa::where('status', 'lulus')->update(['status' => 'aktif']);
+            return redirect()->back()->with('toast_success', 'Seluruh data kelulusan siswa berhasil dihapus.');
+        }
     }
-
-
-    return redirect()->back()->with('toast_success', 'Data Siswa lulus berhasil dihapus.');
-}
 
     public function index()
     {
-
-        $siswa = Siswa::all();
+        $siswa      = Siswa::all();
         $totalSiswa = Siswa::getTotalSiswa();
         return view('admin.masterdata.siswa.index', compact('siswa', 'totalSiswa'));
     }
@@ -104,33 +87,33 @@ class SiswaController extends Controller
     {
 
         $validatedData = $request->validate([
-            'nis' => 'required|unique:siswas,nis',
-            'nama' => 'required',
-            'alamat' => 'required',
+            'nis'           => 'required|unique:siswas,nis',
+            'nama'          => 'required',
+            'alamat'        => 'required',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required',
-            'nohp' => 'required',
-            'kelas' => 'required',
-            'foto' => 'nullable|image|mimes:jpg,png,jpeg,jfif|max:2048',
+            'nohp'          => 'required',
+            'kelas'         => 'required',
+            'foto'          => 'nullable|image|mimes:jpg,png,jpeg,jfif|max:2048',
         ], [
-            'nis.required' => 'NIS wajib diisi.',
-            'nis.unique' => 'NIS sudah terdaftar.',
-            'nama.required' => 'Nama wajib diisi.',
-            'alamat.required' => 'Alamat wajib diisi.',
+            'nis.required'           => 'NIS wajib diisi.',
+            'nis.unique'             => 'NIS sudah terdaftar.',
+            'nama.required'          => 'Nama wajib diisi.',
+            'alamat.required'        => 'Alamat wajib diisi.',
             'tanggal_lahir.required' => 'Tanggal lahir wajib diisi.',
-            'tanggal_lahir.date' => 'Format tanggal lahir tidak valid.',
+            'tanggal_lahir.date'     => 'Format tanggal lahir tidak valid.',
             'jenis_kelamin.required' => 'Jenis kelamin wajib diisi.',
-            'nohp.required' => 'Nomor HP wajib diisi.',
-            'kelas.required' => 'Kelas wajib diisi.',
-            'foto.image' => 'Foto harus berupa gambar.',
-            'foto.mimes' => 'Foto harus berformat jpg, png, jpeg, atau jfif.',
-            'foto.max' => 'Ukuran foto maksimal 2MB.',
+            'nohp.required'          => 'Nomor HP wajib diisi.',
+            'kelas.required'         => 'Kelas wajib diisi.',
+            'foto.image'             => 'Foto harus berupa gambar.',
+            'foto.mimes'             => 'Foto harus berformat jpg, png, jpeg, atau jfif.',
+            'foto.max'               => 'Ukuran foto maksimal 2MB.',
         ]);
 
         if ($request->hasFile('foto')) {
-            $foto = $request->file('foto');
-            $filename = date('d-m-y') . '_' . $validatedData['nama'] . '.' . $foto->getClientOriginalExtension();
-            $path = $foto->storeAs('foto-siswa', $filename, 'public');
+            $foto                  = $request->file('foto');
+            $filename              = date('d-m-y') . '_' . $validatedData['nama'] . '.' . $foto->getClientOriginalExtension();
+            $path                  = $foto->storeAs('foto-siswa', $filename, 'public');
             $validatedData['foto'] = $filename;
         }
         $validatedData['status'] = 'aktif';
@@ -138,7 +121,6 @@ class SiswaController extends Controller
         $siswa = Siswa::create($validatedData);
 
         $password = substr($siswa->nis, -6);
-
 
         $siswa->password = Hash::make($password);
         $siswa->save();
@@ -157,26 +139,26 @@ class SiswaController extends Controller
 
         $validatedData = $request->validate([
             // 'nis' => 'required|unique:siswa,nis',
-            'nama' => 'required',
-            'alamat' => 'required',
+            'nama'          => 'required',
+            'alamat'        => 'required',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required',
-            'nohp' => 'required',
-            'kelas' => 'required',
-            'foto' => 'nullable|image|mimes:jpg,png,jpeg,jfif|max:2048',
+            'nohp'          => 'required',
+            'kelas'         => 'required',
+            'foto'          => 'nullable|image|mimes:jpg,png,jpeg,jfif|max:2048',
         ], [
-            'nis.required' => 'NIS wajib diisi.',
-            'nis.unique' => 'NIS sudah terdaftar.',
-            'nama.required' => 'Nama wajib diisi.',
-            'alamat.required' => 'Alamat wajib diisi.',
+            'nis.required'           => 'NIS wajib diisi.',
+            'nis.unique'             => 'NIS sudah terdaftar.',
+            'nama.required'          => 'Nama wajib diisi.',
+            'alamat.required'        => 'Alamat wajib diisi.',
             'tanggal_lahir.required' => 'Tanggal lahir wajib diisi.',
-            'tanggal_lahir.date' => 'Format tanggal lahir tidak valid.',
+            'tanggal_lahir.date'     => 'Format tanggal lahir tidak valid.',
             'jenis_kelamin.required' => 'Jenis kelamin wajib diisi.',
-            'nohp.required' => 'Nomor HP wajib diisi.',
-            'kelas.required' => 'Kelas wajib diisi.',
-            'foto.image' => 'Foto harus berupa gambar.',
-            'foto.mimes' => 'Foto harus berformat jpg, png, jpeg, atau jfif.',
-            'foto.max' => 'Ukuran foto maksimal 2MB.',
+            'nohp.required'          => 'Nomor HP wajib diisi.',
+            'kelas.required'         => 'Kelas wajib diisi.',
+            'foto.image'             => 'Foto harus berupa gambar.',
+            'foto.mimes'             => 'Foto harus berformat jpg, png, jpeg, atau jfif.',
+            'foto.max'               => 'Ukuran foto maksimal 2MB.',
         ]);
         $validatedData['status'] = 'aktif';
 
@@ -193,9 +175,9 @@ class SiswaController extends Controller
                 Storage::disk('public')->delete('foto-siswa/' . $siswa->foto);
             }
 
-            $foto = $request->file('foto');
-            $filename = date('d-m-y') . '_' . $validatedData['nama'] . '.' . $foto->getClientOriginalExtension();
-            $path = $foto->storeAs('foto-siswa', $filename, 'public');
+            $foto                  = $request->file('foto');
+            $filename              = date('d-m-y') . '_' . $validatedData['nama'] . '.' . $foto->getClientOriginalExtension();
+            $path                  = $foto->storeAs('foto-siswa', $filename, 'public');
             $validatedData['foto'] = $filename;
         }
 

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
 class Pemasukan extends Model
 {
@@ -14,9 +13,13 @@ class Pemasukan extends Model
 
     protected $fillable = [
         'nis',
-        'pemasukan',
-        'tanggal',
-        'jenistransaksi',
+        'bulan_tagihan',
+        'tahun_tagihan',
+        'jumlah_bayar',
+        'tanggal_bayar',
+        'jenis_transaksi',
+        'konfirmasi',
+        'foto',
     ];
 
     public function siswa()
@@ -26,7 +29,7 @@ class Pemasukan extends Model
 
     public static function getTotalPemasukan()
     {
-        return self::sum('pemasukan');
+        return self::sum('jumlah_bayar');
     }
 
     public function getTag()
