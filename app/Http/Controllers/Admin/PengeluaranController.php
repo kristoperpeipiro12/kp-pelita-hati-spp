@@ -13,13 +13,15 @@ class PengeluaranController extends Controller
     {
         $pengeluaran      = Pengeluaran::all();
         $totalPengeluaran = Pengeluaran::getTotalPengeluaran();
+        $pageTitle = 'Data Pengeluaran - SD Kristen Pelita Hati';
 
-        return view('admin.pengeluaran.index', compact('pengeluaran', 'totalPengeluaran'));
+        return view('admin.pengeluaran.index', compact('pengeluaran', 'totalPengeluaran','pageTitle'));
     }
 
     public function create()
     {
-        return view('admin.pengeluaran.create');
+        $pageTitle = 'Tambah Data Pengeluaran - SD Kristen Pelita Hati';
+        return view('admin.pengeluaran.create',compact('pageTitle'));
     }
 
     public function store(Request $request)
@@ -44,7 +46,9 @@ class PengeluaranController extends Controller
     public function edit($id_pengeluaran)
     {
         $pengeluaran = Pengeluaran::findOrFail($id_pengeluaran);
-        return view('admin.pengeluaran.edit', compact('pengeluaran'));
+        $pageTitle = 'Edit Data Pengeluaran - SD Kristen Pelita Hati';
+
+        return view('admin.pengeluaran.edit', compact('pengeluaran','pageTitle'));
     }
 
     public function update(Request $request, $id_pengeluaran)

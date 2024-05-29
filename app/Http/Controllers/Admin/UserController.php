@@ -12,12 +12,16 @@ class UserController extends Controller
     public function index()
     {
         $user = User::all();
-        return view("admin.masterdata.user.index", compact("user"));
+        $pageTitle = 'Data User - SD Kristen Pelita Hati';
+
+        return view("admin.masterdata.user.index", compact('user','pageTitle'));
     }
 
     public function create()
     {
-        return view("admin.masterdata.user.create");
+        $pageTitle = 'Tambah Data User - SD Kristen Pelita Hati';
+
+        return view("admin.masterdata.user.create",compact('pageTitle'));
     }
 
     public function store(Request $request)
@@ -40,7 +44,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view("admin.masterdata.user.edit", compact("user"));
+        $pageTitle = 'Edit Data Tagihan - SD Kristen Pelita Hati';
+
+        return view("admin.masterdata.user.edit", compact('user','pageTitle'));
     }
 
     public function update(Request $request, $id)

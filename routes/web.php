@@ -75,11 +75,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::put('/pengeluaran/update{id_pengeluaran}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
     Route::delete('/pengeluaran/delete{id_pengeluaran}', [PengeluaranController::class, 'delete'])->name('pengeluaran.delete');
 
-    Route::get('/kofirmasi', [KonfirmasipembayaranController::class, 'show'])->name('admin.konfirmasi');
-    Route::get('/konfirmasi/{id}', [KonfirmasipembayaranController::class, 'confirm'])->name('konfirmasi.terima');
 
-    // Rute untuk menolak konfirmasi
-    Route::delete('/tolak/{id}', [KonfirmasipembayaranController::class, 'reject'])->name('konfirmasi.tolak');
 
 });
 Route::group(['prefix' => 'yayasan', 'middleware' => ['auth:web', 'role:yayasan']], function () {
@@ -95,8 +91,8 @@ Route::group(['prefix' => 'siswa', 'middleware' => ['auth:siswa']], function () 
     Route::get('/siswa', [SiswaHomeController::class, 'index'])->name('siswa');
     Route::get('/dashboard', [SiswaHomeController::class, 'index'])->name('dashboard.siswa');
 
-    Route::get('/kofirmasi/create', [KonfirmasipembayaranController::class, 'create'])->name('transfer.create');
-    Route::post('/kofirmasi/store', [KonfirmasipembayaranController::class, 'store'])->name('transfer.store');
+    Route::get('/konfirmasi/transfer', [PemasukanController::class, 'show'])->name('transfer.create');
+    Route::post('/konfirmasi/store', [PemasukanController::class, 'store'])->name('transfer.store');
 
     //
 });

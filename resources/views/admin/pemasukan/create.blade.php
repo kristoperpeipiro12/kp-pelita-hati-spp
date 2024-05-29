@@ -56,7 +56,7 @@ $nama_bulan = [
                         <div class="hpem-con-form-group">
                             <div class="form-group">
                                 <label for="tanggal_bayar">Tanggal Bayar</label>
-                                <input type="date" class="form-control" name="tanggal_bayar" value="{{ date('Y-m-d') }}" placeholder="Tanggal Bayar" id="tanggal_bayar">
+                                <input type="date" class="form-control" name="tanggal_bayar" value="{{ date('Y-m-d') }}" id="tanggal_bayar">
                             </div>
                         </div>
 

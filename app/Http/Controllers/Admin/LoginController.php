@@ -10,7 +10,8 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('auth.login');
+        $pageTitle = 'Login - SD Kristen Pelita Hati';
+        return view('auth.login',compact('pageTitle'));
     }
     public function login_proses(Request $request)
     {
@@ -34,7 +35,7 @@ class LoginController extends Controller
             }
         }
 
-        return redirect()->route('login')->withErrors(['login' => 'Username atau password salah.']);
+        return redirect()->route('login')->with('error', 'Username atau password salah.');
     }
 
 

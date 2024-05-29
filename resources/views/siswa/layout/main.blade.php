@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="{{ asset('siswa/bootstrapv5.3/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('siswa/css/style-murid.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title>Pelita Hati</title>
+    <title>{{ $pageTitle }}</title>
+    
 </head>
 
 <body>

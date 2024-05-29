@@ -193,7 +193,18 @@
                                             <td>Rp. {{ number_format($p->jumlah_bayar, 0, ',', '.') }}</td>
                                             <td>{{ \Carbon\Carbon::parse($p->tanggal_bayar)->format('d-m-Y') }}</td>
                                             <td>{{ $p->jenis_transaksi}}</td>
-                                            <td>{{ $p->konfirmasi}}</td>
+                                            <td class="d-flex justify-content-center">
+                                                @if ($p->konfirmasi == "Pending")
+                                                <a href="{{ route('pemasukan.konfirmasi.terima', $p->id) }}" class="btn btn-success btn-sm mr-2">
+                                                    <i class="fas "></i>
+                                                </a>
+                                                <a href="{{ route('pemasukan.konfirmasi.tolak', $p->id) }}" class="btn btn-success btn-sm mr-2">
+                                                    <i class="fas "></i>
+                                                </a>
+                                                @else
+                                                    {{ $p->konfirmasi }}
+                                                @endif
+                                            </td>
                                             <td><img src="{{ (empty($p->foto)) ? '' : asset('storage/bukti/' . $p->foto) }}" alt="" width="65"></td>
                                             <td class="d-flex justify-content-center">
                                                 <a href="{{ route('pemasukan.edit', $p->id) }}" class="btn btn-primary btn-sm mr-2">

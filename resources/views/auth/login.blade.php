@@ -6,7 +6,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('UI_login/assets/logoSekolah.png') }}" />
     <link rel="stylesheet" href="{{ asset('UI_login/bootstrap/css/bootstrap.css') }}" />
     <link rel="stylesheet" href="{{ asset('UI_login/css/login.css') }}" />
-    <title>SPPS Pelita Hati</title>
+    <title>{{ $pageTitle }}</title>
 </head>
 <body>
     <div id="carouselExampleSlidesOnly" class="carousel slide position-absolute" data-bs-ride="carousel">

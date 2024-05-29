@@ -9,8 +9,8 @@
     <meta name="author" content="">
     <link href="{{ asset('RuangAdmin/img/logo/logoSekolah.png') }}" rel="icon">
 
-    {{-- <title>{{ $pageTitle }}</title> --}}
-    <title>PELITA HATI</title>
+    <title>{{ $pageTitle }}</title>
+    {{-- <title>PELITA HATI</title> --}}
 
     <link href="{{ asset('RuangAdmin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/bootstrap-icons/font/bootstrap-icons.css') }}">
@@ -74,7 +74,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
 
                         <a class="collapse-item" href="{{ route('pemasukan.index') }}">Data Pemasukan</a>
-                        <a class="collapse-item" href="{{ route('admin.konfirmasi') }}">Riwayat Pemasukan</a>
+                        {{-- <a class="collapse-item" href="{{ route('admin.konfirmasi') }}">Riwayat Pemasukan</a> --}}
                     </div>
                 </div>
             </li>

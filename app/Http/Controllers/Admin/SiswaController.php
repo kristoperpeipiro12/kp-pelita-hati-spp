@@ -18,8 +18,9 @@ class SiswaController extends Controller
                 ->where('status', 'aktif')
                 ->get();
         }
+        $pageTitle = 'Naik-Kelas - SD Kristen Pelita Hati';
 
-        return view('admin.masterdata.naikkelas.index', compact('data'));
+        return view('admin.masterdata.naikkelas.index', compact('data','pageTitle'));
     }
 
     public function naikSemua(Request $request)
@@ -56,7 +57,9 @@ class SiswaController extends Controller
     public function siswaLulus()
     {
         $siswaLulus = Siswa::where('status', 'lulus')->get();
-        return view('admin.masterdata.siswa.siswalulus', compact('siswaLulus'));
+        $pageTitle = 'Data Siswa Lulus- SD Kristen Pelita Hati';
+
+        return view('admin.masterdata.siswa.siswalulus', compact('siswaLulus','pageTitle'));
     }
 
     public function hapusSiswaLulus($nis)
@@ -74,13 +77,16 @@ class SiswaController extends Controller
     {
         $siswa      = Siswa::all();
         $totalSiswa = Siswa::getTotalSiswa();
-        return view('admin.masterdata.siswa.index', compact('siswa', 'totalSiswa'));
+        $pageTitle = 'Data Siswa - SD Kristen Pelita Hati';
+
+        return view('admin.masterdata.siswa.index', compact('siswa', 'totalSiswa','pageTitle'));
     }
 
     public function create()
     {
+        $pageTitle = 'Tambah Data Siswa- SD Kristen Pelita Hati';
 
-        return view('admin.masterdata.siswa.create');
+        return view('admin.masterdata.siswa.create',compact('pageTitle'));
     }
 
     public function store(Request $request)
@@ -131,7 +137,8 @@ class SiswaController extends Controller
     public function edit($nis)
     {
         $siswa = Siswa::where('nis', $nis)->firstOrFail();
-        return view('admin.masterdata.siswa.edit', compact('siswa'));
+        $pageTitle = 'Edit Data Siswa - SD Kristen Pelita Hati';
+        return view('admin.masterdata.siswa.edit', compact('siswa','pageTitle'));
     }
 
     public function update(Request $request, $nis)

@@ -19,7 +19,9 @@ class HomeController extends Controller
         $totalTagihan = $tagihan ? $tagihan->total_tagihan : 0;
 
         $informasi = Informasi::where('tampil', 1)->get();
+        $pageTitle = 'Home - SD Kristen Pelita Hati';
 
-        return view('siswa.dashboard.index', compact('totalTagihan','informasi'));
+
+        return view('siswa.dashboard.index', compact('totalTagihan','informasi','pageTitle'));
     }
 }

@@ -15,6 +15,11 @@
             @csrf
             <table class="table">
                 <tr>
+                    <td>Tagihan Bulan</td>
+                    <td>:</td>
+                    <td>Rp. {{ number_format($tagihan->tagihan_perbulan, 0, ',', '.') }}</td>
+                </tr>
+                <tr>
                     <td>Nominal Pembayaran</td>
                     <td>:</td>
                     <td>Rp. {{ number_format($tagihan->tagihan_perbulan, 0, ',', '.') }}</td>

@@ -13,13 +13,16 @@ class InformasiController extends Controller
     public function index()
     {
         $informasi = Informasi::all();
+        $pageTitle = 'Informasi - SD Kristen Pelita Hati';
 
-        return view('admin.informasi.index', compact('informasi'));
+        return view('admin.informasi.index', compact('informasi','pageTitle'));
     }
 
     public function create()
+
     {
-        return view('admin.informasi.create');
+        $pageTitle = 'Tambah Informasi - SD Kristen Pelita Hati';
+        return view('admin.informasi.create',compact('pageTitle'));
     }
 
     public function store(Request $request)
@@ -42,9 +45,10 @@ class InformasiController extends Controller
 
     public function edit($id)
     {
-        $informasi = Informasi::findOrFail($id);
 
-        return view('admin.informasi.edit', compact('informasi'));
+        $informasi = Informasi::findOrFail($id);
+ $pageTitle = 'Edit Informasi - SD Kristen Pelita Hati';
+        return view('admin.informasi.edit', compact('informasi','pageTitle'));
     }
 
     public function update(Request $request, $id)
@@ -86,7 +90,7 @@ class InformasiController extends Controller
 
         return redirect()->route('informasi.index')->with('toast_success', 'Informasi berhasil ditampilkan.');
     }
-    
+
 
 
 }

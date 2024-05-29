@@ -13,12 +13,16 @@ class TagihanController extends Controller
     {
         $tagihan = Tagihan::all();
         // $totalTagihan = $tagihan->sum('total_tagihan');
-        return view('admin.tagihan.index', compact('tagihan'));
+        $pageTitle = 'Data Tagihan - SD Kristen Pelita Hati';
+
+        return view('admin.tagihan.index', compact('tagihan','pageTitle'));
     }
 
     public function create()
     {
-        return view('admin.tagihan.create');
+        $pageTitle = 'Tambah Data Tagihan - SD Kristen Pelita Hati';
+
+        return view('admin.tagihan.create',compact('pageTitle'));
     }
     public function store(Request $request)
     {
@@ -55,7 +59,9 @@ class TagihanController extends Controller
     public function edit($kelas)
     {
         $tagihan = Tagihan::find($kelas);
-        return view('admin.tagihan.edit', compact('tagihan'));
+        $pageTitle = 'Edit Data Tagihan - SD Kristen Pelita Hati';
+
+        return view('admin.tagihan.edit', compact('tagihan','pageTitle'));
     }
 
     public function update(Request $request, $kelas)
