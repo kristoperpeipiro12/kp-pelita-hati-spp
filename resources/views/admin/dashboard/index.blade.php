@@ -84,7 +84,7 @@
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Pemasukan Hari ini</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 {{-- Menampilkan total pemasukan hari ini --}}
-                                Rp. {{ number_format(App\Models\Pemasukan::whereDate('tanggal', today())->sum('pemasukan'), 0, ',', '.') }}
+                                Rp. {{ number_format(App\Models\Pemasukan::whereDate('tanggal_bayar', today())->sum('jumlah_bayar'), 0, ',', '.') }}
                             </div>
                             <div class="mt-2 mb-0 text-muted text-xs">
                                 <span>Tercatat sejak {{ now()->formatLocalized('%d %B %Y') }}</span>

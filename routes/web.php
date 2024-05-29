@@ -12,7 +12,6 @@ use App\Http\Controllers\Admin\TagihanController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Siswa\HomeController as SiswaHomeController;
 use App\Http\Controllers\Yayasan\HomeController as YayasanHomeController;
-
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
@@ -27,11 +26,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::get('/siswa', [SiswaController::class, 'index'])->name('admin.siswa.index');
     Route::get('/siswa/create', [SiswaController::class, 'create'])->name('admin.siswa.create');
     Route::post('/siswa/store', [SiswaController::class, 'store'])->name('admin.siswa.store');
-    Route::get('/siswa/naik-kelas', [SiswaController::class,'naik_kelas'])->name('admin.siswa.naikkelas');
+    Route::get('/siswa/naik-kelas', [SiswaController::class, 'naik_kelas'])->name('admin.siswa.naikkelas');
     Route::post('/siswa/naik-Semua', [SiswaController::class, 'naikSemua'])->name('admin.siswa.naiksemua');
     Route::post('/siswa/naik-Singel', [SiswaController::class, 'naikSingel'])->name('admin.siswa.naiksatu');
     Route::get('/siswa/lulus', [SiswaController::class, 'siswaLulus'])->name('admin.siswa.lulus');
     Route::delete('/siswa/hapus-lulus', [SiswaController::class, 'hapusSiswaLulus'])->name('admin.siswa.hapus-lulus');
+    Route::delete('/siswa/hapus-lulus/{nis}', [SiswaController::class, 'hapusSiswaLulus'])->name('admin.siswa.hapus-lulus-nis');
     Route::get('/siswa/{nis}', [SiswaController::class, 'edit'])->name('admin.siswa.edit');
     Route::put('/siswa/{nis}', [SiswaController::class, 'update'])->name('admin.siswa.update');
     Route::delete('/siswa/{nis}', [SiswaController::class, 'delete'])->name('admin.siswa.delete');
@@ -46,7 +46,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
     Route::delete('/user/{id}', [UserController::class, 'delete'])->name('user.delete');
 
-
     Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi.index');
     Route::get('/informasi/create', [InformasiController::class, 'create'])->name('informasi.create');
     Route::post('/informasi/store', [InformasiController::class, 'store'])->name('informasi.store');
@@ -54,8 +53,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::put('/informasi/{id}', [InformasiController::class, 'update'])->name('informasi.update');
     Route::delete('/informasi/{id}', [InformasiController::class, 'delete'])->name('informasi.delete');
     Route::delete('/informasi/tampil', [InformasiController::class, 'tampil'])->name('informasi.tampil');
-
-
 
     Route::get('/tagihan', [TagihanController::class, 'index'])->name('tagihan.index');
     Route::get('/tagihan/create', [TagihanController::class, 'create'])->name('tagihan.create');
@@ -75,24 +72,21 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::get('/pengeluaran/create', [PengeluaranController::class, 'create'])->name('pengeluaran.create');
     Route::post('/pengeluaran/store', [PengeluaranController::class, 'store'])->name('pengeluaran.store');
     Route::get('/pengeluaran/edit/{id_pengeluaran}', [PengeluaranController::class, 'edit'])->name('pengeluaran.edit');
-    Route::post('/pengeluaran/update{id_pengeluaran}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
+    Route::put('/pengeluaran/update{id_pengeluaran}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
     Route::delete('/pengeluaran/delete{id_pengeluaran}', [PengeluaranController::class, 'delete'])->name('pengeluaran.delete');
 
-    Route::get('/kofirmasi', [KonfirmasipembayaranController::class,'show'])->name('admin.konfirmasi');
+    Route::get('/kofirmasi', [KonfirmasipembayaranController::class, 'show'])->name('admin.konfirmasi');
     Route::get('/konfirmasi/{id}', [KonfirmasipembayaranController::class, 'confirm'])->name('konfirmasi.terima');
 
     // Rute untuk menolak konfirmasi
     Route::delete('/tolak/{id}', [KonfirmasipembayaranController::class, 'reject'])->name('konfirmasi.tolak');
 
-
-
 });
 Route::group(['prefix' => 'yayasan', 'middleware' => ['auth:web', 'role:yayasan']], function () {
     Route::get('', [YayasanHomeController::class, 'index'])->name('yayasan');
     Route::get('/dashboard', [YayasanHomeController::class, 'index'])->name('yayasan.dashboard');
-    Route::get('/pemasukan', [YayasanHomeController::class,'pemasukan'])->name('yayasan.pemasukan');
-    Route::get('/pengeluaran', [YayasanHomeController::class,'pengeluaran'])->name('yayasan.pengeluaran');
-
+    Route::get('/pemasukan', [YayasanHomeController::class, 'pemasukan'])->name('yayasan.pemasukan');
+    Route::get('/pengeluaran', [YayasanHomeController::class, 'pengeluaran'])->name('yayasan.pengeluaran');
 
     //
 });
@@ -101,8 +95,8 @@ Route::group(['prefix' => 'siswa', 'middleware' => ['auth:siswa']], function () 
     Route::get('/siswa', [SiswaHomeController::class, 'index'])->name('siswa');
     Route::get('/dashboard', [SiswaHomeController::class, 'index'])->name('dashboard.siswa');
 
-    Route::get('/kofirmasi/create', [KonfirmasipembayaranController::class,'create'])->name('transfer.create');
-    Route::post('/kofirmasi/store', [KonfirmasipembayaranController::class,'store'])->name('transfer.store');
+    Route::get('/kofirmasi/create', [KonfirmasipembayaranController::class, 'create'])->name('transfer.create');
+    Route::post('/kofirmasi/store', [KonfirmasipembayaranController::class, 'store'])->name('transfer.store');
 
     //
 });
