@@ -35,14 +35,7 @@
                                     <td class="d-flex justify-content-between">
                                         <a href="{{ route('tagihan.edit',$t->kelas) }}" class="btn btn-primary btn-sm mr-2"><i
                                                 class="fas fa-pen-alt"></i></a>
-                                        <form action="{{ route('tagihan.delete',$t->kelas) }}" method="POST"
-                                            style="display: inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm ml-2">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </form>
+                                        
                                     </td>
                                 </tr>
                             @endforeach

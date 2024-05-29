@@ -54,10 +54,10 @@ class SiswaController extends Controller
 
         $siswa = Siswa::where('nis', $nis)->first();
         if ($kelas == 6) {
-            // Luluskan siswa jika kelas 6
+
             $siswa->status = 'lulus';
         } else {
-            // Naikkan kelas siswa
+
             $siswa->kelas = $kelas + 1;
         }
 
@@ -104,7 +104,7 @@ class SiswaController extends Controller
     {
 
         $validatedData = $request->validate([
-            'nis' => 'required|unique:siswa,nis',
+            'nis' => 'required|unique:siswas,nis',
             'nama' => 'required',
             'alamat' => 'required',
             'tanggal_lahir' => 'required|date',

@@ -50,7 +50,7 @@ class Tagihan extends Model
      */
     public function updateTotalTagihan()
     {
-        $this->total_tagihan = $this->tagihan_perbulan * $this->tagihan_aktif;
+        $this->total_tagihan = $this->tagihan_perbulan * 12;
         $this->save();
     }
 
@@ -60,7 +60,7 @@ class Tagihan extends Model
         parent::boot();
 
         static::saving(function ($tagihan) {
-            $tagihan->total_tagihan = $tagihan->tagihan_perbulan * $tagihan->tagihan_aktif;
+            $tagihan->total_tagihan = $tagihan->tagihan_perbulan * 12;
         });
     }
 }

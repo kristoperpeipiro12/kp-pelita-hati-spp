@@ -5,8 +5,8 @@
         <h3 class="h3 mb-0 text-gray-500">Tambah User</h3>
     </div>
 
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
             <!-- Form Basic -->
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">

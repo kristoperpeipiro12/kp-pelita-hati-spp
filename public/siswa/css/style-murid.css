@@ -1,108 +1,119 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-.navbar {
-  /* background-color: #f6f4eb; */
-  background-color: #749bc2;
-}
+  .navbar {
+    /* background-color: #f6f4eb; */
+    background-color: #749bc2;
+  }
 
-.navbar .container-fluid {
-  max-width: 1040px;
-}
+  .navbar .container-fluid {
+    max-width: 1040px;
+  }
 
-.navbar .navbar-brand,
-.btn {
-  color: #f5f5f5;
-}
+  .navbar .navbar-brand,
+  .btn {
+    color: #f5f5f5;
+  }
 
-.main-content {
-  max-width: 1040px;
-  /* background-color: aquamarine; */
-}
+  .main-content {
+    max-width: 1040px;
+    /* background-color: aquamarine; */
+  }
 
-.judul-page {
-  color: #335d79;
-}
-
-.card-identitas {
-  display: flex;
-  /* background-color: #4682a9 !important; */
-}
-
-.card-identitas table {
-  width: 100% !important;
-}
-
-.card-identitas .img-murid {
-  width: 180px;
-  height: 180px;
-}
-
-/* font-size settings */
-.fs-judul-ident {
-  font-size: 22px;
-}
-
-.tabel-murid {
-  font-size: 16px !important;
-}
-
-.fs-judul-tag-inf {
-  font-size: 18px;
-}
-
-@media only screen and (max-width: 435px) {
   .judul-page {
-    font-size: 20px;
+    color: #335d79;
   }
+
+  .card-identitas {
+    display: flex;
+    /* background-color: #4682a9 !important; */
+  }
+
+  .card-identitas table {
+    width: 100% !important;
+  }
+
+  .card-identitas .img-murid {
+    width: 180px;
+    height: 180px;
+  }
+
+  /* font-size settings */
   .fs-judul-ident {
-    font-size: 20px;
+    font-size: 22px;
   }
+
   .tabel-murid {
     font-size: 16px !important;
-    font-weight: 400;
   }
+
   .fs-judul-tag-inf {
-    font-size: 16px;
+    font-size: 18px;
   }
-  .fs-tag-bulan {
-    font-size: 18px !important;
-  }
-}
-/* .... */
 
-@media only screen and (max-width: 710px) {
-  .card-identitas {
+  @media only screen and (max-width: 435px) {
+    .judul-page {
+      font-size: 20px;
+    }
+    .fs-judul-ident {
+      font-size: 20px;
+    }
+    .tabel-murid {
+      font-size: 16px !important;
+      font-weight: 400;
+    }
+    .fs-judul-tag-inf {
+      font-size: 16px;
+    }
+    .fs-tag-bulan {
+      font-size: 18px !important;
+    }
+  }
+  /* .... */
+
+  @media only screen and (max-width: 710px) {
+    .card-identitas {
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+
+  /* accordion tagihan */
+  .accor-tagihan {
+    display: flex !important;
+    height: 220px !important;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    /* flex-direction: column !important; */
+    gap: 20px !important;
+  }
+
+  .accor-tagihan .sub-accor-tagihan {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    /* justify-content: space-between; */
+    gap: 16px;
   }
-}
 
-/* accordion tagihan */
-.accor-tagihan {
-  display: flex !important;
-  height: 220px !important;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  /* flex-direction: column !important; */
-  gap: 20px !important;
-}
+  .accor-tagihan .sub-accor-tagihan .card {
+    height: 185px !important;
+  }
 
-.accor-tagihan .sub-accor-tagihan {
-  display: flex;
-  align-items: center;
-  /* justify-content: space-between; */
-  gap: 16px;
-}
+  .card-header {
+    color: #252222;
+  }
 
-.accor-tagihan .sub-accor-tagihan .card {
-  height: 185px !important;
-}
+  .copy-text {
+    cursor: pointer !important;
+    color: rgb(21, 21, 175) !important;
+    text-decoration: underline !important;
+  }
 
-.card-header {
-  color: #252222;
-}
+  #uploadedImage {
+    display: none;
+    margin-top: 20px;
+  }

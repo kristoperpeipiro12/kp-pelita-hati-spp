@@ -40,7 +40,7 @@ class PengeluaranController extends Controller
             'keterangan' => $request->keterangan,
         ]);
 
-        return redirect()->route('admin.pengeluaran.index')
+        return redirect()->route('pengeluaran.index')
             ->with('toast_success', 'Pengeluaran berhasil ditambahkan.');
     }
 
@@ -67,7 +67,7 @@ class PengeluaranController extends Controller
             'tanggal' => $request->tanggal,
             'keterangan' => $request->keterangan,
         ]);
-        return redirect()->route('admin.pengeluaran.index')
+        return redirect()->route('pengeluaran.index')
             ->with('toast_success', 'Pengeluaran berhasil diperbarui.');
     }
 
@@ -76,7 +76,7 @@ class PengeluaranController extends Controller
         $pengeluaran = Pengeluaran::findOrFail($id_pengeluaran);
         $pengeluaran->delete();
 
-        return redirect()->route('admin.pengeluaran.index')
+        return redirect()->route('pengeluaran.index')
             ->with('toast_success', 'Pengeluaran berhasil dihapus.');
     }
 }

@@ -40,24 +40,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($pengeluaran as $p)
+                        @foreach($pengeluaran as $keluar)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ Auth::user()->username }}</td>
-                            <td>Rp. {{ number_format($p->pengeluaran, 0, ',', '.') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($p->tanggal)->format('d-m-Y') }}</td>
-                            <td>{{ $p->keterangan }}</td>
+                            <td>Rp. {{ number_format($keluar->pengeluaran, 0, ',', '.') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($keluar->tanggal)->format('d-m-Y') }}</td>
+                            <td>{{ $keluar->keterangan }}</td>
                             <td class="d-flex justify-content-between">
-                                <a href="{{ route('pengeluaran.edit', $p->id_pengeluaran) }}" class="btn btn-primary btn-sm mr-2"><i
+                                <a href="{{ route('pengeluaran.edit', $keluar->id_pengeluaran) }}" class="btn btn-primary btn-sm mr-2"><i
                                         class="fas fa-pen-alt"></i></a>
                                         <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal"
-                                        data-target="#deleteModal{{ $p->id_pengeluaran }}">
+                                        data-target="#deleteModal{{ $keluar->id_pengeluaran }}">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                             </td>
                         </tr>
                           <!-- Modal Delete -->
-                          <div class="modal fade" id="deleteModal{{ $p->id_pengeluaran }}" tabindex="-1" role="dialog"
+                          <div class="modal fade" id="deleteModal{{ $keluar->id_pengeluaran }}" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -74,7 +74,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Batal</button>
-                                        <form action="{{ route('pengeluaran.delete', $p->id_pengeluaran) }}" method="POST">
+                                        <form action="{{ route('pengeluaran.delete', $keluar->id_pengeluaran) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Hapus</button>

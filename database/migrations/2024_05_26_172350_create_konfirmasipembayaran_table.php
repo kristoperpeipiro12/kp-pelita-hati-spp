@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pemasukan', function (Blueprint $table) {
+        Schema::create('konfirmasipembayaran', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('nis')->unsigned()->digits(8);
+            $table->unsignedInteger('nis');
             $table->foreign('nis')->references('nis')->on('siswas')->onDelete('cascade');
             $table->double('pemasukan');
             $table->date('tanggal');
-            $table->enum('jenistransaksi', ['kontan', 'transfer']);
+            $table->enum('jenis_transaksi',['kontan','transfer']);
+            $table->string('foto');
+            $table->tinyInteger('konfirmasi')->default(0);
             $table->timestamps();
         });
     }
@@ -27,7 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pemasukan');
+        Schema::dropIfExists('konfirmasipembayaran');
     }
-
 };

@@ -2,15 +2,15 @@
 @section('content')
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h3 class="h3 mb-0 text-gray-500">Tambah Pemasukan</h3>
+            <h3 class="h3 mb-0 text-gray-500">Edit Pemasukan</h3>
         </div>
 
-        <div class="row">
-            <div class="col-lg-12">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
                 <!-- Form Basic -->
                 <div class="card mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-dark">Tambah Data Pemasukan</h6>
+                        <h6 class="m-0 font-weight-bold text-dark">Edit Data Pemasukan</h6>
                     </div>
                     <div class="card-body">
                         <form id="form-pemasukan" action="{{ route('pemasukan.update', $pemasukan->id) }}" method="POST" class="d-flex flex-column">
@@ -64,9 +64,9 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex w-25" style="gap: 20px">
-                                <button type="submit" class="btn btn-primary w-100">Simpan</button>
-                                <a href="{{ route('pemasukan.index') }}" class="btn btn-secondary w-100">Batal</a>
+                            <div class="d-flex w-100" style="gap: 20px">
+                                <button type="submit" class="btn btn-primary flex-fill">Simpan</button>
+                                <a href="{{ route('pemasukan.index') }}" class="btn btn-secondary flex-fill">Batal</a>
                             </div>
                         </form>
                     </div>

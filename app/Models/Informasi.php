@@ -11,10 +11,12 @@ class Informasi extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'informasis';
     protected $fillable = [
         'id',
         'judul',
         'info',
         'tanggal',
+        'tampil',
     ];
 }

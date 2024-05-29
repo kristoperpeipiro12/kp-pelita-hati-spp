@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('siswa', function (Blueprint $table) {
+        Schema::create('siswas', function (Blueprint $table) {
             $table->unsignedInteger('nis')->primary()->digits(8);
             $table->string('nama');
             $table->string('alamat');
@@ -19,9 +19,10 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->string('nohp');
             $table->string('kelas');
-            // $table->string('role')->default('siswa');
+            $table->foreign('kelas')->references('kelas')->on('tagihan')->onDelete('cascade');
             $table->string('password');
             $table->string('status');
+            $table->integer('tagihan_aktif')->default(12);
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('siswa');
+        Schema::dropIfExists('siswas');
     }
 };

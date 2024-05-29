@@ -2,15 +2,15 @@
 @section('content')
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h3 class="h3 mb-0 text-gray-500">Tambah Pengeluaran</h3>
+        <h3 class="h3 mb-0 text-gray-500">Edit Pengeluaran</h3>
     </div>
 
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
             <!-- Form Basic -->
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-dark">Tambah Data Pengeluaran</h6>
+                    <h6 class="m-0 font-weight-bold text-dark">Edit Data Pengeluaran</h6>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('pengeluaran.update', $pengeluaran->id_pengeluaran) }}" method="POST" class="d-flex flex-column">

@@ -18,7 +18,7 @@ class SiswaSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
         // Hapus semua data dalam tabel siswa
-        DB::table('siswa')->truncate();
+        DB::table('siswas')->truncate();
 
         // Aktifkan kembali pemeriksaan kunci asing
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
@@ -26,7 +26,7 @@ class SiswaSeeder extends Seeder
         // Buat instance Faker
         $faker = Faker::create('id_ID');
 
-      
+
         for ($i = 1; $i <= 50; $i++) {
 
             $class = ($i % 6) + 1;
@@ -43,7 +43,7 @@ class SiswaSeeder extends Seeder
                 $nama = $jenis_kelamin == 'Laki-laki' ? $faker->firstNameMale . ' ' . $faker->lastName : $faker->firstNameFemale . ' ' . $faker->lastName;
 
 
-                DB::table('siswa')->insert([
+                DB::table('siswas')->insert([
                     'nis'           => $nis,
                     'nama'          => $nama,
                     'alamat'        => 'Pontianak, Kalimantan Barat',
@@ -53,6 +53,7 @@ class SiswaSeeder extends Seeder
                     'kelas'         => $class,
                     'password'      => Hash::make(substr($nis, -6)),
                     'status'        => 'aktif', // Set kolom status menjadi aktif
+                    'tagihan_aktif' => '12'
                 ]);
             }
         }

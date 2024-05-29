@@ -12,6 +12,7 @@ class TagihanController extends Controller
     public function index()
     {
         $tagihan = Tagihan::all();
+        // $totalTagihan = $tagihan->sum('total_tagihan');
         return view('admin.tagihan.index', compact('tagihan'));
     }
 
@@ -36,7 +37,7 @@ class TagihanController extends Controller
 
         $tagihan = new Tagihan();
         $tagihan->kelas = $request->kelas;
-        $tagihan->tagihan_aktif = 12;
+
         $tagihan->tagihan_perbulan = $tagperbulan;
         $tagihan->total_tagihan = $tagperbulan * 12;
 
@@ -46,7 +47,7 @@ class TagihanController extends Controller
         $tagihan->save();
 
         return redirect()->route('tagihan.index')
-            ->with('toast_success', 'Tagihan created successfully.');
+            ->with('toast_success', 'Tagihan Berhasil ditanbahkan');
     }
 
 
@@ -61,7 +62,7 @@ class TagihanController extends Controller
     {
         $tagihan = Tagihan::find($kelas);
 
-        // Jika kelas tidak diubah, kita tidak perlu melakukan validasi unik
+
         if ($request->kelas == $tagihan->kelas) {
             $request->validate([
                 'tagihan_perbulan' => 'required',
@@ -77,23 +78,22 @@ class TagihanController extends Controller
 
         $tagperbulan = str_replace('.', '', $request->tagihan_perbulan);
 
-        // Update atribut
+
         $tagihan->kelas = $request->kelas;
         $tagihan->tagihan_perbulan = $tagperbulan;
 
-        // Memanggil metode updateTotalTagihan() untuk memperbarui total_tagihan
         $tagihan->updateTotalTagihan();
 
-        // Menyimpan perubahan
+
         $tagihan->save();
 
         return redirect()->route('tagihan.index')
-            ->with('toast_success', 'Tagihan updated successfully');
+            ->with('toast_success', 'Tagihan Berhasil diperbarui');
     }
         public function delete($kelas)
     {
         Tagihan::find($kelas)->delete();
         return redirect()->route('tagihan.index')
-            ->with('toast_success', 'Tagihan deleted successfully');
+            ->with('toast_success', 'Tagihan Berhasil dihapus');
     }
 }

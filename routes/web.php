@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\InformasiController;
+use App\Http\Controllers\Admin\KonfirmasipembayaranController;
+// use App\Http\Controllers\Admin\KonfirmasipembayaranController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PemasukanController;
 use App\Http\Controllers\Admin\PengeluaranController;
@@ -44,12 +46,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
     Route::delete('/user/{id}', [UserController::class, 'delete'])->name('user.delete');
 
+
     Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi.index');
     Route::get('/informasi/create', [InformasiController::class, 'create'])->name('informasi.create');
     Route::post('/informasi/store', [InformasiController::class, 'store'])->name('informasi.store');
     Route::get('/informasi/{id}', [InformasiController::class, 'edit'])->name('informasi.edit');
     Route::put('/informasi/{id}', [InformasiController::class, 'update'])->name('informasi.update');
     Route::delete('/informasi/{id}', [InformasiController::class, 'delete'])->name('informasi.delete');
+    Route::delete('/informasi/tampil', [InformasiController::class, 'tampil'])->name('informasi.tampil');
+
+
 
     Route::get('/tagihan', [TagihanController::class, 'index'])->name('tagihan.index');
     Route::get('/tagihan/create', [TagihanController::class, 'create'])->name('tagihan.create');
@@ -68,13 +74,25 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::get('/pengeluaran', [PengeluaranController::class, 'index'])->name('pengeluaran.index');
     Route::get('/pengeluaran/create', [PengeluaranController::class, 'create'])->name('pengeluaran.create');
     Route::post('/pengeluaran/store', [PengeluaranController::class, 'store'])->name('pengeluaran.store');
-    Route::get('/pengeluaran/edit', [PengeluaranController::class, 'edit'])->name('pengeluaran.edit');
-    Route::post('/pengeluaran/update', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
-    Route::delete('/pengeluaran/delete', [PengeluaranController::class, 'delete'])->name('pengeluaran.delete');
+    Route::get('/pengeluaran/edit/{id_pengeluaran}', [PengeluaranController::class, 'edit'])->name('pengeluaran.edit');
+    Route::post('/pengeluaran/update{id_pengeluaran}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
+    Route::delete('/pengeluaran/delete{id_pengeluaran}', [PengeluaranController::class, 'delete'])->name('pengeluaran.delete');
+
+    Route::get('/kofirmasi', [KonfirmasipembayaranController::class,'show'])->name('admin.konfirmasi');
+    Route::get('/konfirmasi/{id}', [KonfirmasipembayaranController::class, 'confirm'])->name('konfirmasi.terima');
+
+    // Rute untuk menolak konfirmasi
+    Route::delete('/tolak/{id}', [KonfirmasipembayaranController::class, 'reject'])->name('konfirmasi.tolak');
+
+
+
 });
 Route::group(['prefix' => 'yayasan', 'middleware' => ['auth:web', 'role:yayasan']], function () {
     Route::get('', [YayasanHomeController::class, 'index'])->name('yayasan');
     Route::get('/dashboard', [YayasanHomeController::class, 'index'])->name('yayasan.dashboard');
+    Route::get('/pemasukan', [YayasanHomeController::class,'pemasukan'])->name('yayasan.pemasukan');
+    Route::get('/pengeluaran', [YayasanHomeController::class,'pengeluaran'])->name('yayasan.pengeluaran');
+
 
     //
 });
@@ -82,6 +100,9 @@ Route::group(['prefix' => 'yayasan', 'middleware' => ['auth:web', 'role:yayasan'
 Route::group(['prefix' => 'siswa', 'middleware' => ['auth:siswa']], function () {
     Route::get('/siswa', [SiswaHomeController::class, 'index'])->name('siswa');
     Route::get('/dashboard', [SiswaHomeController::class, 'index'])->name('dashboard.siswa');
+
+    Route::get('/kofirmasi/create', [KonfirmasipembayaranController::class,'create'])->name('transfer.create');
+    Route::post('/kofirmasi/store', [KonfirmasipembayaranController::class,'store'])->name('transfer.store');
 
     //
 });

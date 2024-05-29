@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
-// use Illuminate\Database\Eloquent\Model;
-// use Illuminate\Foundation\Auth\User as Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 
 class Siswa extends Authenticatable
 {
-    protected $table      = 'siswa';
+    use HasFactory;
+
+    protected $table = 'siswas';
     protected $primaryKey = 'nis';
-    public $incrementing  = false;
-    protected $keyType    = 'integer';
-    protected $guarded    = [];
+    public $incrementing = false;
+    protected $keyType = 'integer';
+    protected $guarded = [];
 
     protected $fillable = [
         'nis',
@@ -24,7 +25,9 @@ class Siswa extends Authenticatable
         'nohp',
         'kelas',
         'foto',
+        'password',
         'status',
+        'tagihan_aktif',
     ];
 
     public static function boot()
@@ -39,7 +42,11 @@ class Siswa extends Authenticatable
 
     public static function getTotalSiswa()
     {
-        // return self::count();
         return self::where('status', 'aktif')->count();
+    }
+
+    public function tagihan()
+    {
+        return $this->belongsTo(Tagihan::class, 'kelas', 'kelas');
     }
 }

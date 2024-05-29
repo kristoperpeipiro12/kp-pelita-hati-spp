@@ -37,17 +37,26 @@
                     <i class="bi bi-speedometer2"></i>
                     <span>Dashboard</span></a>
             </li>
+
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('tagihan.index') }}">
                     <i class="bi bi-whatsapp"></i>
                     <span>Kirim Tagihan</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
+                  aria-controls="collapseForm">
+                  <i class="bi bi-cash-stack"></i>
+                  <span><strong>Pemasukan</strong></span>
+                </a>
+                <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                  <div class="bg-white py-2 collapse-inner rounded">
 
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('pemasukan.index') }}">
-                    <i class="bi bi-cash-stack"></i>
-                    <span>Pemasukan</span></a>
-            </li>
+                    <a class="collapse-item" href="{{ route('pemasukan.index') }}">Data Pemasukan</a>
+                    <a class="collapse-item" href="{{ route('admin.konfirmasi') }}">Riwayat Pemasukan</a>
+                  </div>
+                </div>
+              </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('pengeluaran.index') }}">
                     <i class="bi bi-wallet2"></i>
@@ -82,6 +91,16 @@
                 <a class="nav-link" href="{{ route('yayasan') }}">
                     <i class="bi bi-speedometer2"></i>
                     <span>Dashboard</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('yayasan.pemasukan') }}">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Pemasukan</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('yayasan.pengeluaran') }}">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Pengeluaran</span></a>
             </li>
             @endif
 

@@ -10,7 +10,7 @@
                 <!-- Form Basic -->
                 <div class="card mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-dark">Tambah Data Siswa</h6>
+                        <h6 class="m-0 font-weight-bold text-dark">Edit Data Siswa</h6>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('admin.siswa.update',$siswa->nis) }}" method="POST" enctype="multipart/form-data"

@@ -29,8 +29,12 @@
                     <input type="date" class="form-control" name="tanggal" placeholder="Isi Informasi" id="tanggal">
                 </div>
                 <div class="info-con-input py-3">
-                    <input type="submit" name="submit" id="kirim" class="btn btn-success">
-                    <input type="reset" name="reset" id="hapus" class="btn btn-dark">
+                    <div class="d-flex w-100" style="gap: 20px">
+                        <button type="submit" class="btn btn-primary flex-fill">Simpan</button>
+                        <a href="{{ route('informasi.index') }}" class="btn btn-secondary flex-fill">Batal</a>
+                    </div>
+                    {{-- <input type="submit" name="submit" id="kirim" class="btn btn-success">
+                    <input type="reset" name="reset" id="hapus" class="btn btn-dark"> --}}
                 </div>
             </form>
         </div>
@@ -38,9 +42,10 @@
             <h3 class="text-center mt-3 info-terkini">Informasi Terkini</h3>
             @forelse ($informasi as $i)
             <hr class="mx-4" style="margin-bottom: 5%" size="2" color="#8EA7E9">
-            <form action="{{ route('informasi.update', $i->id) }}" method="POST">
-                @csrf
-                @method('PUT')
+            <a href="{{ route('informasi.tampil', $i->id) }}">
+
+                <button class="btn btn-warning" id="btn-edit-info">tampil</button></a>
+
                 <span class="record-judul d-inline-block w-100" id="isi-judul">{{ $i->judul }}</span>
                 <input type="text" class="d-none w-100 form-control" name="judul" id="edit-judul" placeholder="Edit Judul" value="{{ $i->judul }}">
                 <span class="text-justify record-info d-inline-block w-100" id="isi-info">{{ $i->info }}</span>
@@ -49,11 +54,12 @@
                     <p class="text-right" style="font-size: 13px">Tercatat tanggal : <span class="font-weight-bold">{{ \Carbon\Carbon::parse($i->tanggal)->format('d-m-Y') }}</span></p>
                 </div>
                 <div class="con-record-button">
-                    <button class="btn btn-warning" id="btn-edit-info">Edit</button>
-                    <button type="submit" class="btn btn-primary d-none" id="btn-baru-info">Simpan</button>
+                    <a href="{{ route('informasi.edit', $i->id) }}">
+
+                    <button class="btn btn-warning" id="btn-edit-info">Edit</button></a>
+                    {{-- <button type="submit" class="btn btn-primary d-none" id="btn-baru-info">Simpan</button> --}}
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ $i->id }}">Hapus</button>
                 </div>
-            </form>
 
             <!-- Delete Modal -->
             <div class="modal fade" id="deleteModal{{ $i->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ $i->id }}" aria-hidden="true">
