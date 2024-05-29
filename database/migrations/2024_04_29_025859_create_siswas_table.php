@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('status');
             $table->integer('tagihan_aktif')->default(12);
+            $table->date('tanggal_masuk');
             $table->timestamps();
         });
     }

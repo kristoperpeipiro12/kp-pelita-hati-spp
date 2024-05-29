@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('nis')->unsigned()->digits(8);
             $table->foreign('nis')->references('nis')->on('siswas')->onDelete('cascade');
-            $table->double('pemasukan');
-            $table->date('tanggal');
-            $table->enum('jenistransaksi', ['kontan', 'transfer']);
+            $table->string('bulan_tagihan')->digits(2);
+            $table->string('tahun_tagihan')->digits(4);
+            $table->double('jumlah_bayar');
+            $table->date('tanggal_bayar');
+            $table->enum('jenis_transaksi', ['Kontan', 'Transfer']);
+            $table->enum('konfirmasi', ['Terima', 'Tolak', 'Pending'])->default('Pending');
+            $table->string('foto')->nullable(true);
             $table->timestamps();
         });
     }

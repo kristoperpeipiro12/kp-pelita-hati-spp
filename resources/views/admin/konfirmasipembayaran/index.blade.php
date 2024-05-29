@@ -14,8 +14,6 @@
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 {{-- <h6 class="m-0 font-weight-bold text-primary">Daftar Pemasukan</h6> --}}
-
-
             </div>
             <div class="table-responsive p-3">
                 <table class="table align-items-center table-flush table-hover" id="dataTableHover">
@@ -33,28 +31,26 @@
                     </thead>
                     <tbody>
                         @foreach($konfirmasi as $k)
-                    <tr>
-                      <td>{{ $loop->iteration }}</td>
-                        <td>{{ $k->nis }}</td>
-                        <td>{{ $k->siswa->nama }}</td>
-                        <td>Rp. {{ number_format($k->pemasukan, 0, ',', '.') }}</td>
-                        <td>{{ \Carbon\Carbon::parse($k->tanggal)->format('d-m-Y') }}</td>
-                        <td>{{ $k->jenis_transaksi}}</td>
-                        <td>
-                            <img src="{{ asset('storage/Bukti-transfer/' . $k->foto) }}" alt=""
-                                 width="65" id="foto{{$k->id}}" onclick="showImage('{{ asset('storage/Bukti-transfer/' . $k->foto) }}')">
-                        </td>
-
-                        <td class="d-flex justify-content-between">
-                            <a href="{{ route('konfirmasi.terima',$k->id) }}" class="btn btn-success btn-sm mr-2"><i class="fas fa-check"></i> Konfirmasi</a>
-                            <form action="{{ route('konfirmasi.tolak',$k->id) }}" method="POST" style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm ml-2">
-                                    <i class="fas fa-times"></i> Tolak
-                                </button>
-                            </form>
-                        </td>
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $k->nis }}</td>
+                            <td>{{ $k->siswa->nama }}</td>
+                            <td>Rp. {{ number_format($k->pemasukan, 0, ',', '.') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($k->tanggal)->format('d-m-Y') }}</td>
+                            <td>{{ $k->jenis_transaksi}}</td>
+                            <td>
+                                <img src="{{ asset('storage/Bukti-transfer/' . $k->foto) }}" alt="" width="65" id="foto{{$k->id}}" onclick="showImage('{{ asset('storage/Bukti-transfer/' . $k->foto) }}')">
+                            </td>
+                            <td class="d-flex justify-content-between">
+                                <a href="{{ route('konfirmasi.terima',$k->id) }}" class="btn btn-success btn-sm mr-2"><i class="fas fa-check"></i> Konfirmasi</a>
+                                <form action="{{ route('konfirmasi.tolak',$k->id) }}" method="POST" style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm ml-2">
+                                        <i class="fas fa-times"></i> Tolak
+                                    </button>
+                                </form>
+                            </td>
 
                         </tr>
                         @endforeach
@@ -87,7 +83,7 @@
         modal.style.display = 'flex';
         modal.style.alignItems = 'center';
         modal.style.justifyContent = 'center';
-        modal.onclick = function () {
+        modal.onclick = function() {
             document.body.removeChild(modal);
         };
 
@@ -97,6 +93,7 @@
         // Tambahkan modal ke dalam body dokumen
         document.body.appendChild(modal);
     }
+
 </script>
 
 @endsection

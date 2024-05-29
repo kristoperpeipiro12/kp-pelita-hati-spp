@@ -10,11 +10,11 @@ class Siswa extends Authenticatable
 {
     use HasFactory;
 
-    protected $table = 'siswas';
+    protected $table      = 'siswas';
     protected $primaryKey = 'nis';
-    public $incrementing = false;
-    protected $keyType = 'integer';
-    protected $guarded = [];
+    public $incrementing  = false;
+    protected $keyType    = 'integer';
+    protected $guarded    = [];
 
     protected $fillable = [
         'nis',
@@ -28,6 +28,7 @@ class Siswa extends Authenticatable
         'password',
         'status',
         'tagihan_aktif',
+        'tanggal_masuk',
     ];
 
     public static function boot()
@@ -35,9 +36,24 @@ class Siswa extends Authenticatable
         parent::boot();
 
         static::saving(function ($siswa) {
-            $password = substr((string) $siswa->nis, -6);
+            $password        = substr((string) $siswa->nis, -6);
             $siswa->password = Hash::make($password);
         });
+    }
+
+    public function getNamaAttribute()
+    {
+        return $this->attributes['nama'];
+    }
+
+    public function getKelas()
+    {
+        return $this->attributes['kelas'];
+    }
+
+      public function getTanggalMasuk()
+    {
+        return $this->attributes['tanggal_masuk'];
     }
 
     public static function getTotalSiswa()

@@ -1,13 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
     public function admin()
     {
-        return view("admin.dashboard.index");
+        $pageTitle = 'Dashboard - SD Kristen Pelita Hati';
+
+        return view("admin.dashboard.index", compact(
+            'pageTitle'
+        ));
     }
 
 }
