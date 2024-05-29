@@ -110,11 +110,11 @@
                     <div class="accordion-body">
                         <div class="card">
                             <div class="card-header">
-                            {{ $informasi->judul }}
+                            {{-- {{ $informasi->judul }} --}}
                             </div>
                             <div class="card-body">
                                 <blockquote class="blockquote mb-0">
-                                    <p>{{ $informasi->info }}</p>
+                                    {{-- <p>{{ $informasi->info }}</p> --}}
                                     {{-- <footer class="blockquote-footer">Administrasi <cite title="Source Title">Ibu
                                             Ani</cite></footer> --}}
                                 </blockquote>
