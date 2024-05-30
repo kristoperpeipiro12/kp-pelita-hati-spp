@@ -29,7 +29,7 @@ class Pemasukan extends Model
 
     public static function getTotalPemasukan()
     {
-        return self::sum('jumlah_bayar');
+        return self::where('konfirmasi', 'Terima')->sum('jumlah_bayar');
     }
 
     public function getTag()

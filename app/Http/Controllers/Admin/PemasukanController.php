@@ -7,7 +7,6 @@ use App\Models\Pemasukan;
 use App\Models\Siswa;
 use App\Models\Tagihan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 
@@ -83,28 +82,14 @@ class PemasukanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nis'             => ['required', Rule::exists('siswas', 'nis')],
             'tanggal_bayar'   => 'required|date',
-            'bulan_tagihan'   => 'required',
-            'tahun_tagihan'   => 'required',
             'jenis_transaksi' => 'required|in:Kontan,Transfer',
         ]);
 
         $pemasukan = Pemasukan::findOrFail($id);
-        $siswa     = Siswa::where('nis', $request->nis)->firstOrFail();
-        $kelas     = $siswa->kelas;
-        $tagihan   = Tagihan::where('kelas', $kelas)->first();
+        $pemasukan->update($request->all());
 
-        if ($tagihan) {
-            $jumlah_bayar = $tagihan->tagihan_perbulan;
-            $request->merge(['jumlah_bayar' => $jumlah_bayar]);
-            $request->merge(['konfirmasi' => 'Terima']);
-            $pemasukan->update($request->all());
-
-            return redirect()->route('pemasukan.index')->with('toast_success', 'Pemasukan berhasil diperbarui.');
-        } else {
-            return Redirect::back()->withErrors(['error' => 'Tagihan perbulan tidak ditemukan untuk siswa ini.'])->withInput();
-        }
+        return redirect()->route('pemasukan.index')->with('toast_success', 'Data berhasil diupdate.');
     }
 
     public function delete($id)
@@ -115,49 +100,19 @@ class PemasukanController extends Controller
         return redirect()->route('pemasukan.index')->with('toast_success', 'Pemasukan berhasil dihapus.');
     }
 
-    public function show()
+    public function konfirmasi(Request $request, $id)
     {
-        $siswa = Auth::user();
-        $kelas = $siswa->kelas;
+        $pemasukan = Pemasukan::findOrFail($id);
 
-        $tagihan      = Tagihan::where('kelas', $kelas)->first();
-        $totalTagihan = $tagihan ? $tagihan->total_tagihan : 0;
-
-        return view('siswa.dashboard.transfer', compact('tagihan', 'totalTagihan'));
-    }
-
-    public function confirm(Request $request)
-    {
-        $validatedata = $request->validate([
-            'nis'             => ['required', Rule::exists('siswas', 'nis')],
-            'tanggal_bayar'   => 'required|date',
-            'jumlah_bayar'    => 'required|numeric',
-            'bulan_tagihan'   => 'required',
-            'tahun_tagihan'   => 'required',
-            'jenis_transaksi' => ['required', Rule::in(['Transfer'])],
-            'foto'            => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        $request->validate([
+            'konfirmasi' => 'required',
         ], [
-            'foto.required' => 'Wajib Sertakan Foto.',
-            'foto.image'    => 'Pastikan Foto berupa gambar',
-            'foto.mimes'    => 'Foto harus berformat jpg, png, jpeg, atau gif.',
-            'foto.max'      => 'Ukuran foto maksimal 2MB.',
+            'konfirmasi.required' => 'Terjadi kesalahan teknis !',
         ]);
 
-        $validatedata['konfirmasi'] = 'Pending';
-
-        $tanggal = $request->tanggal_bayar;
-        $tanggalFormatted = date('d-m-Y', strtotime($tanggal));
-
-        if ($request->hasFile('foto')) {
-            $foto = $request->file('foto');
-            $filename = $tanggalFormatted . '_' . $validatedata['nis'] . '.' . $foto->getClientOriginalExtension();
-            $path = $foto->storeAs('Bukti-transfer', $filename, 'public');
-            $validatedata['foto'] = $filename;
-        }
-
-        $pemasukan = Pemasukan::create($validatedata);
+        $pemasukan->konfirmasi = $request->konfirmasi;
         $pemasukan->save();
 
-        return redirect()->route('dashboard.siswa')->with('toast_success', 'Pembayaran Sedang diproses.');
+        return redirect()->route('pemasukan.index')->with('toast_success', 'Data pemasukan berhasil diupdate.');
     }
 }

@@ -3,94 +3,71 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
 use App\Models\Informasi;
 use Illuminate\Http\Request;
 
 class InformasiController extends Controller
 {
-
     public function index()
     {
-        $informasi = Informasi::all();
-        $pageTitle = 'Informasi - SD Kristen Pelita Hati';
+        $data_informasi = Informasi::orderBy('id', 'desc')->get();
 
-        return view('admin.informasi.index', compact('informasi','pageTitle'));
+        $pageTitle = 'Data Informasi - SD Kristen Pelita Hati';
+        return view('admin.informasi.index', compact(
+            'data_informasi',
+            'pageTitle'
+        ));
     }
 
-    public function create()
-
+    public function create(Request $request)
     {
-        $pageTitle = 'Tambah Informasi - SD Kristen Pelita Hati';
-        return view('admin.informasi.create',compact('pageTitle'));
-    }
+        $request->validate([
+            'judul'   => 'required',
+            'info'    => 'required',
+            'tanggal' => 'required',
+            'tampil'  => 'required',
+        ], [
+            'judul.required'   => 'Kolom judul tidak boleh kosong !',
+            'info.required'    => 'Kolom info tidak boleh kosong !',
+            'tanggal.required' => 'Kolom tanggal tidak boleh kosong !',
+            'tampil.required'  => 'Kolom tampil tidak boleh kosong !',
+        ]);
 
-    public function store(Request $request)
-    {
+        Informasi::create($request->all());
 
-        $validatedData = $request->validate([
-            'judul' => 'required',
-            'info' => 'required',
-            'tanggal' => 'required|date',
-        ],[
-            'judul.required'=>'Berikan Judul Informasi',
-            'info.required'=> 'Berikan Informasi',
-            'tanggal.required'=> 'Tanggal harap diisi',
-        ]
-    );
-        $validatedData['tampil'] = 0;
-        Informasi::create($validatedData);
-        return redirect()->route('informasi.index')->with('toast_success', 'Informasi berhasil ditambahkan.');
-    }
-
-    public function edit($id)
-    {
-
-        $informasi = Informasi::findOrFail($id);
- $pageTitle = 'Edit Informasi - SD Kristen Pelita Hati';
-        return view('admin.informasi.edit', compact('informasi','pageTitle'));
+        return redirect()->route('informasi.index')->with('toast_success', 'Data berhasil ditambahkan.');
     }
 
     public function update(Request $request, $id)
     {
+        $data_informasi = Informasi::findOrFail($id);
 
-        $validatedData = $request->validate([
-            'judul' => 'required',
-            'info' => 'required',
-            'tanggal' => 'required|date',
+        $request->validate([
+            'judul'   => 'required',
+            'info'    => 'required',
+            'tanggal' => 'required',
+            'tampil'  => 'required',
+        ], [
+            'judul.required'   => 'Kolom judul tidak boleh kosong !',
+            'info.required'    => 'Kolom info tidak boleh kosong !',
+            'tanggal.required' => 'Kolom tanggal tidak boleh kosong !',
+            'tampil.required'  => 'Kolom tampil tidak boleh kosong !',
         ]);
-        $validatedData['tampil'] = 0;
 
-        $informasi = Informasi::findOrFail($id);
-        $informasi->update($validatedData);
+        $data_informasi->judul   = $request->judul;
+        $data_informasi->info    = $request->info;
+        $data_informasi->tanggal = $request->tanggal;
+        $data_informasi->tampil  = $request->tampil;
+        $data_informasi->save();
 
-        return redirect()->route('informasi.index')->with('toast_success', 'Informasi berhasil diperbarui.');
+        return redirect()->route('informasi.index')->with('toast_success', 'Data berhasil diupdate.');
     }
 
     public function delete($id)
     {
-        $informasi = Informasi::findOrFail($id);
+        $data_informasi = Informasi::findOrFail($id);
+        $data_informasi->delete();
 
-        $informasi->delete();
-
-        return redirect()->route('informasi.index');
+        return redirect()->route('informasi.index')->with('toast_success', 'Data berhasil dihapus.');
     }
-    public function tampil($id)
-    {
-        $informasi = Informasi::findOrFail($id);
-
-        if ($informasi->tampil != 0) {
-            return redirect()->back()->with('toast_error', 'Informasi sudah ditampilkan.');
-        }
-
-
-        $informasi->tampil = 1;
-        $informasi->save();
-
-
-        return redirect()->route('informasi.index')->with('toast_success', 'Informasi berhasil ditampilkan.');
-    }
-
-
-
 }

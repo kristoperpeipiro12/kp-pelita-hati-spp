@@ -22,14 +22,28 @@
     <link href="{{ asset('RuangAdmin/css/ruang-admin.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Select2 JS -->
+
+    <!-- Tambahkan ini di bagian <head> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+    <!-- Tambahkan ini sebelum tag penutup </body> -->
+
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="{{ asset('RuangAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('RuangAdmin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('RuangAdmin/vendor/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('RuangAdmin/js/demo/chart-area-demo.js') }}"></script>
 
-    <!-- jQuery -->
-    <!-- DataTables JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
@@ -42,51 +56,51 @@
 
 <body id="page-top">
     <div id="wrapper">
-        <!-- Sidebar -->
+
         <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('RuangAdmin/img/logo/logoSekolah.png') }}">
                 </div>
                 <div class="sidebar-brand-text mx-3">PELITA HATI</div>
             </a>
+
             <hr class="sidebar-divider my-0">
 
             @auth('web')
+
             @if (Auth::user()->role == 'admin')
+
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('admin') }}">
                     <i class="bi bi-speedometer2"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
             </li>
-
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('tagihan.index') }}">
                     <i class="bi bi-whatsapp"></i>
-                    <span>Kirim Tagihan</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true" aria-controls="collapseForm">
-                    <i class="bi bi-cash-stack"></i>
-                    <span><strong>Pemasukan</strong></span>
+                    <span>Kirim Tagihan</span>
                 </a>
-                <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-
-                        <a class="collapse-item" href="{{ route('pemasukan.index') }}">Data Pemasukan</a>
-                        {{-- <a class="collapse-item" href="{{ route('admin.konfirmasi') }}">Riwayat Pemasukan</a> --}}
-                    </div>
-                </div>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('pemasukan.index') }}">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Pemasukan</span>
+                </a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('pengeluaran.index') }}">
                     <i class="bi bi-wallet2"></i>
-                    <span>Pengeluaran</span></a>
+                    <span>Pengeluaran</span>
+                </a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('informasi.index') }}">
                     <i class="bi bi-info-circle"></i>
-                    <span>Informasi</span></a>
+                    <span>Informasi</span>
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap" aria-expanded="true" aria-controls="collapseBootstrap">
@@ -104,50 +118,56 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('user.index') }}">
                     <i class="bi bi-people"></i>
-                    <span>Daftar Pengguna</span></a>
+                    <span>Daftar Pengguna</span>
+                </a>
             </li>
 
             @elseif (Auth::user()->role == 'yayasan')
+
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('yayasan') }}">
                     <i class="bi bi-speedometer2"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('yayasan.pemasukan') }}">
                     <i class="bi bi-wallet2"></i>
-                    <span>Pemasukan</span></a>
+                    <span>Pemasukan</span>
+                </a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('yayasan.pengeluaran') }}">
                     <i class="bi bi-wallet2"></i>
-                    <span>Pengeluaran</span></a>
+                    <span>Pengeluaran</span>
+                </a>
             </li>
+
             @endif
 
             @endauth
-
 
             @auth('siswa')
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('siswa') }}">
                     <i class="bi bi-speedometer2"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
             </li>
             @endauth
 
             <li class="nav-item active">
                 <a class="nav-link" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
                     <i class="bi bi-box-arrow-left"></i>
-                    <span>Log Out</span></a>
+                    <span>Log Out</span>
+                </a>
             </li>
+
         </ul>
         <!-- Sidebar -->
 
-
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                <!-- TopBar -->
                 <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
                     <div class="d-flex p-0 align-items-center">
                         <button id="sidebarToggleTop" class="btn btn-link text-white mr-3">
@@ -158,6 +178,7 @@
                     <ul class="navbar-nav ml-auto">
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <li class="nav-item dropdown no-arrow">
+
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="img-profile rounded-circle" src="{{ asset('RuangAdmin/img/boy.png') }}" style="max-width: 60px">
                                 <span class="ml-2 d-none d-lg-inline text-white small">
@@ -168,9 +189,9 @@
                                     @auth('siswa')
                                     {{ Auth::user()->nama }}
                                     @endauth
-
                                 </span>
                             </a>
+
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -204,7 +225,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                <form id="logout-form" action="{{ route('logout.post') }}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn btn-primary">Logout</button>
                                 </form>
@@ -213,13 +234,9 @@
                     </div>
                 </div>
 
-                <!-- Topbar -->
-
-
                 {{-- isi content --}}
-                <!-- Container Fluid-->
                 @yield('content')
-                <!---Container Fluid-->
+
                 @include('sweetalert::alert')
                 {{-- end content --}}
             </div>

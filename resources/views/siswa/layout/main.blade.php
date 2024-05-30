@@ -8,19 +8,19 @@
     <link rel="stylesheet" href="{{ asset('siswa/css/style-murid.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>{{ $pageTitle }}</title>
-    
+    <script src="{{ asset('siswa/js/jquery.js')}}"></script>
+    <script src="{{ asset('siswa/js/jquery.min.js')}}"></script>
+    <script src="{{ asset('siswa/bootstrapv5.3/js/bootstrap.bundle.js')}}"></script>
 </head>
 
 <body>
-    <!-- navbar -->
     <nav class="navbar navbar-expand-lg border-bottom border-body">
         <div class=" container-fluid d-flex justify-content-between">
             <div class=" d-flex align-items-center gap-2">
                 <img src="{{ asset('siswa/assets/logoSekolah.png') }}" alt="logo-sekolah" width="35px">
                 <a class="navbar-brand fw-bolder fs-4" href="#">SD K Pelita Hati</a>
             </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -35,22 +35,9 @@
         </div>
     </nav>
 
-
-
-    <!-- konten-siswa -->
     @yield('content')
     @include('sweetalert::alert')
-
-    <!-- Modal -->
-
-
-    <br>
-    <br>
-    <script src="{{ asset('siswa/js/jquery.js')}}"></script>
-    <script src="{{ asset('siswa/js/jquery.min.js')}}"></script>
-    <script src="{{ asset('siswa/bootstrapv5.3/js/bootstrap.bundle.js')}}"></script>
     <script src="{{ asset('siswa/js/script-murid.js')}}"></script>
 </body>
 
 </html>
-
