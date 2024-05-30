@@ -32,7 +32,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <span id="not-found" class="d-none bg-danger text-white">NIS Tidak Terdaftar!</span>
+                            <span id="not-found" class="d-none bg-danger text-white element-rec">NIS Tidak Terdaftar!</span>
 
                             <div class="form-group w-100">
                                 <label for="nominal_pemasukan">Nominal Pemasukan</label>

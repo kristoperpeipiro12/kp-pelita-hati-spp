@@ -24,7 +24,7 @@
                         <i class="fas fa-file-pdf"></i> Export PDF
                     </a>
                 </div>
-                
+
             </div>
             <div class="table-responsive p-3">
                 <table class="table align-items-center table-flush table-hover" id="dataTableHover">
@@ -45,9 +45,9 @@
                       <td>{{ $loop->iteration }}</td>
                         <td>{{ $p->nis }}</td>
                         <td>{{ $p->siswa->nama }}</td>
-                        <td>Rp. {{ number_format($p->pemasukan, 0, ',', '.') }}</td>
+                        <td>Rp. {{ number_format($p->jumlah_bayar, 0, ',', '.') }}</td>
                         <td>{{ \Carbon\Carbon::parse($p->tanggal)->format('d-m-Y') }}</td>
-                        <td>{{ $p->jenistransaksi}}</td>
+                        <td>{{ $p->jenis_transaksi}}</td>
 
 
                         </tr>

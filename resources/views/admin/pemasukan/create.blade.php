@@ -51,7 +51,7 @@ $nama_bulan = [
                             </div>
                             @endforeach
                         </div>
-                        <span id="not-found" class="d-none bg-danger text-white">NIS Tidak Terdaftar!</span>
+                        <span id="not-found" class="d-none bg-danger text-white element-rec">NIS Tidak Terdaftar!</span>
 
                         <div class="hpem-con-form-group">
                             <div class="form-group">
