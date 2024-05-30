@@ -86,7 +86,7 @@
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('pemasukan.index') }}">
-                    <i class="bi bi-wallet2"></i>
+                    <i class="bi bi-currency-dollar"></i>
                     <span>Pemasukan</span>
                 </a>
             </li>

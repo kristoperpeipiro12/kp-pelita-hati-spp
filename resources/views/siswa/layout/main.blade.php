@@ -18,7 +18,7 @@
         <div class="container-fluid d-flex justify-content-between">
             <div class="d-flex align-items-center gap-2">
                 <img src="{{ asset('siswa/assets/logoSekolah.png') }}" alt="logo-sekolah" width="35px">
-                <a class="navbar-brand fw-bolder fs-4" href="#">SD K Pelita Hati</a>
+                <a class="navbar-brand fw-bolder fs-4" href="#">SD Kristen Pelita Hati</a>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

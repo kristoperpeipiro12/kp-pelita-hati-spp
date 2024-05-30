@@ -12,21 +12,22 @@ class HomeController extends Controller
     {
         $pageTitle = 'Dashboard - SD Kristen Pelita Hati';
 
-        return view("yayasan.dashboard.index",compact("pageTitle"));
+        return view("yayasan.dashboard.index", compact("pageTitle"));
     }
 
     public function pemasukan()
     {
-        $pemasukan = Pemasukan::all();
+        // Mengambil data pemasukan dengan konfirmasi 'terima'
+        $pemasukan = Pemasukan::where('konfirmasi', 'Terima')->get();
         $pageTitle = 'Data Pemasukan - SD Kristen Pelita Hati';
 
-        return view("yayasan.pemasukan.index", compact("pemasukan","pageTitle"));
+        return view("yayasan.pemasukan.index", compact("pemasukan", "pageTitle"));
     }
     public function pengeluaran()
     {
         $pengeluaran = Pengeluaran::all();
-        $pageTitle = 'Data Pengeluaran - SD Kristen Pelita Hati';
+        $pageTitle   = 'Data Pengeluaran - SD Kristen Pelita Hati';
 
-        return view("yayasan.pengeluaran.index", compact("pengeluaran","pageTitle"));
+        return view("yayasan.pengeluaran.index", compact("pengeluaran", "pageTitle"));
     }
 }
