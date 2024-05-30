@@ -22,14 +22,21 @@
     <link href="{{ asset('RuangAdmin/css/ruang-admin.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Select2 JS -->
+
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="{{ asset('RuangAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('RuangAdmin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('RuangAdmin/vendor/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('RuangAdmin/js/demo/chart-area-demo.js') }}"></script>
 
-    <!-- jQuery -->
-    <!-- DataTables JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>

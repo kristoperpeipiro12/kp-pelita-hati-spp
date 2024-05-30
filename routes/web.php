@@ -2,8 +2,6 @@
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\InformasiController;
-use App\Http\Controllers\Admin\KonfirmasipembayaranController;
-// use App\Http\Controllers\Admin\KonfirmasipembayaranController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PemasukanController;
 use App\Http\Controllers\Admin\PengeluaranController;
@@ -11,6 +9,7 @@ use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\TagihanController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Siswa\HomeController as SiswaHomeController;
+use App\Http\Controllers\Siswa\TagihanController as SiswaTagihanController;
 use App\Http\Controllers\Yayasan\HomeController as YayasanHomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,16 +65,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::post('/pemasukan/store', [PemasukanController::class, 'store'])->name('pemasukan.store');
     Route::get('/pemasukan/{id}', [PemasukanController::class, 'edit'])->name('pemasukan.edit');
     Route::put('/pemasukan/{id}', [PemasukanController::class, 'update'])->name('pemasukan.update');
+    Route::put('/pemasukan/konfirmasi/{id}', [PemasukanController::class, 'konfirmasi'])->name('pemasukan.konfirmasi');
     Route::delete('/pemasukan/{id}', [PemasukanController::class, 'delete'])->name('pemasukan.delete');
 
     Route::get('/pengeluaran', [PengeluaranController::class, 'index'])->name('pengeluaran.index');
     Route::get('/pengeluaran/create', [PengeluaranController::class, 'create'])->name('pengeluaran.create');
     Route::post('/pengeluaran/store', [PengeluaranController::class, 'store'])->name('pengeluaran.store');
     Route::get('/pengeluaran/edit/{id_pengeluaran}', [PengeluaranController::class, 'edit'])->name('pengeluaran.edit');
-    Route::put('/pengeluaran/update{id_pengeluaran}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
-    Route::delete('/pengeluaran/delete{id_pengeluaran}', [PengeluaranController::class, 'delete'])->name('pengeluaran.delete');
-
-
+    Route::put('/pengeluaran/update/{id_pengeluaran}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
+    Route::delete('/pengeluaran/delete/{id_pengeluaran}', [PengeluaranController::class, 'delete'])->name('pengeluaran.delete');
 
 });
 Route::group(['prefix' => 'yayasan', 'middleware' => ['auth:web', 'role:yayasan']], function () {
@@ -91,8 +89,8 @@ Route::group(['prefix' => 'siswa', 'middleware' => ['auth:siswa']], function () 
     Route::get('/siswa', [SiswaHomeController::class, 'index'])->name('siswa');
     Route::get('/dashboard', [SiswaHomeController::class, 'index'])->name('dashboard.siswa');
 
-    Route::get('/konfirmasi/transfer', [PemasukanController::class, 'show'])->name('transfer.create');
-    Route::post('/konfirmasi/store', [PemasukanController::class, 'store'])->name('transfer.store');
+    Route::get('/tagihan/show', [SiswaTagihanController::class, 'show'])->name('siswa.tagihan.show');
+    Route::post('/tagihan/bayar', [SiswaTagihanController::class, 'bayar'])->name('siswa.tagihan.bayar');
 
     //
 });

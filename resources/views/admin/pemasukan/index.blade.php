@@ -116,10 +116,19 @@
             });
         }).draw();
 
+        $('#filterKelas').on('change', function() {
+            var selectedKelas = $(this).val();
+            table.column(4).search(selectedKelas).draw();
+        });
         $('#filterJenisTransaksi').on('change', function() {
             var selectedJenisTransaksi = $(this).val();
-            table.column(5).search(selectedJenisTransaksi).draw();
+            table.column(8).search(selectedJenisTransaksi).draw();
         });
+        $('#filterKonfirmasi').on('change', function() {
+            var selectedKonfirmasi = $(this).val();
+            table.column(9).search(selectedKonfirmasi).draw();
+        });
+
     });
 
 </script>
@@ -154,7 +163,40 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-7"></div>
+
+                        <div class="col-lg-2 pt-3">
+                            <div class="form-group d-flex align-items-center">
+                                <label for="filterKelas" class="d-flex align-items-center mt-2 mr-2">Kelas</label>
+                                <select id="filterKelas" class="form-control form-control-sm" style="width: 120px;">
+                                    <option value="">Semua Kelas</option>
+                                    @php
+                                    $kelasList = ['1', '2', '3', '4', '5', '6'];
+                                    @endphp
+                                    @foreach ($kelasList as $kelas)
+                                    <option value="{{ $kelas }}">Kelas {{ $kelas }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 pt-3">
+                            <div class="form-group d-flex align-items-center">
+                                <label for="filterKonfirmasi" class="d-flex align-items-center mt-2 mr-2">Status</label>
+                                <select id="filterKonfirmasi" class="form-control form-control-sm" style="width: 120px;">
+                                    <option value="">Semua</option>
+                                    @php
+                                    $jenisStatus = ['Pending', 'Diterima', ' Ditolak'];
+                                    @endphp
+                                    @foreach ($jenisStatus as $j)
+                                    <option value="{{ $j }}">
+                                        {{ $j }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5"></div>
 
                         <div class="col-lg-1">
                             <a href="{{ route('pemasukan.create') }}" class="btn btn-info">
@@ -166,10 +208,11 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="table-responsive">
-                                <table class="table align-items-center table-flush table-hover" style="" id="dataTable">
+                                <table class="table align-items-center table-flush table-hover" id="dataTable">
                                     <thead class="thead-light">
                                         <tr>
                                             <th class="mini-th">No</th>
+                                            <th class="text-center mini-th">Aksi</th>
                                             <th>NIS</th>
                                             <th>Nama</th>
                                             <th>Kelas</th>
@@ -179,71 +222,58 @@
                                             <th>Jenis Transaksi</th>
                                             <th>Status</th>
                                             <th>Foto Bukti</th>
-                                            <th class="text-center mini-th">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($pemasukan as $p)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td class="text-center">
+                                                <div class="d-flex list-unstyled align-items-center justify-content-center">
+                                                    <li>
+                                                        <button type="button" class="btn btn-success btn-sm" title="Konfirmasi" data-toggle="modal" data-target="#updateModal" data-id="{{ $p->id }}" data-konfirmasi="{{ $p->konfirmasi }}">
+                                                            <i class="fas fa-check"></i>
+                                                        </button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{ route('pemasukan.edit', $p->id) }}" title="Ubah" class="btn btn-warning btn-sm ml-1">
+                                                            <i class="fas fa-pen-alt"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <button type="button" class="btn btn-danger btn-sm ml-1" title="Hapus" data-toggle="modal" data-target="#deleteModal" data-id="{{ $p->id }}">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                    </li>
+                                                </div>
+                                            </td>
                                             <td>{{ $p->nis }}</td>
                                             <td>{{ optional($p->siswa)->nama }}</td>
                                             <td>{{ optional($p->siswa)->kelas }}</td>
                                             <td>{{ $p->bulan_tagihan }}/{{ $p->tahun_tagihan }}</td>
                                             <td>Rp. {{ number_format($p->jumlah_bayar, 0, ',', '.') }}</td>
                                             <td>{{ \Carbon\Carbon::parse($p->tanggal_bayar)->format('d-m-Y') }}</td>
-                                            <td>{{ $p->jenis_transaksi}}</td>
-                                            <td class="d-flex justify-content-center">
-                                                @if ($p->konfirmasi == "Pending")
-                                                <a href="{{ route('pemasukan.konfirmasi.terima', $p->id) }}" class="btn btn-success btn-sm mr-2">
-                                                    <i class="fas "></i>
-                                                </a>
-                                                <a href="{{ route('pemasukan.konfirmasi.tolak', $p->id) }}" class="btn btn-success btn-sm mr-2">
-                                                    <i class="fas "></i>
-                                                </a>
+                                            <td>{{ $p->jenis_transaksi }}</td>
+                                            <td class="text-center">
+                                                @if ($p->konfirmasi == 'Terima')
+                                                <span class="p-2 badge badge-success">Diterima</span>
+                                                @elseif ($p->konfirmasi == 'Tolak')
+                                                <span class="p-2 badge badge-danger">Ditolak</span>
                                                 @else
-                                                    {{ $p->konfirmasi }}
+                                                <span class="p-2 badge badge-secondary">Pending</span>
                                                 @endif
                                             </td>
-                                            <td><img src="{{ (empty($p->foto)) ? '' : asset('storage/bukti/' . $p->foto) }}" alt="" width="65"></td>
-                                            <td class="d-flex justify-content-center">
-                                                <a href="{{ route('pemasukan.edit', $p->id) }}" class="btn btn-primary btn-sm mr-2">
-                                                    <i class="fas fa-pen-alt"></i>
-                                                </a>
-                                                <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#deleteModal{{ $p->id }}">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
+                                            <td>
+                                                <img src="{{ $p->foto ? asset('storage/bukti/' . $p->foto) : '' }}" alt="" width="65">
                                             </td>
                                         </tr>
-                                        <div class="modal fade" id="deleteModal{{ $p->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Apakah Anda yakin ingin menghapus data ini?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                                        <form action="{{ route('pemasukan.delete', $p->id) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Hapus</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -251,4 +281,85 @@
 
     </div>
 </div>
+<!-- Modal Update Konfirmasi -->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">Konfirmasi Status Pembayaran</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="updateForm" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="konfirmasi">Status</label>
+                        <select class="form-control" id="konfirmasi" name="konfirmasi">
+                            <option value="Pending">Pending</option>
+                            <option value="Terima">Terima</option>
+                            <option value="Tolak">Tolak</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Hapus -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Apakah Anda yakin ingin menghapus data ini?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <form id="deleteForm" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        $('#updateModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var konfirmasi = button.data('konfirmasi');
+
+            var action = '{{ route("pemasukan.konfirmasi", ":id") }}';
+            action = action.replace(':id', id);
+            $('#updateForm').attr('action', action);
+            $('#konfirmasi').val(konfirmasi);
+        });
+
+        $('#deleteModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var action = '{{ route("pemasukan.delete", ":id") }}';
+            action = action.replace(':id', id);
+            $('#deleteForm').attr('action', action);
+        });
+    });
+
+</script>
+
 @endsection
