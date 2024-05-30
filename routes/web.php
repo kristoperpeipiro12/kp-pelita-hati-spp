@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout.post');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], function () {
@@ -46,12 +46,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::delete('/user/{id}', [UserController::class, 'delete'])->name('user.delete');
 
     Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi.index');
-    Route::get('/informasi/create', [InformasiController::class, 'create'])->name('informasi.create');
-    Route::post('/informasi/store', [InformasiController::class, 'store'])->name('informasi.store');
-    Route::get('/informasi/{id}', [InformasiController::class, 'edit'])->name('informasi.edit');
-    Route::put('/informasi/{id}', [InformasiController::class, 'update'])->name('informasi.update');
+    Route::put('/informasi/create', [InformasiController::class, 'create'])->name('informasi.create');
+    Route::put('/informasi/update/{id}', [InformasiController::class, 'update'])->name('informasi.update');
     Route::delete('/informasi/{id}', [InformasiController::class, 'delete'])->name('informasi.delete');
-    Route::delete('/informasi/tampil', [InformasiController::class, 'tampil'])->name('informasi.tampil');
 
     Route::get('/tagihan', [TagihanController::class, 'index'])->name('tagihan.index');
     Route::get('/tagihan/create', [TagihanController::class, 'create'])->name('tagihan.create');
@@ -86,11 +83,11 @@ Route::group(['prefix' => 'yayasan', 'middleware' => ['auth:web', 'role:yayasan'
 });
 
 Route::group(['prefix' => 'siswa', 'middleware' => ['auth:siswa']], function () {
-    Route::get('/siswa', [SiswaHomeController::class, 'index'])->name('siswa');
-    Route::get('/dashboard', [SiswaHomeController::class, 'index'])->name('dashboard.siswa');
+    Route::get('', [SiswaHomeController::class, 'index'])->name('siswa.index');
+    Route::get('/dashboard', [SiswaHomeController::class, 'index'])->name('siswa.dashboard');
 
     Route::get('/tagihan/show', [SiswaTagihanController::class, 'show'])->name('siswa.tagihan.show');
-    Route::post('/tagihan/bayar', [SiswaTagihanController::class, 'bayar'])->name('siswa.tagihan.bayar');
+    Route::put('/tagihan/bayar', [SiswaTagihanController::class, 'bayar'])->name('siswa.tagihan.bayar');
 
     //
 });

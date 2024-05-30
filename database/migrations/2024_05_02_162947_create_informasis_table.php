@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('informasis', function (Blueprint $table) {
             $table->id();
-            $table->string('info');
+            $table->text('info');
             $table->date('tanggal');
             $table->timestamps();
         });

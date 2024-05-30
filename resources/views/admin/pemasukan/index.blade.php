@@ -264,7 +264,9 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <img src="{{ $p->foto ? asset('storage/bukti/' . $p->foto) : '' }}" alt="" width="65">
+                                                <a href="{{ $p->foto ? asset('storage/Bukti-transfer/' . $p->foto) : '' }}" data-fancybox="gallery">
+                                                    <img src="{{ $p->foto ? asset('storage/Bukti-transfer/' . $p->foto) : '' }}" alt="" width="65">
+                                                </a>
                                             </td>
                                         </tr>
                                         @endforeach

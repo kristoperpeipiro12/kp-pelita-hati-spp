@@ -158,7 +158,11 @@
                     <td>{{ $item->jenis_kelamin }}</td>
                     <td>{{ $item->nohp }}</td>
                     <td>{{ $item->kelas }}</td>
-                    <td><img src="{{ (empty($item->foto)) ? '' : asset('storage/foto-siswa/' . $item->foto) }}" alt="" width="65"></td>
+                    <td>
+                        <a href="{{ $item->foto ? asset('storage/foto-siswa/' . $item->foto) : '' }}" data-fancybox="gallery">
+                            <img src="{{ $item->foto ? asset('storage/foto-siswa/' . $item->foto) : '' }}" alt="" width="65">
+                        </a>
+                    </td>
                     <td class="d-flex justify-content-between">
                         <a href="{{ route('admin.siswa.edit', $item->nis) }}" class="btn btn-primary btn-sm mr-2"><i class="fas fa-pen-alt"></i></a>
                         <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#deleteModal{{ $item->nis }}">

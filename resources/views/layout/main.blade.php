@@ -27,6 +27,11 @@
 
     <!-- Select2 JS -->
 
+    <!-- Tambahkan ini di bagian <head> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+    <!-- Tambahkan ini sebelum tag penutup </body> -->
+
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -34,6 +39,8 @@
     <script src="{{ asset('RuangAdmin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('RuangAdmin/vendor/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('RuangAdmin/js/demo/chart-area-demo.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
@@ -218,7 +225,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                <form id="logout-form" action="{{ route('logout.post') }}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn btn-primary">Logout</button>
                                 </form>

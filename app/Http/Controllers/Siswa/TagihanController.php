@@ -31,30 +31,27 @@ class TagihanController extends Controller
             'bulan_tagihan'   => 'required',
             'tahun_tagihan'   => 'required',
             'jenis_transaksi' => ['required', Rule::in(['Transfer'])],
-            'foto'            => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'foto'            => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ], [
             'foto.required' => 'Wajib Sertakan Foto.',
             'foto.image'    => 'Pastikan Foto berupa gambar',
-            'foto.mimes'    => 'Foto harus berformat jpg, png, jpeg, atau gif.',
+            'foto.mimes'    => 'Foto harus berformat jpg, png, jpeg',
             'foto.max'      => 'Ukuran foto maksimal 2MB.',
         ]);
 
-        $validatedata['konfirmasi'] = 'Pending';
-
         $tanggal          = $request->tanggal_bayar;
         $tanggalFormatted = date('d-m-Y', strtotime($tanggal));
-
         if ($request->hasFile('foto')) {
-            $foto                 = $request->file('foto');
-            $filename             = $tanggalFormatted . '_' . $validatedata['nis'] . '.' . $foto->getClientOriginalExtension();
-            $path                 = $foto->storeAs('bukti-transfer-', $filename, 'public');
+            $foto     = $request->file('foto');
+            $filename = $tanggalFormatted . '_' . $validatedata['nis'] . '.' . $foto->getClientOriginalExtension();
+            $foto->storeAs('bukti-transfer', $filename, 'public');
             $validatedata['foto'] = $filename;
         }
 
         $pemasukan = Pemasukan::create($validatedata);
         $pemasukan->save();
 
-        return redirect()->route('dashboard.siswa')->with('toast_success', 'Pembayaran Sedang diproses.');
+        return redirect()->route('siswa.dashboard')->with('toast_success', 'Konfirmasi pembayaran sedang diproses.');
     }
 
 }

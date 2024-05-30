@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
 use App\Models\Tagihan;
+use Illuminate\Http\Request;
 
 class TagihanController extends Controller
 {
@@ -15,20 +14,20 @@ class TagihanController extends Controller
         // $totalTagihan = $tagihan->sum('total_tagihan');
         $pageTitle = 'Data Tagihan - SD Kristen Pelita Hati';
 
-        return view('admin.tagihan.index', compact('tagihan','pageTitle'));
+        return view('admin.tagihan.index', compact('tagihan', 'pageTitle'));
     }
 
     public function create()
     {
         $pageTitle = 'Tambah Data Tagihan - SD Kristen Pelita Hati';
 
-        return view('admin.tagihan.create',compact('pageTitle'));
+        return view('admin.tagihan.create', compact('pageTitle'));
     }
     public function store(Request $request)
     {
         $request->validate(
             [
-                'kelas' => 'required|unique:tagihan,kelas',
+                'kelas'            => 'required|unique:tagihan,kelas',
                 'tagihan_perbulan' => 'required',
             ],
             [
@@ -38,15 +37,13 @@ class TagihanController extends Controller
 
         $tagperbulan = str_replace('.', '', $request->tagihan_perbulan);
 
-
-        $tagihan = new Tagihan();
+        $tagihan        = new Tagihan();
         $tagihan->kelas = $request->kelas;
 
         $tagihan->tagihan_perbulan = $tagperbulan;
-        $tagihan->total_tagihan = $tagperbulan * 12;
+        $tagihan->total_tagihan    = $tagperbulan * 12;
 
         $tagihan->updateTotalTagihan();
-
 
         $tagihan->save();
 
@@ -54,20 +51,17 @@ class TagihanController extends Controller
             ->with('toast_success', 'Tagihan Berhasil ditanbahkan');
     }
 
-
-
     public function edit($kelas)
     {
-        $tagihan = Tagihan::find($kelas);
+        $tagihan   = Tagihan::find($kelas);
         $pageTitle = 'Edit Data Tagihan - SD Kristen Pelita Hati';
 
-        return view('admin.tagihan.edit', compact('tagihan','pageTitle'));
+        return view('admin.tagihan.edit', compact('tagihan', 'pageTitle'));
     }
 
     public function update(Request $request, $kelas)
     {
         $tagihan = Tagihan::find($kelas);
-
 
         if ($request->kelas == $tagihan->kelas) {
             $request->validate([
@@ -75,7 +69,7 @@ class TagihanController extends Controller
             ]);
         } else {
             $request->validate([
-                'kelas' => 'required|unique:tagihan,kelas',
+                'kelas'            => 'required|unique:tagihan,kelas',
                 'tagihan_perbulan' => 'required',
             ], [
                 'kelas.unique' => 'Tagihan Sudah Ada !',
@@ -84,19 +78,17 @@ class TagihanController extends Controller
 
         $tagperbulan = str_replace('.', '', $request->tagihan_perbulan);
 
-
-        $tagihan->kelas = $request->kelas;
+        $tagihan->kelas            = $request->kelas;
         $tagihan->tagihan_perbulan = $tagperbulan;
 
         $tagihan->updateTotalTagihan();
-
 
         $tagihan->save();
 
         return redirect()->route('tagihan.index')
             ->with('toast_success', 'Tagihan Berhasil diperbarui');
     }
-        public function delete($kelas)
+    public function delete($kelas)
     {
         Tagihan::find($kelas)->delete();
         return redirect()->route('tagihan.index')
