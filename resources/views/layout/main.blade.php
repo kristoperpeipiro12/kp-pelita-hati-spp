@@ -42,51 +42,51 @@
 
 <body id="page-top">
     <div id="wrapper">
-        <!-- Sidebar -->
+
         <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('RuangAdmin/img/logo/logoSekolah.png') }}">
                 </div>
                 <div class="sidebar-brand-text mx-3">PELITA HATI</div>
             </a>
+
             <hr class="sidebar-divider my-0">
 
             @auth('web')
+
             @if (Auth::user()->role == 'admin')
+
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('admin') }}">
                     <i class="bi bi-speedometer2"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
             </li>
-
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('tagihan.index') }}">
                     <i class="bi bi-whatsapp"></i>
-                    <span>Kirim Tagihan</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true" aria-controls="collapseForm">
-                    <i class="bi bi-cash-stack"></i>
-                    <span><strong>Pemasukan</strong></span>
+                    <span>Kirim Tagihan</span>
                 </a>
-                <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-
-                        <a class="collapse-item" href="{{ route('pemasukan.index') }}">Data Pemasukan</a>
-                        {{-- <a class="collapse-item" href="{{ route('admin.konfirmasi') }}">Riwayat Pemasukan</a> --}}
-                    </div>
-                </div>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('pemasukan.index') }}">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Pemasukan</span>
+                </a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('pengeluaran.index') }}">
                     <i class="bi bi-wallet2"></i>
-                    <span>Pengeluaran</span></a>
+                    <span>Pengeluaran</span>
+                </a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('informasi.index') }}">
                     <i class="bi bi-info-circle"></i>
-                    <span>Informasi</span></a>
+                    <span>Informasi</span>
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap" aria-expanded="true" aria-controls="collapseBootstrap">
@@ -104,50 +104,56 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('user.index') }}">
                     <i class="bi bi-people"></i>
-                    <span>Daftar Pengguna</span></a>
+                    <span>Daftar Pengguna</span>
+                </a>
             </li>
 
             @elseif (Auth::user()->role == 'yayasan')
+
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('yayasan') }}">
                     <i class="bi bi-speedometer2"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('yayasan.pemasukan') }}">
                     <i class="bi bi-wallet2"></i>
-                    <span>Pemasukan</span></a>
+                    <span>Pemasukan</span>
+                </a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('yayasan.pengeluaran') }}">
                     <i class="bi bi-wallet2"></i>
-                    <span>Pengeluaran</span></a>
+                    <span>Pengeluaran</span>
+                </a>
             </li>
+
             @endif
 
             @endauth
-
 
             @auth('siswa')
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('siswa') }}">
                     <i class="bi bi-speedometer2"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
             </li>
             @endauth
 
             <li class="nav-item active">
                 <a class="nav-link" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
                     <i class="bi bi-box-arrow-left"></i>
-                    <span>Log Out</span></a>
+                    <span>Log Out</span>
+                </a>
             </li>
+
         </ul>
         <!-- Sidebar -->
 
-
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                <!-- TopBar -->
                 <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
                     <div class="d-flex p-0 align-items-center">
                         <button id="sidebarToggleTop" class="btn btn-link text-white mr-3">
@@ -158,6 +164,7 @@
                     <ul class="navbar-nav ml-auto">
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <li class="nav-item dropdown no-arrow">
+
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="img-profile rounded-circle" src="{{ asset('RuangAdmin/img/boy.png') }}" style="max-width: 60px">
                                 <span class="ml-2 d-none d-lg-inline text-white small">
@@ -168,9 +175,9 @@
                                     @auth('siswa')
                                     {{ Auth::user()->nama }}
                                     @endauth
-
                                 </span>
                             </a>
+
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -213,13 +220,9 @@
                     </div>
                 </div>
 
-                <!-- Topbar -->
-
-
                 {{-- isi content --}}
-                <!-- Container Fluid-->
                 @yield('content')
-                <!---Container Fluid-->
+
                 @include('sweetalert::alert')
                 {{-- end content --}}
             </div>
