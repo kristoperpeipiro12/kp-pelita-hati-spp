@@ -106,6 +106,22 @@
     margin-bottom: 20px;
 }
 
+.element-rec{
+    padding: 5px;
+    padding-left: 10px !important;
+    margin-bottom: 8px !important;
+    border-radius: 15px !important;
+    -webkit-border-radius: 15px !important;
+    -moz-border-radius: 15px !important;
+    -ms-border-radius: 15px !important;
+    -o-border-radius: 15px !important;
+}
+
+.element-rec:hover{
+    cursor: pointer;
+    background-color: #6FDCE3 !important;
+}
+
 /* Halaman Pengeluaran */
 .hpeng-con-form-group{
     display: flex;
