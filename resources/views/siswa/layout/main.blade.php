@@ -15,8 +15,8 @@
 
 <body>
     <nav class="navbar navbar-expand-lg border-bottom border-body">
-        <div class=" container-fluid d-flex justify-content-between">
-            <div class=" d-flex align-items-center gap-2">
+        <div class="container-fluid d-flex justify-content-between">
+            <div class="d-flex align-items-center gap-2">
                 <img src="{{ asset('siswa/assets/logoSekolah.png') }}" alt="logo-sekolah" width="35px">
                 <a class="navbar-brand fw-bolder fs-4" href="#">SD K Pelita Hati</a>
             </div>
@@ -28,12 +28,36 @@
                     <a class="nav-link text-white" aria-current="page" href="#identitas">Identitas</a>
                     <a class="nav-link text-white" href="#tagihan">Tagihan</a>
                     <a class="nav-link text-white" href="#informasi">Informasi</a>
-                    <a class="nav-link text-white" href="{{ route('logout') }}">logout</a>
-
+                    <a class="nav-link text-white" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                        Logout
+                    </a>
+                    {{-- <a class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a> --}}
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <form id="logout-form" action="{{ route('logout.post') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Logout</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @yield('content')
     @include('sweetalert::alert')

@@ -103,7 +103,7 @@
                                     {{ $pembayaran['status_pembayaran'] }}
                                 </p>
 
-                                @if (($pembayaran['status_pembayaran'] != 'Lunas') && ($pembayaran['status_pembayaran'] != 'Pending') && ($pembayaran['status_pembayaran'] != 'Pending'))
+                                @if (($pembayaran['status_pembayaran'] == 'Belum dibayarkan'))
                                 <button type="button" class="btn btn-success btn-sm" title="Bayar" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-nis="{{ Auth::user()->nis }}" data-bs-bulan="{{ $bulan }}" data-bs-tahun="{{ $tahun }}" data-bs-bayar="{{ $pembayaran['jumlah_tagihan'] }}">
                                     <i class="fas fa-dollar"></i> Bayar
                                 </button>

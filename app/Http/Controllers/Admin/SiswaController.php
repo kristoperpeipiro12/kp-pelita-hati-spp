@@ -20,7 +20,7 @@ class SiswaController extends Controller
         }
         $pageTitle = 'Naik-Kelas - SD Kristen Pelita Hati';
 
-        return view('admin.masterdata.naikkelas.index', compact('data','pageTitle'));
+        return view('admin.masterdata.naikkelas.index', compact('data', 'pageTitle'));
     }
 
     public function naikSemua(Request $request)
@@ -57,9 +57,9 @@ class SiswaController extends Controller
     public function siswaLulus()
     {
         $siswaLulus = Siswa::where('status', 'lulus')->get();
-        $pageTitle = 'Data Siswa Lulus- SD Kristen Pelita Hati';
+        $pageTitle  = 'Data Siswa Lulus- SD Kristen Pelita Hati';
 
-        return view('admin.masterdata.siswa.siswalulus', compact('siswaLulus','pageTitle'));
+        return view('admin.masterdata.siswa.siswalulus', compact('siswaLulus', 'pageTitle'));
     }
 
     public function hapusSiswaLulus($nis)
@@ -77,16 +77,16 @@ class SiswaController extends Controller
     {
         $siswa      = Siswa::all();
         $totalSiswa = Siswa::getTotalSiswa();
-        $pageTitle = 'Data Siswa - SD Kristen Pelita Hati';
+        $pageTitle  = 'Data Siswa - SD Kristen Pelita Hati';
 
-        return view('admin.masterdata.siswa.index', compact('siswa', 'totalSiswa','pageTitle'));
+        return view('admin.masterdata.siswa.index', compact('siswa', 'totalSiswa', 'pageTitle'));
     }
 
     public function create()
     {
         $pageTitle = 'Tambah Data Siswa- SD Kristen Pelita Hati';
 
-        return view('admin.masterdata.siswa.create',compact('pageTitle'));
+        return view('admin.masterdata.siswa.create', compact('pageTitle'));
     }
 
     public function store(Request $request)
@@ -97,6 +97,7 @@ class SiswaController extends Controller
             'nama'          => 'required',
             'alamat'        => 'required',
             'tanggal_lahir' => 'required|date',
+            'tanggal_masuk' => 'required|date',
             'jenis_kelamin' => 'required',
             'nohp'          => 'required',
             'kelas'         => 'required',
@@ -107,6 +108,7 @@ class SiswaController extends Controller
             'nama.required'          => 'Nama wajib diisi.',
             'alamat.required'        => 'Alamat wajib diisi.',
             'tanggal_lahir.required' => 'Tanggal lahir wajib diisi.',
+            'tanggal_masuk.required' => 'Tanggal masuk wajib diisi.',
             'tanggal_lahir.date'     => 'Format tanggal lahir tidak valid.',
             'jenis_kelamin.required' => 'Jenis kelamin wajib diisi.',
             'nohp.required'          => 'Nomor HP wajib diisi.',
@@ -136,9 +138,9 @@ class SiswaController extends Controller
 
     public function edit($nis)
     {
-        $siswa = Siswa::where('nis', $nis)->firstOrFail();
+        $siswa     = Siswa::where('nis', $nis)->firstOrFail();
         $pageTitle = 'Edit Data Siswa - SD Kristen Pelita Hati';
-        return view('admin.masterdata.siswa.edit', compact('siswa','pageTitle'));
+        return view('admin.masterdata.siswa.edit', compact('siswa', 'pageTitle'));
     }
 
     public function update(Request $request, $nis)
@@ -149,6 +151,7 @@ class SiswaController extends Controller
             'nama'          => 'required',
             'alamat'        => 'required',
             'tanggal_lahir' => 'required|date',
+            'tanggal_masuk' => 'required|date',
             'jenis_kelamin' => 'required',
             'nohp'          => 'required',
             'kelas'         => 'required',
@@ -159,6 +162,8 @@ class SiswaController extends Controller
             'nama.required'          => 'Nama wajib diisi.',
             'alamat.required'        => 'Alamat wajib diisi.',
             'tanggal_lahir.required' => 'Tanggal lahir wajib diisi.',
+            'tanggal_masuk.required' => 'Tanggal lahir wajib diisi.',
+
             'tanggal_lahir.date'     => 'Format tanggal lahir tidak valid.',
             'jenis_kelamin.required' => 'Jenis kelamin wajib diisi.',
             'nohp.required'          => 'Nomor HP wajib diisi.',

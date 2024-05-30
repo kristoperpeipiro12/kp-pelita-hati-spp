@@ -25,7 +25,7 @@
                         tanggalHariIni
                     , text: 'Export XLSX'
                     , exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5]
+                        columns: [0, 2, 3, 4, 5, 6, 7, 8]
                         , stripHtml: true
                         , modifier: {
                             page: 'current'
@@ -41,7 +41,7 @@
                     , messageBottom: 'Data dibuat otomatis oleh sistem : ' +
                         tanggalHariIni + ' ' + waktuHariIni + ' WIB'
                     , exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5]
+                        columns: [0, 2, 3, 4, 5, 6, 7, 8]
                         , stripHtml: true
                         , modifier: {
                             page: 'current'
