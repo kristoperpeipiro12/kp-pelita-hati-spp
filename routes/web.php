@@ -22,6 +22,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::get('', [HomeController::class, 'admin'])->name('admin');
     Route::get('/dashboard', [HomeController::class, 'admin'])->name('admin.dashboard');
 
+    Route::get('/chart/get-total-pemasukan-pengeluaran', [HomeController::class, 'getTotalPemasukanPengeluaran']);;
+
     Route::get('/siswa', [SiswaController::class, 'index'])->name('admin.siswa.index');
     Route::get('/siswa/create', [SiswaController::class, 'create'])->name('admin.siswa.create');
     Route::post('/siswa/store', [SiswaController::class, 'store'])->name('admin.siswa.store');
