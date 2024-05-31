@@ -47,11 +47,15 @@
                                 @error('tanggal_lahir')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
+                            </div>
+                            <div class="hts-con-form-group">
+
                                 <label for="tanggal_masuk">Tanggal Masuk</label>
                                 <input type="date" class="form-control" name="tanggal_masuk" value="{{ $siswa->tanggal_masuk }}">
                                 @error('tanggal_masuk')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
+
 
                             </div>
                         </div>

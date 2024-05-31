@@ -80,8 +80,8 @@
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('tagihan.index') }}">
-                    <i class="bi bi-whatsapp"></i>
-                    <span>Kirim Tagihan</span>
+                    <i class="bi bi-safe"></i>
+                    <span>Tagihan</span>
                 </a>
             </li>
             <li class="nav-item active">
@@ -147,17 +147,9 @@
 
             @endauth
 
-            @auth('siswa')
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('siswa') }}">
-                    <i class="bi bi-speedometer2"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            @endauth
 
             <li class="nav-item active">
-                <a class="nav-link" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                <a class="nav-link" href="javascript:void(0);" data-toggle="modal" dat a-target="#logoutModal">
                     <i class="bi bi-box-arrow-left"></i>
                     <span>Log Out</span>
                 </a>

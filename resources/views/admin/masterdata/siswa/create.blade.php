@@ -41,25 +41,15 @@
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="hpem-con-form-group">
-                                <div class="form-group">
-                                    <label for="tanggal_lahir">Tanggal Lahir</label>
-                                    <input type="date" class="form-control" name="tanggal_lahir" value="{{ date('Y-m-d') }}" id="tanggal_bayar">
-                                    @error('tanggal_lahir')
-                                    <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="tanggal_masuk">Tanggal Masuk</label>
-                                    <input type="date" class="form-control" name="tanggal_masuk" value="{{ old('tanggal_masuk') }}">
-                                    @error('tanggal_masuk')
-                                    <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
+                            <div class="form-group w-100">
+                                <label for="tanggal_lahir">Tanggal Lahir</label>
+                                <input type="date" class="form-control" name="tanggal_lahir" value="{{ date('Y-m-d') }}" id="tanggal_bayar">
+                                @error('tanggal_lahir')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
-
-
                         </div>
+
                         <div class="hts-con-form-group">
                             <div class="form-group w-100">
                                 <label for="jenis_kelamin">Jenis Kelamin</label>
@@ -107,6 +97,16 @@
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
+                        </div>
+                        <div class="hts-con-form-group">
+                            <div class="form-group w-100">
+                                <label for="tanggal_masuk">Tanggal Masuk</label>
+                                <input type="date" class="form-control" name="tanggal_masuk" value="{{ old('tanggal_masuk') }}">
+                                @error('tanggal_masuk')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
                         </div>
                         <div class="d-flex w-25" style="gap: 20px">
                             <button type="submit" class="btn btn-primary w-100">Simpan</button>

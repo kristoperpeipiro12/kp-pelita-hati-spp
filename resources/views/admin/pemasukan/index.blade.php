@@ -146,9 +146,10 @@
                             <li class="breadcrumb-item active" aria-current="page">Data Pemasukan</li>
                         </ol>
                     </div>
-                    <div class="row align-items-center justify-content-between">
-                        <div class="col-lg-2 pt-3">
-                            <div class="form-group d-flex align-items-center">
+                    {{-- edit area --}}
+                    <div class="d-flex bg-blue flex-column">
+                        <div class="d-flex">
+                            <div class="w-100 bg-danger">
                                 <label for="filterJenisTransaksi" class="d-flex align-items-center mt-2 mr-2">Jenis Transaksi</label>
                                 <select id="filterJenisTransaksi" class="form-control form-control-sm" style="width: 120px;">
                                     <option value="">Semua</option>
@@ -162,10 +163,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
-
-                        <div class="col-lg-2 pt-3">
-                            <div class="form-group d-flex align-items-center">
+                            <div class="w-100 bg-warning">
                                 <label for="filterKelas" class="d-flex align-items-center mt-2 mr-2">Kelas</label>
                                 <select id="filterKelas" class="form-control form-control-sm" style="width: 120px;">
                                     <option value="">Semua Kelas</option>
@@ -177,33 +175,31 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
 
-                        <div class="col-lg-2 pt-3">
-                            <div class="form-group d-flex align-items-center">
-                                <label for="filterKonfirmasi" class="d-flex align-items-center mt-2 mr-2">Status</label>
-                                <select id="filterKonfirmasi" class="form-control form-control-sm" style="width: 120px;">
-                                    <option value="">Semua</option>
-                                    @php
-                                    $jenisStatus = ['Pending', 'Diterima', ' Ditolak'];
-                                    @endphp
-                                    @foreach ($jenisStatus as $j)
-                                    <option value="{{ $j }}">
-                                        {{ $j }}
-                                    </option>
-                                    @endforeach
-                                </select>
+                        </div>
+                        <div>
+                            <label for="filterKonfirmasi" class="d-flex align-items-center mt-2 mr-2">Status</label>
+                            <select id="filterKonfirmasi" class="form-control form-control-sm" style="width: 120px;">
+                                <option value="">Semua</option>
+                                @php
+                                $jenisStatus = ['Pending', 'Diterima', ' Ditolak'];
+                                @endphp
+                                @foreach ($jenisStatus as $j)
+                                <option value="{{ $j }}">
+                                    {{ $j }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div>
+                            <div class="col-lg-1">
+                                <a href="{{ route('pemasukan.create') }}" class="btn btn-info">
+                                    <i class="fas fa-plus mr-2"></i>Tambah
+                                </a>
                             </div>
                         </div>
-
-                        <div class="col-lg-5"></div>
-
-                        <div class="col-lg-1">
-                            <a href="{{ route('pemasukan.create') }}" class="btn btn-info">
-                                <i class="fas fa-plus mr-2"></i>Tambah
-                            </a>
-                        </div>
                     </div>
+                    {{-- .... --}}
 
                     <div class="row">
                         <div class="col-lg-12">
@@ -232,7 +228,7 @@
                                                 <div class="d-flex list-unstyled align-items-center justify-content-center">
                                                     <li>
                                                         <button type="button" class="btn btn-success btn-sm" title="Konfirmasi" data-toggle="modal" data-target="#updateModal" data-id="{{ $p->id }}" data-konfirmasi="{{ $p->konfirmasi }}">
-                                                            <i class="fas fa-check"></i>
+                                                            <xi class="fas fa-check"></xi>
                                                         </button>
                                                     </li>
                                                     <li>
