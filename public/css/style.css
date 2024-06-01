@@ -1,7 +1,7 @@
 /* CSS Custom */
 
 /* Halaman Tambah Siswa */
-.hts-con-form-group{
+.hts-con-form-group {
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -9,11 +9,9 @@
     margin-bottom: 20px;
 }
 
-
-
 /* Halaman index Informasi */
 
-.info-content{
+.info-content {
     display: flex;
     /* justify-content: space-between; */
     gap: 20%;
@@ -22,30 +20,30 @@
     margin-bottom: 10px;
 }
 
-.info-content .info-con-catat{
+.info-content .info-con-catat {
     display: flex;
     height: 100%;
 }
 
-.info-content .info-con-record{
+.info-content .info-con-record {
     display: flex;
     height: 50%;
     padding: 0 10px;
     /* background-color: rebeccapurple; */
 }
 
-.info-content .info-con-record .record-judul{
+.info-content .info-con-record .record-judul {
     font-size: 25px;
     margin-bottom: 10px;
     /* background-color: rebeccapurple; */
 }
 
-.info-content .info-con-record .record-info{
+.info-content .info-con-record .record-info {
     font-size: 16px;
     margin-bottom: 10px;
 }
 
-.info-content .info-con-record .record-tgl{
+.info-content .info-con-record .record-tgl {
     display: flex;
     align-items: center;
     justify-content: end;
@@ -53,7 +51,7 @@
     /* background-color: aqua; */
 }
 
-.info-content .info-con-record .con-record-button{
+.info-content .info-con-record .con-record-button {
     display: flex;
     gap: 20px;
     width: 100%;
@@ -63,25 +61,25 @@
     /* background-color: red; */
 }
 
-.info-con-record .con-record-button button{
+.info-con-record .con-record-button button {
     width: 120px;
     height: 45px;
 }
 
-.info-con-input{
+.info-con-input {
     padding: 0px 10px;
 }
 
-.info-con-input .btn{
+.info-con-input .btn {
     width: 120px;
     height: 45px;
 }
 
-.info-con-input .btn-success{
+.info-con-input .btn-success {
     margin-right: 18px;
 }
 
-.info-con-input .info-textarea{
+.info-con-input .info-textarea {
     width: 100%;
     height: 200px;
 }
@@ -90,15 +88,15 @@
     margin-bottom: 10px;
 }
 
-#btn-edit-info, #btn-baru-info, #btn-simpan-info{
+#btn-edit-info,
+#btn-baru-info,
+#btn-simpan-info {
     width: 120px;
     height: 45px;
 }
 
-
-
 /* Halaman Pemasukan */
-.hpem-con-form-group{
+.hpem-con-form-group {
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -106,7 +104,18 @@
     margin-bottom: 20px;
 }
 
-.element-rec{
+.hpem-head-index {
+    display: flex !important;
+    gap: 10px !important;
+    margin-bottom: 20px;
+}
+
+.hpem-btn-tambah {
+    display: flex;
+    flex-direction: column;
+    align-items: end !important;
+}
+.element-rec {
     padding: 5px;
     padding-left: 10px !important;
     margin-bottom: 8px !important;
@@ -117,13 +126,13 @@
     -o-border-radius: 15px !important;
 }
 
-.element-rec:hover{
+.element-rec:hover {
     cursor: pointer;
-    background-color: #6FDCE3 !important;
+    background-color: #6fdce3 !important;
 }
 
 /* Halaman Pengeluaran */
-.hpeng-con-form-group{
+.hpeng-con-form-group {
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -131,18 +140,22 @@
     margin-bottom: 20px;
 }
 
-.hpeng-con-form-group .peng-textarea{
+.hpeng-con-form-group .peng-textarea {
     width: 100%;
     height: 100px;
 }
 
-
+/* Halaman siswa */
+/* .data-table-siswa {
+    display: none !important;
+    overflow: auto;
+} */
 
 /* media query */
 
 /* Halaman Tambah Siswa */
-@media screen and (max-width:620px) {
-    .hts-con-form-group{
+@media screen and (max-width: 620px) {
+    .hts-con-form-group {
         gap: 0;
         flex-direction: column;
     }
@@ -150,47 +163,47 @@
 
 /* Halaman Informasi */
 
-@media screen and (max-width:610px) {
-    .info-content{
+@media screen and (max-width: 610px) {
+    .info-content {
         flex-direction: column;
     }
-    .info-content .info-con-record{
+    .info-content .info-con-record {
         margin-top: 30px;
     }
 
-    .info-con-input .info-textarea{
+    .info-con-input .info-textarea {
         height: 100px;
     }
 }
 
-@media screen and (max-width:1024px) {
-    .info-content{
+@media screen and (max-width: 1024px) {
+    .info-content {
         gap: 10%;
     }
-    .info-content .info-con-record{
+    .info-content .info-con-record {
         height: 65%;
     }
 }
 
-@media screen and (max-height:690px) {
-    .info-con-input .info-textarea{
+@media screen and (max-height: 690px) {
+    .info-con-input .info-textarea {
         width: 100%;
         height: 100px;
     }
 
-    .info-terkini{
+    .info-terkini {
         font-size: 28px;
     }
 
-    .info-content .info-con-record .record-judul{
+    .info-content .info-con-record .record-judul {
         font-size: 22px;
     }
 
-    .info-content .info-con-record .record-info{
+    .info-content .info-con-record .record-info {
         font-size: 14px;
     }
 
-    .info-con-record .con-record-button button{
+    .info-con-record .con-record-button button {
         width: 80px;
         height: 40px;
     }

@@ -1,64 +1,138 @@
 @extends('layout.main')
 @section('content')
-
-
-<div class="container-fluid" id="container-wrapper">
-    <div class="col-lg-12">
-        <div class="card my-3">
-            <div class="card-header">
-                <div class="d-sm-flex align-items-center justify-content-between">
-                    <h1 class="h3 mb-0 text-gray-800">Data Siswa</h1>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Master Data</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Data Siswa</li>
-                    </ol>
-                </div>
-            </div>
-
-            <div class="card-body">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-lg-2 pt-3">
-                        <div class="form-group d-flex align-items-center">
-                            <label for="filterKelas" class="d-flex align-items-center mt-2 mr-2">Kelas</label>
-                            <select id="filterKelas" class="form-control form-control-sm" style="width: 120px;">
-                                <option value="">Semua Kelas</option>
-                                @php
-                                $kelasList = ['1', '2', '3', '4', '5', '6'];
-                                @endphp
-                                @foreach ($kelasList as $kelas)
-                                <option value="{{ $kelas }}">Kelas {{ $kelas }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 pt-3">
-                        <div class="form-group d-flex align-items-center">
-                            <label for="filterJenisKelamin" class="d-flex align-items-center mt-2 mr-2">Jenis Kelamin</label>
-                            <select id="filterJenisKelamin" class="form-control form-control-sm" style="width: 120px;">
-                                <option value="">Semua</option>
-                                @php
-                                $jkList = ['Laki-laki', 'Perempuan'];
-                                @endphp
-                                @foreach ($jkList as $jk)
-                                <option value="{{ $jk }}">{{ $jk }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-7"></div>
-
-                    <div class="col-lg-1">
-                        <a href="{{ route('admin.siswa.create') }}" class="btn btn-info">
-                            <i class="fas fa-plus mr-2"></i>Tambah
-                        </a>
+    <div class="container-fluid" id="container-wrapper">
+        <div class="col-lg-12">
+            <div class="card my-3">
+                <div class="card-header">
+                    <div class="d-sm-flex align-items-center justify-content-between">
+                        <h1 class="h3 mb-0 text-gray-800">Data Siswa</h1>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Master Data</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Data Siswa</li>
+                        </ol>
                     </div>
                 </div>
 
-                @include('admin.masterdata.siswa.table',$siswa)
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between mb-5">
+                        <div class="d-flex flex-column w-50">
+                            <div class="form-group mb-0 d-flex flex-column">
+                                <label for="filterKelas" class="d-flex align-items-center mt-2 mr-2">Kelas</label>
+                                <select id="filterKelas" class="form-control form-control-sm w-100">
+                                    <option value="">Semua Kelas</option>
+                                    @php
+                                        $kelasList = ['1', '2', '3', '4', '5', '6'];
+                                    @endphp
+                                    @foreach ($kelasList as $kelas)
+                                        <option value="{{ $kelas }}">Kelas {{ $kelas }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group mb-0 d-flex flex-column ">
+                                <label for="filterJenisKelamin" class="d-flex align-items-center mt-2 mr-2">Jenis
+                                    Kelamin</label>
+                                <select id="filterJenisKelamin" class="form-control form-control-sm w-100">
+                                    <option value="">Semua</option>
+                                    @php
+                                        $jkList = ['Laki-laki', 'Perempuan'];
+                                    @endphp
+                                    @foreach ($jkList as $jk)
+                                        <option value="{{ $jk }}">{{ $jk }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <a href="{{ route('admin.siswa.create') }}" class="btn btn-info">
+                                <i class="fas fa-plus mr-2"></i>Tambah
+                            </a>
+                        </div>
+                    </div>
+
+                    @include('admin.masterdata.siswa.table', $siswa)
+                    <div class="row">
+                        <div class="col-12 overflow-auto">
+                            <table class="table align-items-center table-flush table-hover data-table-siswa" id="dataTable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="mini-th">No</th>
+                                        <th>NIS</th>
+                                        <th>Nama</th>
+                                        <th>Alamat</th>
+                                        <th>Tanggal Lahir</th>
+                                        <th>Jenis Kelamin</th>
+                                        <th>No.HP</th>
+                                        <th class="mini-th">Kelas</th>
+                                        <th class="text-center mini-th">Foto</th>
+                                        <th class="text-center mini-th">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($siswa as $item)
+                                        <tr>
+                                            <td class="col-1">{{ $loop->iteration }}</td>
+                                            <td>{{ $item->nis }}</td>
+                                            <td>{{ $item->nama }}</td>
+                                            <td>{{ $item->alamat }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y') }}</td>
+                                            <td>{{ $item->jenis_kelamin }}</td>
+                                            <td>{{ $item->nohp }}</td>
+                                            <td>{{ $item->kelas }}</td>
+                                            <td>
+                                                <a href="{{ $item->foto ? asset('storage/foto-siswa/' . $item->foto) : '' }}"
+                                                    data-fancybox="gallery">
+                                                    <img src="{{ $item->foto ? asset('storage/foto-siswa/' . $item->foto) : '' }}"
+                                                        alt="" width="65">
+                                                </a>
+                                            </td>
+                                            <td class="d-flex justify-content-between">
+                                                <a href="{{ route('admin.siswa.edit', $item->nis) }}"
+                                                    class="btn btn-primary btn-sm mr-2"><i class="fas fa-pen-alt"></i></a>
+                                                <button type="button" class="btn btn-danger btn-sm ml-2"
+                                                    data-toggle="modal" data-target="#deleteModal{{ $item->nis }}">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Modal Delete -->
+                                        <div class="modal fade" id="deleteModal{{ $item->nis }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Apakah Anda yakin ingin menghapus data ini?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Batal</button>
+                                                        <form action="{{ route('admin.siswa.delete', $item->nis) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-
 @endsection
