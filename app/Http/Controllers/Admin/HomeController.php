@@ -17,7 +17,7 @@ class HomeController extends Controller
         ));
     }
 
-    // Controller method to fetch pemasukan data
+
     public function getTotalPemasukanPengeluaran()
     {
         $totalPemasukan   = Pemasukan::where('konfirmasi', 'Terima')->sum('jumlah_bayar');

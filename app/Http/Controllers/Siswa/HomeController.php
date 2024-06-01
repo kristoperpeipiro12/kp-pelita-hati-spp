@@ -16,15 +16,15 @@ class HomeController extends Controller
         $siswa            = Auth::user();
         $kelas            = $siswa->kelas;
         $nis              = $siswa->nis;
-        $tanggal_masuk    = new DateTime($siswa->tanggal_masuk); // Ubah ke objek DateTime
-        $tanggal_sekarang = new DateTime(); // Ubah ke objek DateTime
+        $tanggal_masuk    = new DateTime($siswa->tanggal_masuk);
+        $tanggal_sekarang = new DateTime();
         $interval         = $tanggal_masuk->diff($tanggal_sekarang);
         $total_bulan      = $interval->y * 12 + $interval->m;
 
         $data_tagihan     = Tagihan::where('kelas', $kelas)->first();
         $tagihan_perbulan = $data_tagihan->tagihan_perbulan;
 
-        // Buat array untuk menyimpan informasi pembayaran per bulan
+
         $data_pembayaran             = [];
         $total_tagihan_dibayar       = 0;
         $total_tagihan_belum_dibayar = 0;
@@ -44,12 +44,9 @@ class HomeController extends Controller
             }
 
             if ($selisih_tahun > 0) {
-                // Jika selisih tahun positif, kelas akan berkurang sesuai selisih tahun
                 $kelas = $siswa->kelas - $selisih_tahun;
-                // Pastikan kelas tidak kurang dari 1
                 $kelas = max(1, $kelas);
             } else {
-                // Jika selisih tahun tidak positif, maka tetap gunakan kelas sekarang
                 $kelas = $siswa->kelas;
             }
 
@@ -59,13 +56,12 @@ class HomeController extends Controller
                 $tagihan_perbulan = $data_tagihan->tagihan_perbulan;
             }
 
-            // Periksa apakah sudah ada pembayaran untuk bulan dan tahun ini
             $pembayaran = Pemasukan::where('nis', $nis)
                 ->where('bulan_tagihan', $bulan)
                 ->where('tahun_tagihan', $tahun)
                 ->first();
 
-            // Hitung jumlah total tagihan
+
             $jumlah_bayar      = $tagihan_perbulan;
             $status_pembayaran = 'Belum dibayarkan';
 
@@ -99,11 +95,10 @@ class HomeController extends Controller
                 'status_pembayaran' => $status_pembayaran,
             ];
 
-            // Tambahkan satu bulan ke tanggal masuk
+
             $tanggal_masuk->modify('+1 month');
         }
 
-        // Urutkan array pembayaran berdasarkan tahun dan bulan
         krsort($data_pembayaran);
 
         $data_informasi = Informasi::where('tampil', 'Tayang')->orderBy('id', 'desc')->get();

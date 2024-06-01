@@ -55,7 +55,7 @@ class PemasukanController extends Controller
 
         if ($tagihan) {
             if ($tagihanPeriode) {
-                return Redirect::back()->withErrors(['error' => 'Tagihan bulan ' . $request->bulan_tagihan . '/' . $request->tahun_tagihan . ' untuk siswa ini sudah diinput.'])->withInput();
+                return Redirect::back()->withErrors(['error' => 'Tagihan bulan ' . $request->bulan_tagihan . '/' . $request->tahun_tagihan . ' untuk siswa ini sudah dibayar.'])->withInput();
             } else {
                 $jumlah_bayar = $tagihan->tagihan_perbulan;
                 $request->merge(['jumlah_bayar' => $jumlah_bayar]);

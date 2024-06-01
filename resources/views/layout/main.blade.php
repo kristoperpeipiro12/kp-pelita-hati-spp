@@ -8,7 +8,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="{{ asset('RuangAdmin/img/logo/logoSekolah.png') }}" rel="icon">
-
     <title>{{ $pageTitle }}</title>
     {{-- <title>PELITA HATI</title> --}}
 
@@ -29,9 +28,6 @@
 
     <!-- Tambahkan ini di bagian <head> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-    <!-- Tambahkan ini sebelum tag penutup </body> -->
-
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -133,7 +129,7 @@
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('yayasan.pemasukan') }}">
-                    <i class="bi bi-wallet2"></i>
+                    <i class="bi bi-currency-dollar"></i>
                     <span>Pemasukan</span>
                 </a>
             </li>

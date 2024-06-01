@@ -11,7 +11,7 @@ class TagihanController extends Controller
     public function index()
     {
         $tagihan = Tagihan::all();
-        // $totalTagihan = $tagihan->sum('total_tagihan');
+       
         $pageTitle = 'Data Tagihan - SD Kristen Pelita Hati';
 
         return view('admin.tagihan.index', compact('tagihan', 'pageTitle'));

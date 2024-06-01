@@ -163,7 +163,6 @@ class SiswaController extends Controller
             'alamat.required'        => 'Alamat wajib diisi.',
             'tanggal_lahir.required' => 'Tanggal lahir wajib diisi.',
             'tanggal_masuk.required' => 'Tanggal lahir wajib diisi.',
-
             'tanggal_lahir.date'     => 'Format tanggal lahir tidak valid.',
             'jenis_kelamin.required' => 'Jenis kelamin wajib diisi.',
             'nohp.required'          => 'Nomor HP wajib diisi.',
