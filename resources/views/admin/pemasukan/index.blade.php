@@ -140,8 +140,7 @@
                             <h1 class="h3 mb-0 text-gray-800">Pemasukan</h1>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                                <li class="breadcrumb-item"><a href="#">Pemasukan</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Data Pemasukan</li>
+                                <li class="breadcrumb-item active" aria-current="page">Pemasukan</li>
                             </ol>
                         </div>
                         {{-- edit area --}}
@@ -200,9 +199,8 @@
                             </div>
                         </div>
                         {{-- .... --}}
-
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-12 my-5">
                                 <div class="table-responsive">
                                     <table class="table align-items-center table-flush table-hover w-100" id="dataTable">
                                         <thead class="thead-light">

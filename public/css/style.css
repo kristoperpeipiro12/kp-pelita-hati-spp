@@ -10,7 +10,6 @@
 }
 
 /* Halaman index Informasi */
-
 .info-content {
     display: flex;
     /* justify-content: space-between; */
@@ -115,6 +114,7 @@
     flex-direction: column;
     align-items: end !important;
 }
+
 .element-rec {
     padding: 5px;
     padding-left: 10px !important;
@@ -129,6 +129,13 @@
 .element-rec:hover {
     cursor: pointer;
     background-color: #6fdce3 !important;
+}
+
+.tb-pem-custom-style {
+    position: sticky !important;
+    /* z-index: 100 !important; */
+    /* margin-bottom: 30px !important; */
+    /* display: none !important; */
 }
 
 /* Halaman Pengeluaran */

@@ -126,24 +126,19 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card mb-4">
-
                     <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between">
                             <h1 class="h3 mb-0 text-gray-800">Pengeluaran</h1>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                                <li class="breadcrumb-item"><a href="#">Pengeluaran</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Data Pengeluaran</li>
+                                <li class="breadcrumb-item active" aria-current="page">Pengeluaran</li>
                             </ol>
                         </div>
 
-                        <div class="row align-items-center justify-content-between">
-                            <div class="col-lg-11"></div>
-                            <div class="col-lg-1">
-                                <a href="{{ route('pengeluaran.create') }}" class="btn btn-info">
-                                    <i class="fas fa-plus mr-2"></i>Tambah
-                                </a>
-                            </div>
+                        <div class="d-flex align-items-center justify-content-end mt-2 mb-5">
+                            <a href="{{ route('pengeluaran.create') }}" class="btn btn-info">
+                                <i class="fas fa-plus mr-2"></i>Tambah
+                            </a>
                         </div>
 
                         <div class="row mt-2">

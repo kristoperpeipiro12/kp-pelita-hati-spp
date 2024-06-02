@@ -18,8 +18,6 @@
         </div>
 
         <div class="row">
-
-
             <div class="col-lg-12">
                 <div class="row mb-3">
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
@@ -121,8 +119,11 @@
                             <div class="card-header">
                                 <h6 class="m-0 font-weight-bold text-primary">Grafik Total Pemasukan & Pengeluaran</h6>
                             </div>
-                            <div class="card-body">
-                                <canvas id="pemasukanPengeluaranChart"></canvas>
+                            <div class="card-body justify-content-center">
+                                <div class="d-flex justify-content-center w-100">
+                                    <canvas id="pemasukanPengeluaranChart"
+                                        style="max-width: 400px; max-height: 400px"></canvas>
+                                </div>
                             </div>
                         </div>
 
