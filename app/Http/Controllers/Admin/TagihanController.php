@@ -11,18 +11,12 @@ class TagihanController extends Controller
     public function index()
     {
         $tagihan = Tagihan::all();
-       
+
         $pageTitle = 'Data Tagihan - SD Kristen Pelita Hati';
 
         return view('admin.tagihan.index', compact('tagihan', 'pageTitle'));
     }
 
-    public function create()
-    {
-        $pageTitle = 'Tambah Data Tagihan - SD Kristen Pelita Hati';
-
-        return view('admin.tagihan.create', compact('pageTitle'));
-    }
     public function store(Request $request)
     {
         $request->validate(
