@@ -130,7 +130,7 @@
                                                             class="d-flex list-unstyled align-items-center justify-content-center">
                                                             <li>
                                                                 <button type="button" class="btn btn-warning btn-sm"
-                                                                    title="Ubah" data-aksi="ubah" data-title="Tambah Data"
+                                                                    title="Ubah" data-aksi="ubah" data-title="Edit Data"
                                                                     data-toggle="modal" data-target="#modalForm"
                                                                     data-id="{{ $row->id }}"
                                                                     data-judul="{{ $row->judul }}"

@@ -222,12 +222,12 @@
                                             <tr>
                                                 <td style="padding-right: 5px">Username</td>
                                                 <td style="padding-right: 5px">:</td>
-                                                <td style="padding-left: 5px">username123</td>
+                                                <td style="padding-left: 5px">{{ Auth::user()->username }}</td>
                                             </tr>
                                             <tr>
                                                 <td style="padding-right: 5px">Role</td>
                                                 <td style="padding-right: 5px">:</td>
-                                                <td style="padding-left: 5px">Admin</td>
+                                                <td style="padding-left: 5px">{{ Auth::user()->role }}</td>
                                             </tr>
                                         </table>
                                     </div>

@@ -22,7 +22,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::get('', [HomeController::class, 'admin'])->name('admin');
     Route::get('/dashboard', [HomeController::class, 'admin'])->name('admin.dashboard');
 
-    Route::get('/chart/get-total-pemasukan-pengeluaran', [HomeController::class, 'getTotalPemasukanPengeluaran']);;
+    Route::get('/chart/get-total-pemasukan-pengeluaran', [HomeController::class, 'getTotalPemasukanPengeluaran']);
 
     Route::get('/siswa', [SiswaController::class, 'index'])->name('admin.siswa.index');
     Route::get('/siswa/create', [SiswaController::class, 'create'])->name('admin.siswa.create');
@@ -31,7 +31,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::post('/siswa/naik-Semua', [SiswaController::class, 'naikSemua'])->name('admin.siswa.naiksemua');
     Route::post('/siswa/naik-Singel', [SiswaController::class, 'naikSingel'])->name('admin.siswa.naiksatu');
     Route::get('/siswa/lulus', [SiswaController::class, 'siswaLulus'])->name('admin.siswa.lulus');
-    Route::delete('/siswa/hapus-lulus', [SiswaController::class, 'hapusSiswaLulus'])->name('admin.siswa.hapus-lulus');
+    Route::delete('/siswa/hapus', [SiswaController::class, 'hapusSemua'])->name('admin.siswa.hapus');
     Route::delete('/siswa/hapus-lulus/{nis}', [SiswaController::class, 'hapusSiswaLulus'])->name('admin.siswa.hapus-lulus-nis');
     Route::get('/siswa/{nis}', [SiswaController::class, 'edit'])->name('admin.siswa.edit');
     Route::put('/siswa/{nis}', [SiswaController::class, 'update'])->name('admin.siswa.update');

@@ -120,12 +120,46 @@
                 });
             }).draw();
         });
+
+        // modal
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     $('#modalEdit').on('show.bs.modal', function(event) {
+        //         var button = $(event.relatedTarget);
+        //         var title = button.data('title');
+        //         var aksi = button.data('aksi');
+        //         var kelas = button.data('kelas');
+        //         var tagihan_perbulan = button.data('tagihan_perbulan');
+
+        //         $('#modalEditLabel').html(title);
+
+        //         if (aksi == "ubah") {
+        //             var action = '{{ route('tagihan.update', ':kelas') }}';
+        //             action = action.replace(':kelas', kelas);
+        //         }
+
+        //         $('#updateForm').attr('action', action);
+        //         $('#tagihan_perbulan').val(tagihan_perbulan);
+
+        //         // Clear existing options
+        //         $('#kelas').empty();
+
+        //         // Add default option
+        //         $('#kelas').append('<option value="" disabled>-- Pilih Kelas --</option>');
+
+        //         // Add class options and select the appropriate one
+        //         for (var i = 1; i <= 6; i++) {
+        //             if (i == kelas) {
+        //                 $('#kelas').append('<option value="' + i + '" selected>' + i + '</option>');
+        //             } else {
+        //                 $('#kelas').append('<option value="' + i + '">' + i + '</option>');
+        //             }
+        //         }
+        //     });
+        // });
     </script>
 
     <!-- DataTable with Hover -->
     <div class="container-fluid" id="container-wrapper">
-
-
         <div class="col-lg-12">
             <div class="card mb-2">
                 <div class="card-header d-flex flex-column">
@@ -138,9 +172,8 @@
                     </div>
                     <div class="d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Daftar Tagihan</h6>
-                        <a href="{{ route('tagihan.create') }}" class="btn btn-info mb-1" data-toggle="modal"
-                            data-aksi="tambah" data-tanggal="{{ date('Y-m-d') }}" data-target="#modalForm"><i
-                                class="fas fa-plus" style="margin-right: 5px;"></i>Tambah</a>
+                        <a href="" class="btn btn-info mb-1" data-toggle="modal" data-tanggal="{{ date('Y-m-d') }}"
+                            data-target="#modalForm"><i class="fas fa-plus" style="margin-right: 5px;"></i>Tambah</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -164,6 +197,18 @@
                                         <td class="d-flex justify-content-center">
                                             <a href="{{ route('tagihan.edit', $t->kelas) }}"
                                                 class="btn btn-primary btn-sm mr-2"><i class="fas fa-pen-alt"></i></a>
+                                            {{-- <button type="button" class="btn btn-warning btn-sm" title="Ubah"
+                                                data-aksi="ubah" data-title="Edit Data" data-toggle="modal"
+                                                data-target="#modalEdit" data-kelas="{{ $t->kelas }}"
+                                                data-tagihan_perbulan="{{ $t->tagihan_perbulan }}">
+                                                <i class="fas fa-edit"></i>
+                                            </button> --}}
+                                            {{-- <a href="" class="btn btn-info mb-1" data-toggle="modal"
+                                                data-target="#modalEdit"><i class="fas fa-plus"
+                                                    data-kelas="{{ $t->kelas }}"
+                                                    style="margin-right:
+                                                    5px;"></i><i
+                                                    class="fas fa-edit"></i></a> --}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -227,4 +272,96 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel"
+        aria-hidden="true">
+        <div class="modal-xl modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditLabel">Edit Tagihan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('tagihan.update', $t->kelas) }}" method="POST" class="d-flex flex-column">
+                    @csrf
+                    @method('PUT')
+                    <div class="hts-con-form-group">
+                        <div class="form-group w-100">
+                            <label for="kelas">Kelas</label>
+                            <select class="form-control" id="kelas" name="kelas">
+                                <option value="" disabled>-- Pilih Kelas --</option>
+                                {{-- @for ($i = 1; $i <= 6; $i++)
+                                    <option value="{{ $i }}" {{ $t->kelas == $i ? 'selected' : '' }}>
+                                        {{ $i }}</option>
+                                        @endfor --}}
+                                <option id="kelas"></option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group w-100">
+                            <label for="tagihan_perbulan">Nominal Pemasukan</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Rp.</span>
+                                </div>
+                                <input type="text" class="form-control" name="tagihan_perbulan" id="numberInput"
+                                    value="{{ $t->tagihan_perbulan }}" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex w-25" style="gap: 20px">
+                        <button type="submit" class="btn btn-primary w-100">Simpan</button>
+                        <a href="{{ route('tagihan.index') }}" class="btn btn-secondary w-100">Batal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    {{-- <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditLabel">Edit Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="updateForm" method="POST" class="d-flex flex-column">
+                        @csrf
+                        @method('PUT')
+                        <div class="hts-con-form-group">
+                            <div class="form-group w-100">
+                                <label for="kelas">Kelas</label>
+                                <select class="form-control" id="kelas" name="kelas">
+                                    <option value="" disabled>-- Pilih Kelas --</option>
+                                    <!-- Options will be dynamically added here -->
+                                </select>
+                            </div>
+                            <div class="form-group w-100">
+                                <label for="tagihan_perbulan">Nominal Pemasukan</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Rp.</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="tagihan_perbulan" id="numberInput"
+                                        autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex w-25" style="gap: 20px">
+                            <button type="submit" class="btn btn-primary w-100">Simpan</button>
+                            <a href="{{ route('tagihan.index') }}" class="btn btn-secondary w-100">Batal</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> --}}
 @endsection

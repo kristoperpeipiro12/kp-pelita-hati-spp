@@ -161,9 +161,15 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <a href="{{ route('admin.siswa.hapus-lulus') }}" class="btn btn-warning">
-                                <i class="fas fa-trash-alt"></i> Hapus Data
-                            </a>
+                            <form action="{{ route('admin.siswa.hapus') }}" method="POST">
+
+                                @csrf
+                                @method('DELETE')
+                                {{-- <button type="submit" class="btn btn-warning">
+                                    <i class="bi bi-arrow-counterclockwise"></i> Restore Data
+
+                                </button> --}}
+                            </form>
                         </div>
 
                         <div class="row">
@@ -199,10 +205,10 @@
                                                     <td><img src="{{ empty($item->foto) ? '' : asset('storage/foto-siswa/' . $item->foto) }}"
                                                             alt="" width="65"></td>
                                                     <td class="d-flex justify-content-between">
-                                                        <button type="button" class="btn btn-danger btn-sm ml-2"
+                                                        <button type="button" class="btn btn-warning btn-sm ml-2"
                                                             data-toggle="modal"
                                                             data-target="#deleteModal{{ $item->nis }}">
-                                                            <i class="fas fa-trash-alt"></i>
+                                                            <i class="bi bi-arrow-counterclockwise"></i> Restore
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -221,7 +227,7 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                Apakah Anda yakin ingin menghapus data ini?
+                                                                Apakah Anda yakin ingin memulihkan data ini?
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
@@ -232,7 +238,7 @@
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit"
-                                                                        class="btn btn-danger">Hapus</button>
+                                                                        class="btn btn-danger">Pulihkan</button>
                                                                 </form>
                                                             </div>
                                                         </div>
