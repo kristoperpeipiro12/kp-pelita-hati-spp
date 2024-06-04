@@ -45,13 +45,7 @@ class TagihanController extends Controller
             ->with('toast_success', 'Tagihan Berhasil ditanbahkan');
     }
 
-    public function edit($kelas)
-    {
-        $tagihan   = Tagihan::find($kelas);
-        $pageTitle = 'Edit Data Tagihan - SD Kristen Pelita Hati';
 
-        return view('admin.tagihan.edit', compact('tagihan', 'pageTitle'));
-    }
 
     public function update(Request $request, $kelas)
     {
@@ -63,7 +57,7 @@ class TagihanController extends Controller
             ]);
         } else {
             $request->validate([
-                'kelas'            => 'required|unique:tagihan,kelas',
+                'kelas'            => 'unique:tagihan,kelas',
                 'tagihan_perbulan' => 'required',
             ], [
                 'kelas.unique' => 'Tagihan Sudah Ada !',

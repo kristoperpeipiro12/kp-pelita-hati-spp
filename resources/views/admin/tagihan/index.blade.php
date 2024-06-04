@@ -130,7 +130,8 @@
             modal.find('.modal-title').text('Edit Tagihan Kelas ' + kelas);
             modal.find('#edit_kelas').val(kelas);
             modal.find('#edit_numberInput').val(tagihan_perbulan);
-            modal.find('#editForm').attr('action', '{{ url("tagihan") }}/' + kelas);
+            modal.find('#editForm').attr('action', '{{ url("admin/tagihan/update/") }}/' + kelas);
+
         });
     });
 
@@ -142,16 +143,20 @@
         <div class="card mb-2">
             <div class="card-header d-flex flex-column">
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Tagihan</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Daftar Tagihan</h1>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Tagihan</li>
                     </ol>
                 </div>
-                <div class="d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Daftar Tagihan</h6>
-                    <a href="" class="btn btn-info mb-1" data-toggle="modal" data-tanggal="{{ date('Y-m-d') }}" data-target="#modalForm"><i class="fas fa-plus" style="margin-right: 5px;"></i>Tambah</a>
-                </div>
+               <div class="d-flex flex-row align-items-center justify-content-between">
+                   {{-- <h6 class="m-0 font-weight-bold text-primary">Daftar Tagihan</h6> --}}
+                   <a href="" class="btn btn-info mb-1 ml-auto" data-toggle="modal" data-tanggal="{{ date('Y-m-d') }}" data-target="#modalForm">
+                       <i class="fas fa-plus" style="margin-right: 5px;"></i>Tambah
+                   </a>
+               </div>
+
+
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -172,11 +177,9 @@
                                 <td style="width: 80%;">Rp. {{ number_format($t->tagihan_perbulan, 0, ',', '.') }}
                                 </td>
                                 <td class="d-flex justify-content-center">
-                                    {{-- <a href="{{ route('tagihan.edit', $t->kelas) }}"
-                                    class="btn btn-primary btn-sm mr-2"><i class="fas fa-pen-alt"></i></a>
-                                    --}}
-                                    <button type="button" class="btn btn-warning btn-sm edit-btn" title="Ubah" data-toggle="modal" data-target="#modalEdit" data-kelas="{{ $t->kelas }}" data-tagihan_perbulan="{{ $t->tagihan_perbulan }}">
-                                        <i class="fas fa-edit"></i> Edit
+
+                                    <button type="button" class="btn btn-primary btn-sm edit-btn" title="Ubah" data-toggle="modal" data-target="#modalEdit" data-kelas="{{ $t->kelas }}" data-tagihan_perbulan="{{ $t->tagihan_perbulan }}">
+                                        <i class="fas fa-edit"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -240,7 +243,7 @@
     </div>
 </div>
 
-<!-- Modal Edit -->
+
 <!-- Modal Edit -->
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
     <div class="modal-xl modal-dialog modal-dialog-centered" role="document">
@@ -260,7 +263,7 @@
                     <div class="hts-con-form-group">
                         <div class="form-group w-100">
                             <label for="edit_kelas">Kelas</label>
-                            <select class="form-control" id="edit_kelas" name="kelas" disabled>
+                            <select class="form-control" id="edit_kelas" name="kelas" >
                                 <option value="" disabled>-- Pilih Kelas --</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -291,6 +294,4 @@
         </div>
     </div>
 </div>
-
-
 @endsection
