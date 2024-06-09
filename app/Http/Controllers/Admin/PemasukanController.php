@@ -164,7 +164,7 @@ class PemasukanController extends Controller
         $pemasukan->save();
 
         try {
-            $this->whatsapp($siswa->no_hp, $pesan_notif_wa);
+            $this->whatsapp($siswa->nohp, $pesan_notif_wa);
         } catch (\Exception $e) {
             return redirect()->route('pemasukan.index')->with('toast_error', 'Data pemasukan berhasil diupdate, namun pesan WhatsApp gagal dikirim: ' . $e->getMessage());
         }
