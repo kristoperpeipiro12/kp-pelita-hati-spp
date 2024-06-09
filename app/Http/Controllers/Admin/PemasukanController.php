@@ -100,19 +100,76 @@ class PemasukanController extends Controller
         return redirect()->route('pemasukan.index')->with('toast_success', 'Pemasukan berhasil dihapus.');
     }
 
+    public function whatsapp($no_hp, $pesan)
+    {
+        $curl  = curl_init();
+        $token = "4ln3XfGh6cATzljjNH4ShQynGZASC8KS53p0Nz2aLvPc9QaoGE2ySVlagYCOmXI2";
+        $data  = [
+            'phone'   => $no_hp,
+            'message' => $pesan,
+        ];
+        curl_setopt($curl, CURLOPT_HTTPHEADER, [
+            "Authorization: $token",
+            "Content-Type: application/x-www-form-urlencoded",
+        ]);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($curl, CURLOPT_URL, "https://jogja.wablas.com/api/send-message");
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+
+        $result = curl_exec($curl);
+
+        if (false === $result) {
+            $error = curl_error($curl);
+            curl_close($curl);
+            throw new \Exception("Curl error: " . $error);
+        }
+
+        curl_close($curl);
+        return $result;
+    }
+
     public function konfirmasi(Request $request, $id)
     {
-        $pemasukan = Pemasukan::findOrFail($id);
-
         $request->validate([
             'konfirmasi' => 'required',
         ], [
-            'konfirmasi.required' => 'Terjadi kesalahan teknis !',
+            'konfirmasi.required' => 'Terjadi kesalahan teknis!',
         ]);
+
+        $pemasukan = Pemasukan::findOrFail($id);
+        $siswa     = Siswa::findOrFail($pemasukan->nis);
+
+        $status_konfirmasi = "";
+        switch ($request->konfirmasi) {
+            case "Terima":
+                $status_konfirmasi = "telah kami terima";
+                break;
+            case "Tolak":
+                $status_konfirmasi = "ditolak, silahkan hubungi administrator sekolah";
+                break;
+            case "Pending":
+                $status_konfirmasi = "telah disubmit, mohon menunggu konfirmasi lanjutan dari administrator";
+                break;
+            default:
+                return redirect()->back()->with('error', 'Status konfirmasi tidak valid.');
+        }
+
+        $pesan_notif_wa = "Halo, " . $siswa->nama . " NIS." . $siswa->nis;
+        $pesan_notif_wa .= " Pembayaran Tagihan SPP anda " . $status_konfirmasi;
 
         $pemasukan->konfirmasi = $request->konfirmasi;
         $pemasukan->save();
 
-        return redirect()->route('pemasukan.index')->with('toast_success', 'Data pemasukan berhasil diupdate.');
+        try {
+            $this->whatsapp($siswa->no_hp, $pesan_notif_wa);
+        } catch (\Exception $e) {
+            return redirect()->route('pemasukan.index')->with('toast_error', 'Data pemasukan berhasil diupdate, namun pesan WhatsApp gagal dikirim: ' . $e->getMessage());
+        }
+
+        return redirect()->route('pemasukan.index')->with('toast_success', 'Data pemasukan berhasil diupdate. ');
     }
+
 }
