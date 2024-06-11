@@ -209,7 +209,7 @@
                                                 <th class="text-center mini-th">Aksi</th>
                                                 <th>NIS</th>
                                                 <th>Nama</th>
-                                                <th>Kelas</th>
+                                                <th class="mini-th">Kelas</th>
                                                 <th>Periode Pembayaran</th>
                                                 <th>Jumlah Bayar (Rp)</th>
                                                 <th>Tanggal Bayar</th>

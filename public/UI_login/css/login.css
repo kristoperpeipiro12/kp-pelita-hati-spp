@@ -114,8 +114,56 @@
     cursor: pointer;
 }
 
-
 .carousel-item img {
     height: 100vh;
     background-size: cover;
+}
+
+@media only screen and (max-width: 940px) {
+    .main-login {
+        margin-top: 10px;
+    }
+
+    .main-content .name {
+        font-size: 24px;
+    }
+
+    .main-content .form-login .login-header {
+        font-size: 22px;
+    }
+
+    .main-login .main-section .input-span {
+        font-size: 14px;
+    }
+
+    .hub-admin {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .main-login {
+        margin-top: 8px;
+    }
+
+    .main-content .name {
+        font-size: 24px;
+    }
+
+    .main-content .form-login .login-header {
+        font-size: 18px;
+    }
+
+    .main-login .main-section .input-span {
+        font-size: 14px;
+    }
+
+    .hub-admin {
+        font-size: 12px;
+    }
+
+    .main-content .form-login {
+        border: none !important;
+        padding: 0;
+    }
 }
