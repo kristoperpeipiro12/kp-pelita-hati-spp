@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('UI_login/css/login.css') }}" />
     <title>{{ $pageTitle }}</title>
 </head>
+
 <body>
     <div id="carouselExampleSlidesOnly" class="carousel slide position-absolute" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -28,26 +30,29 @@
         <div class="form-login">
             <span class="login-header">LOGIN USER</span>
             @if ($errors->any())
-            <div class="alert alert-danger" role="alert">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+                <div class="alert alert-danger" role="alert">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
             <form action="{{ route('login-proses') }}" method="POST">
                 @csrf
                 <div class="main-login">
                     <div class="main-section">
                         <span class="input-span">Username :</span>
-                        <input class="input" value="{{ old('username') }}" type="text" name="username" placeholder="Masukkan username" autocomplete="off" />
+                        <input value="{{ old('username') }}" type="text" name="username"
+                            placeholder="Masukkan username" autocomplete="off" />
                     </div>
                     <div class="main-section">
                         <span class="input-span">Password :</span>
-                        <input id="password" class="input" type="password" name="password" placeholder="Masukkan password" />
+                        <input id="password" class="input" type="password" name="password"
+                            placeholder="Masukkan password" />
                         <div class="con-hide">
-                            <img id="hide" src="{{ asset('UI_login/assets/icons/eye.svg') }}" class="hide" alt="unhide" />
+                            <img id="hide" src="{{ asset('UI_login/assets/icons/eye.svg') }}" class="hide"
+                                alt="unhide" />
                         </div>
                     </div>
                     <button type="submit" id="masuk" class="btn btn-success">Masuk</button>
@@ -64,4 +69,5 @@
     <script src="{{ asset('UI_login/bootstrap/js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('UI_login/js/login.js') }}"></script>
 </body>
+
 </html>
