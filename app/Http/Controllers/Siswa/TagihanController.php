@@ -56,6 +56,10 @@ class TagihanController extends Controller
 
     public function bayar(Request $request)
     {
+        $request->merge([
+    'jumlah_bayar' => str_replace('.', '', $request->jumlah_bayar),
+]);
+
         $validatedata = $request->validate([
             'nis'             => ['required', Rule::exists('siswas', 'nis')],
             'tanggal_bayar'   => 'required|date',
