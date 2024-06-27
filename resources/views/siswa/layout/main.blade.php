@@ -20,7 +20,8 @@
                 <img src="{{ asset('siswa/assets/logoSekolah.png') }}" alt="logo-sekolah" width="35px">
                 <a class="navbar-brand fw-bolder fs-4" href="#">SD Kristen Pelita Hati</a>
             </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -28,7 +29,8 @@
                     <a class="nav-link text-white" aria-current="page" href="#identitas">Identitas</a>
                     <a class="nav-link text-white" href="#tagihan">Tagihan</a>
                     <a class="nav-link text-white" href="#informasi">Informasi</a>
-                    <a class="nav-link text-white" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    <a class="nav-link text-white" href="javascript:void(0);" data-bs-toggle="modal"
+                        data-bs-target="#logoutModal">
                         Logout
                     </a>
                     {{-- <a class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a> --}}
