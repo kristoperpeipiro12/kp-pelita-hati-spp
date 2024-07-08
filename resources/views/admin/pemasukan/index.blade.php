@@ -1,135 +1,134 @@
 @extends('layout.main')
 @section('content')
-    <script>
-        $(document).ready(function() {
-            var datetime = new Date();
-            var tanggalHariIni = datetime.getDate() + '-' + datetime.getMonth() + '-' + datetime
-                .getFullYear();
-            var waktuHariIni = datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime
-                .getSeconds();
+   <script>
+       $(document).ready(function() {
+           var datetime = new Date();
+           var tanggalHariIni = datetime.getDate() + '-' + datetime.getMonth() + '-' + datetime.getFullYear();
+           var waktuHariIni = datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
 
-            var table = $('#dataTable').DataTable({
-                "paging": true,
-                "responsive": false,
-                "searching": true,
-                "deferRender": true,
-                "lengthMenu": [
-                    [10, 25, 50, 100, 500, -1],
-                    ['10', '25', '50', '100', '500', 'Semua']
-                ],
-                "dom": '<"d-block d-lg-flex justify-content-between"lf<"btn btn-sm"B>r>t<"d-block d-lg-flex justify-content-between"ip>',
-                "buttons": [{
-                        extend: 'excelHtml5',
-                        filename: 'Data Pemasukan - SD Kristen Pelita Hati - update ' +
-                            tanggalHariIni,
-                        text: 'Export XLSX',
-                        className: 'btn bg-success text-white',
-                        exportOptions: {
-                            columns: [0, 2, 3, 4, 5, 6, 7, 8],
-                            stripHtml: true,
-                            modifier: {
-                                page: 'current'
-                            }
-                        }
-                    }, {
-                        extend: 'pdfHtml5',
-                        filename: 'Data Pemasukan - SD Kristen Pelita Hati - update ' +
-                            tanggalHariIni,
-                        text: 'Export PDF',
-                        className: 'btn bg-danger text-white',
-                        message: 'Data Pemasukan - SD Kristen Pelita Hati',
-                        messageBottom: 'Data dibuat otomatis oleh sistem : ' +
-                            tanggalHariIni + ' ' + waktuHariIni + ' WIB',
-                        exportOptions: {
-                            columns: [0, 2, 3, 4, 5, 6, 7, 8],
-                            stripHtml: true,
-                            modifier: {
-                                page: 'current'
-                            }
-                        },
-                        orientation: 'landscape',
-                        pageSize: 'LEGAL',
-                        customize: function(doc) {
-                            doc.pageMargins = [20, 20, 20, 20];
-                            doc.defaultStyle.fontSize = 10;
-                            doc.styles.tableHeader.fontSize = 10;
-                            doc.styles.title.fontSize = 14;
-                            doc.content[0].text = doc.content[0].text.trim();
-                            doc['footer'] = (function(page, pages) {
-                                return {
-                                    columns: [
-                                        'Data Pemasukan - SD Kristen Pelita Hati', {
-                                            alignment: 'right',
-                                            text: ['Page ', {
-                                                text: page
-                                                    .toString()
-                                            }, ' of ', {
-                                                text: pages
-                                                    .toString()
-                                            }]
-                                        }
-                                    ],
-                                    margin: [10, 0]
-                                }
-                            });
-                            var objLayout = {};
-                            objLayout['hLineWidth'] = function(i) {
-                                return .5;
-                            };
-                            objLayout['vLineWidth'] = function(i) {
-                                return .5;
-                            };
-                            objLayout['hLineColor'] = function(i) {
-                                return '#aaa';
-                            };
-                            objLayout['vLineColor'] = function(i) {
-                                return '#aaa';
-                            };
-                            objLayout['paddingLeft'] = function(i) {
-                                return 4;
-                            };
-                            objLayout['paddingRight'] = function(i) {
-                                return 4;
-                            };
-                            doc.content[1].layout = objLayout;
-                        }
-                    },
+           var table = $('#dataTable').DataTable({
+               "paging": true
+               , "responsive": false
+               , "searching": true
+               , "deferRender": true
+               , "lengthMenu": [
+                   [10, 25, 50, 100, 500, -1]
+                   , ['10', '25', '50', '100', '500', 'Semua']
+               ]
+               , "dom": '<"d-block d-lg-flex justify-content-between"lf<"btn btn-sm"B>r>t<"d-block d-lg-flex justify-content-between"ip>'
+               , "buttons": [{
+                   extend: 'excelHtml5'
+                   , filename: 'Data Pemasukan - SD Kristen Pelita Hati - update ' + tanggalHariIni
+                   , text: 'Export XLSX'
+                   , className: 'btn bg-success text-white'
+                   , exportOptions: {
+                       columns: [0, 2, 3, 4, 5, 6, 7, 8]
+                       , stripHtml: true
+                       , modifier: {
+                           page: 'current'
+                       }
+                   }
+               }, {
+                   extend: 'pdfHtml5'
+                   , filename: 'Data Pemasukan - SD Kristen Pelita Hati - update ' + tanggalHariIni
+                   , text: 'Export PDF'
+                   , className: 'btn bg-danger text-white'
+                   , message: 'Data Pemasukan - SD Kristen Pelita Hati'
+                   , messageBottom: 'Data dibuat otomatis oleh sistem : ' + tanggalHariIni + ' ' + waktuHariIni + ' WIB'
+                   , exportOptions: {
+                       columns: [0, 2, 3, 4, 5, 6, 7, 8]
+                       , stripHtml: true
+                       , modifier: {
+                           page: 'current'
+                       }
+                   }
+                   , orientation: 'landscape'
+                   , pageSize: 'LEGAL'
+                   , customize: function(doc) {
+                       doc.pageMargins = [20, 20, 20, 20];
+                       doc.defaultStyle.fontSize = 10;
+                       doc.styles.tableHeader.fontSize = 10;
+                       doc.styles.title.fontSize = 14;
+                       doc.content[0].text = doc.content[0].text.trim();
+                       doc['footer'] = (function(page, pages) {
+                           return {
+                               columns: [
+                                   'Data Pemasukan - SD Kristen Pelita Hati', {
+                                       alignment: 'right'
+                                       , text: ['Page ', {
+                                           text: page.toString()
+                                       }, ' of ', {
+                                           text: pages.toString()
+                                       }]
+                                   }
+                               ]
+                               , margin: [10, 0]
+                           }
+                       });
+                       var objLayout = {};
+                       objLayout['hLineWidth'] = function(i) {
+                           return .5;
+                       };
+                       objLayout['vLineWidth'] = function(i) {
+                           return .5;
+                       };
+                       objLayout['hLineColor'] = function(i) {
+                           return '#aaa';
+                       };
+                       objLayout['vLineColor'] = function(i) {
+                           return '#aaa';
+                       };
+                       objLayout['paddingLeft'] = function(i) {
+                           return 4;
+                       };
+                       objLayout['paddingRight'] = function(i) {
+                           return 4;
+                       };
+                       doc.content[1].layout = objLayout;
+                   }
+               }],
 
-                ],
-                "columnDefs": [{
-                    "searchable": false,
-                    "orderable": false,
-                    "targets": 0
-                }],
-                "order": [
-                    [1, 'asc']
-                ]
+               "columnDefs": [{
+                   "searchable": false
+                   , "orderable": false
+                   , "targets": 0
+               }]
+               , "order": [
+                   [1, 'asc']
+               ]
+           });
+
+           table.on('order.dt search.dt', function() {
+               table.column(0, {
+                   order: 'applied'
+                   , search: 'applied'
+               }).nodes().each(function(cell, i) {
+                   cell.innerHTML = i + 1;
+               });
+           }).draw();
+
+           $('#filterKelas').on('change', function() {
+               var selectedKelas = $(this).val();
+               table.column(4).search(selectedKelas).draw();
             });
+            // $('#filterTanggal').on('change', function() {
+            //     var selectedDate = $(this).val();
+            //     table.column(7).search(selectedDate).draw(); // Asumsikan kolom tanggal ada di index 1
+            // });
+           $('#filterJenisTransaksi').on('change', function() {
+               var selectedJenisTransaksi = $(this).val();
+               table.column(8).search(selectedJenisTransaksi).draw();
+           });
+           $('#filterKonfirmasi').on('change', function() {
+               var selectedKonfirmasi = $(this).val();
+               table.column(9).search(selectedKonfirmasi).draw();
+           });
 
-            table.on('order.dt search.dt', function() {
-                table.column(0, {
-                    order: 'applied',
-                    search: 'applied'
-                }).nodes().each(function(cell, i) {
-                    cell.innerHTML = i + 1;
-                });
-            }).draw();
+       });
 
-            $('#filterKelas').on('change', function() {
-                var selectedKelas = $(this).val();
-                table.column(4).search(selectedKelas).draw();
-            });
-            $('#filterJenisTransaksi').on('change', function() {
-                var selectedJenisTransaksi = $(this).val();
-                table.column(8).search(selectedJenisTransaksi).draw();
-            });
-            $('#filterKonfirmasi').on('change', function() {
-                var selectedKonfirmasi = $(this).val();
-                table.column(9).search(selectedKonfirmasi).draw();
-            });
+   </script>
 
-        });
-    </script>
+
 
     <div class="container-fluid" id="container-wrapper">
         <div class="row">
@@ -162,6 +161,11 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                  {{-- <div class="w-100">
+                                      <label for="filterTanggal" class="d-flex align-items-center mt-2 mr-2">Tanggal Bayar</label>
+                                      <input type="date" id="filterTanggal" class="form-control form-control-sm w-100" style="width: 120px;">
+                                  </div> --}}
+
                                 <div class="w-100">
                                     <label for="filterKelas" class="d-flex align-items-center mt-2 mr-2">Kelas</label>
                                     <select id="filterKelas" class="form-control form-control-sm w-100"

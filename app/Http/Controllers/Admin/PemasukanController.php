@@ -171,10 +171,10 @@ class PemasukanController extends Controller
         $status_konfirmasi = "";
         switch ($request->konfirmasi) {
             case "Terima":
-                $status_konfirmasi = "Pembayaran telah kami terima";
+                $status_konfirmasi = "telah kami terima";
                 break;
             case "Tolak":
-                $status_konfirmasi = "Pembayaran ditolak, silahkan hubungi administrasi sekolah";
+                $status_konfirmasi = "ditolak, silahkan hubungi administrasi sekolah";
                 break;
             case "Pending":
                 $status_konfirmasi = "telah disubmit, mohon menunggu konfirmasi lanjutan dari admin";
