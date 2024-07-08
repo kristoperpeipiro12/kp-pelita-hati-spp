@@ -26,6 +26,10 @@
                             <label for="password">Password</label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror"
                                 name="password" placeholder="****" id="password_user">
+                            <div class="con-hide w-100 d-flex justify-content-end">
+                                <img id="hide" src="{{ asset('UI_login/assets/icons/eye.svg') }}" class="hide mt-1"
+                                    style="width: 18px" alt="unhide" />
+                            </div>
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -52,4 +56,22 @@
             </div>
         </div>
     </div>
+    <script>
+        let hide = document.getElementById('hide')
+        let pass = document.getElementById('password_user')
+
+        let tampil = true
+
+        hide.onclick = function() {
+            if (tampil) {
+                pass.setAttribute('type', 'text')
+                hide.setAttribute('src', '../../assets/bootstrap-icons/eye-slash.svg')
+                tampil = !tampil
+            } else {
+                pass.setAttribute('type', 'password')
+                hide.setAttribute('src', '../../assets/bootstrap-icons/eye.svg')
+                tampil = !tampil
+            }
+        }
+    </script>
 @endsection
