@@ -48,7 +48,7 @@
                                 }
                             },
                             orientation: 'landscape',
-                            pageSize: 'LEGAL',
+                            pageSize: 'A4',
                             customize: function(doc) {
                                 doc.pageMargins = [20, 20, 20, 20];
                                 doc.defaultStyle.fontSize = 10;

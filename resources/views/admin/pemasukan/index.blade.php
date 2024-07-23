@@ -161,10 +161,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                  {{-- <div class="w-100">
-                                      <label for="filterTanggal" class="d-flex align-items-center mt-2 mr-2">Tanggal Bayar</label>
-                                      <input type="date" id="filterTanggal" class="form-control form-control-sm w-100" style="width: 120px;">
-                                  </div> --}}
 
                                 <div class="w-100">
                                     <label for="filterKelas" class="d-flex align-items-center mt-2 mr-2">Kelas</label>

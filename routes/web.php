@@ -37,9 +37,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
     Route::put('/siswa/{nis}', [SiswaController::class, 'update'])->name('admin.siswa.update');
     Route::delete('/siswa/{nis}', [SiswaController::class, 'delete'])->name('admin.siswa.delete');
 
-    Route::get('/siswa/export/excel', [SiswaController::class, 'exportExcel'])->name('admin.siswa.export.excel');
-    Route::get('/siswa/export/pdf', [SiswaController::class, 'exportPDF'])->name('admin.siswa.export.pdf');
-
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
     Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
@@ -75,6 +72,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web', 'role:admin']], 
 });
 Route::group(['prefix' => 'yayasan', 'middleware' => ['auth:web', 'role:yayasan']], function () {
     Route::get('', [YayasanHomeController::class, 'index'])->name('yayasan');
+    Route::get('/chart/get-total-pemasukan-pengeluaran', [YayasanHomeController::class,'getTotalPemasukanPengeluaran']);
     Route::get('/dashboard', [YayasanHomeController::class, 'index'])->name('yayasan.dashboard');
     Route::get('/pemasukan', [YayasanHomeController::class, 'pemasukan'])->name('yayasan.pemasukan');
     Route::get('/pengeluaran', [YayasanHomeController::class, 'pengeluaran'])->name('yayasan.pengeluaran');

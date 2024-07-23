@@ -30,4 +30,14 @@ class HomeController extends Controller
 
         return view("yayasan.pengeluaran.index", compact("pengeluaran", "pageTitle"));
     }
+        public function getTotalPemasukanPengeluaran()
+    {
+        $totalPemasukan   = Pemasukan::where('konfirmasi', 'Terima')->sum('jumlah_bayar');
+        $totalPengeluaran = Pengeluaran::sum('pengeluaran');
+
+        return response()->json([
+            'totalPemasukan'   => $totalPemasukan,
+            'totalPengeluaran' => $totalPengeluaran,
+        ]);
+    }
 }

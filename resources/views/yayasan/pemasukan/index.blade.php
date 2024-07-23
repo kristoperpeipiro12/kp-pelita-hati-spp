@@ -17,85 +17,87 @@
                     [10, 25, 50, 100, 500, -1]
                     , ['10', '25', '50', '100', '500', 'Semua']
                 ]
-                // , "dom": '<"d-block d-lg-flex justify-content-between"lf<"btn btn-sm"B>r>t<"d-block d-lg-flex justify-content-between"ip>'
-                // , "buttons": [{
-                //         extend: 'excelHtml5'
-                //         , filename: 'Data Pengeluaran - SD Kristen Pelita Hati - update ' +
-                //             tanggalHariIni
-                //         , text: 'Export XLSX'
-                //         , exportOptions: {
-                //             columns: [0, 1, 2, 3, 4]
-                //             , stripHtml: true
-                //             , modifier: {
-                //                 page: 'current'
-                //             }
-                //         }
-                //     }
-                //     , {
-                //         extend: 'pdfHtml5'
-                //         , filename: 'Data Pengeluaran - SD Kristen Pelita Hati - update ' +
-                //             tanggalHariIni
-                //         , text: 'Export PDF'
-                //         , message: 'Data Pengeluaran - SD Kristen Pelita Hati'
-                //         , messageBottom: 'Data dibuat otomatis oleh sistem : ' +
-                //             tanggalHariIni + ' ' + waktuHariIni + ' WIB'
-                //         , exportOptions: {
-                //             columns: [0, 1, 2, 3, 4]
-                //             , stripHtml: true
-                //             , modifier: {
-                //                 page: 'current'
-                //             }
-                //         }
-                //         , orientation: 'portrait'
-                //         , pageSize: 'LEGAL'
-                //         , customize: function(doc) {
-                //             doc.pageMargins = [20, 20, 20, 20];
-                //             doc.defaultStyle.fontSize = 10;
-                //             doc.styles.tableHeader.fontSize = 10;
-                //             doc.styles.title.fontSize = 14;
-                //             doc.content[0].text = doc.content[0].text.trim();
-                //             doc['footer'] = (function(page, pages) {
-                //                 return {
-                //                     columns: [
-                //                         'Data Pengeluaran - SD Kristen Pelita Hati'
-                //                         , {
-                //                             alignment: 'right'
-                //                             , text: ['Page ', {
-                //                                 text: page
-                //                                     .toString()
-                //                             }, ' of ', {
-                //                                 text: pages
-                //                                     .toString()
-                //                             }]
-                //                         }
-                //                     ]
-                //                     , margin: [10, 0]
-                //                 }
-                //             });
-                //             var objLayout = {};
-                //             objLayout['hLineWidth'] = function(i) {
-                //                 return .5;
-                //             };
-                //             objLayout['vLineWidth'] = function(i) {
-                //                 return .5;
-                //             };
-                //             objLayout['hLineColor'] = function(i) {
-                //                 return '#aaa';
-                //             };
-                //             objLayout['vLineColor'] = function(i) {
-                //                 return '#aaa';
-                //             };
-                //             objLayout['paddingLeft'] = function(i) {
-                //                 return 4;
-                //             };
-                //             objLayout['paddingRight'] = function(i) {
-                //                 return 4;
-                //             };
-                //             doc.content[1].layout = objLayout;
-                //         }
-                //     },
+                , "dom": '<"d-block d-lg-flex justify-content-between"lf<"btn btn-sm"B>r>t<"d-block d-lg-flex justify-content-between"ip>'
+                , "buttons": [{
+                        extend: 'excelHtml5'
+                        , filename: 'Data Pemasukan - SD Kristen Pelita Hati - update ' +
+                            tanggalHariIni
+                        , text: 'Export XLSX'
+                        , className: 'btn bg-success text-white'
+                        , exportOptions: {
+                            columns: [0, 1, 2, 3, 4,5,6]
+                            , stripHtml: true
+                            , modifier: {
+                                page: 'current'
+                            }
+                        }
+                    }
+                    , {
+                        extend: 'pdfHtml5'
+                        , filename: 'Data Pemasukan - SD Kristen Pelita Hati - update ' +
+                            tanggalHariIni
+                        , text: 'Export PDF'
+                   , className: 'btn bg-danger text-white'
+                        , message: 'Data Pemasukan - SD Kristen Pelita Hati'
+                        , messageBottom: 'Data dibuat otomatis oleh sistem : ' +
+                            tanggalHariIni + ' ' + waktuHariIni + ' WIB'
+                        , exportOptions: {
+                            columns: [0, 1, 2, 3, 4,5,6]
+                            , stripHtml: true
+                            , modifier: {
+                                page: 'current'
+                            }
+                        }
+                        , orientation: 'portrait'
+                        , pageSize: 'LEGAL'
+                        , customize: function(doc) {
+                            doc.pageMargins = [20, 20, 20, 20];
+                            doc.defaultStyle.fontSize = 10;
+                            doc.styles.tableHeader.fontSize = 10;
+                            doc.styles.title.fontSize = 14;
+                            doc.content[0].text = doc.content[0].text.trim();
+                            doc['footer'] = (function(page, pages) {
+                                return {
+                                    columns: [
+                                        'Data Pemasukan - SD Kristen Pelita Hati'
+                                        , {
+                                            alignment: 'right'
+                                            , text: ['Page ', {
+                                                text: page
+                                                    .toString()
+                                            }, ' of ', {
+                                                text: pages
+                                                    .toString()
+                                            }]
+                                        }
+                                    ]
+                                    , margin: [10, 0]
+                                }
+                            });
+                            var objLayout = {};
+                            objLayout['hLineWidth'] = function(i) {
+                                return .5;
+                            };
+                            objLayout['vLineWidth'] = function(i) {
+                                return .5;
+                            };
+                            objLayout['hLineColor'] = function(i) {
+                                return '#aaa';
+                            };
+                            objLayout['vLineColor'] = function(i) {
+                                return '#aaa';
+                            };
+                            objLayout['paddingLeft'] = function(i) {
+                                return 4;
+                            };
+                            objLayout['paddingRight'] = function(i) {
+                                return 4;
+                            };
+                            doc.content[1].layout = objLayout;
+                        }
+                    },
 
-                // ]
+                ]
             , "columnDefs": [{
                 "searchable": false
                 , "orderable": false
@@ -135,10 +137,7 @@
     <div class="col-lg-12">
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                {{-- <h6 class="m-0 font-weight-bold text-primary">Daftar Pemasukan</h6> --}}
-
-
-            </div>
+             </div>
             <div class="table-responsive p-3">
                 <table class="table align-items-center table-flush table-hover" id="dataTable">
                     <thead class="thead-light">
