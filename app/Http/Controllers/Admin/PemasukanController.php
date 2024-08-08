@@ -29,7 +29,7 @@ class PemasukanController extends Controller
     public function whatsapp($no_hp, $pesan)
     {
         $curl  = curl_init();
-        $token = "4ln3XfGh6cATzljjNH4ShQynGZASC8KS53p0Nz2aLvPc9QaoGE2ySVlagYCOmXI2";
+        $token = "9nsxUwZvA4bHadNafBeft46LrfKVSB5ND2vcufrfFujS8HCWM3UuHzCzgnyIb0rB";
         $data  = [
             'phone'   => $no_hp,
             'message' => $pesan,
